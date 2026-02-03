@@ -1,0 +1,2429 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUE Behavioural Design Academy &mdash; Campagne Landing Page V2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #FF5A5F;
+            --coral-light: #FFB7B9;
+            --coral-lighter: #FFE5E5;
+            --dark-grey: #797979;
+            --light-grey: #F2F2F2;
+            --green-accent: #2E7D32;
+            --green-light: #E8F5E9;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            color: var(--black);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .highlight { color: var(--coral); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex; align-items: center; gap: 0.5rem;
+            text-decoration: none; color: var(--black);
+        }
+
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: var(--coral); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .logo-circle span {
+            color: var(--white); font-family: 'Open Sans', sans-serif;
+            font-size: 11px; font-weight: bold; letter-spacing: 0.5px;
+        }
+
+        .logo-text { font-family: 'Open Sans', sans-serif; font-weight: bold; font-size: 1.1rem; }
+        .logo-sub { font-family: 'Open Sans', sans-serif; font-size: 0.65rem; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 1px; }
+
+        nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        nav a { text-decoration: none; color: var(--black); font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 0.9rem; }
+        nav a:hover { color: var(--coral); }
+        .nav-cta { background: var(--coral); color: var(--white) !important; padding: 0.6rem 1.25rem; border-radius: 6px; }
+
+
+        /* ============================================
+           HERO — Split layout (from v14)
+           Left: tagline + CTA + toggle
+           Right: superskills grid
+           ============================================ */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--white) 0%, var(--coral-lighter) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            right: 30%;
+            width: 400px;
+            height: 400px;
+            background: var(--coral-light);
+            border-radius: 50%;
+            opacity: 0.15;
+            filter: blur(80px);
+        }
+
+        .hero-left {
+            padding: 8rem 3rem 4rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-left h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.25;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-left h1 .highlight { color: var(--coral); }
+
+        .hero-subtitle {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.175rem;
+            color: var(--dark-grey);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+        }
+
+        .hero-micro {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.82rem;
+            color: var(--dark-grey);
+        }
+        .hero-micro strong { color: var(--black); }
+
+        /* Hero toggle (inside hero-left) */
+        .hero-toggle-wrap {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-toggle {
+            display: inline-flex;
+            background: #E0E0E0;
+            border-radius: 50px;
+            padding: 0.3rem;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.12), 0 2px 15px rgba(0,0,0,0.06);
+        }
+
+        .hero-toggle-btn {
+            padding: 0.85rem 2rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.975rem;
+            font-weight: 700;
+            color: var(--dark-grey);
+            cursor: pointer;
+            border-radius: 50px;
+            border: none;
+            background: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .hero-toggle-btn.active {
+            background: #43A047;
+            color: var(--white);
+            box-shadow: 0 2px 10px rgba(67,160,71,0.3);
+        }
+
+        /* Hero right: skills panel */
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skills-panel {
+            background: var(--light-grey);
+            border-radius: 20px;
+            padding: 1.75rem;
+        }
+
+        .skills-panel .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .skills-panel .panel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.85rem;
+            background: transparent;
+            color: var(--coral);
+            border: 1.5px solid var(--coral);
+            border-radius: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skills-panel .panel-title {
+            font-size: 0.8rem;
+            color: var(--dark-grey);
+            font-weight: 600;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .skill-card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+
+        .skill-card .skill-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.3;
+            margin-bottom: 0.25rem;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        .skill-card .skill-sub {
+            font-size: 0.97rem;
+            color: var(--dark-grey);
+            line-height: 1.4;
+        }
+
+        .skills-panel .panel-footer {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--coral);
+        }
+
+
+        /* ============================================
+           HERO INTERACTIVE (bridge + pills + reveal panels)
+           ============================================ */
+        .hero-interactive {
+            background: var(--white);
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 3rem 2rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-bridge {
+            font-family: Georgia, serif;
+            font-size: 2.4rem;
+            color: var(--black);
+            margin-bottom: 0.4rem;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.35;
+        }
+
+        .hero-bridge-sub {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.175rem;
+            color: var(--dark-grey);
+            margin-top: 1.5rem;
+            margin-bottom: 3rem;
+            font-style: normal;
+        }
+
+        /* Doelgroep pills */
+        .doelgroep-pills {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+            padding: 0 1rem;
+        }
+
+        .doelgroep-pill {
+            padding: 0.5rem 1.2rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--dark-grey);
+            cursor: pointer;
+            border-radius: 30px;
+            border: 1.5px solid #ddd;
+            background: var(--white);
+            white-space: nowrap;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        .doelgroep-pill:hover {
+            border-color: var(--coral);
+            color: var(--coral);
+        }
+
+        .doelgroep-pill.active {
+            background: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+        }
+
+        /* Reveal panels (photo variant) */
+        .reveal-panel {
+            display: none;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            text-align: left;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            animation: fadeInPanel 0.4s ease;
+        }
+
+        .reveal-panel.active {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+        }
+
+        @keyframes fadeInPanel {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rv-left {
+            padding: 2.25rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .rv-eyebrow {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 0.4rem;
+        }
+
+        .rv-left h3 {
+            font-family: Georgia, serif;
+            font-size: 1.25rem;
+            line-height: 1.35;
+            margin-bottom: 1.1rem;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+        }
+
+        .rv-left > p {
+            font-size: 0.97rem;
+            color: var(--dark-grey);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .bd-ai-block {
+            background: var(--light-grey);
+            border-radius: 12px;
+            padding: 0.85rem 1.1rem;
+            margin-top: 1.25rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .bai-label {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+        .bai-label.bd { color: var(--black); }
+        .bai-label.ai { color: var(--coral); }
+
+        .bd-ai-block ul { list-style: none; padding: 0; }
+
+        .bd-ai-block ul li {
+            font-size: 0.88rem;
+            color: var(--black);
+            line-height: 1.55;
+            padding: 0.12rem 0 0.12rem 0.85rem;
+            position: relative;
+        }
+
+        .bd-ai-block ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.45em;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+
+        .bd-side ul li::before { background: var(--black); }
+        .ai-side ul li::before { background: var(--coral); }
+
+        .rv-right {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rv-case-brief {
+            background: var(--light-grey);
+            color: var(--black);
+            padding: 1.5rem 2.25rem 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .rv-case-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 0.6rem;
+        }
+
+        .rv-case-question {
+            font-size: 1.08rem;
+            line-height: 1.45;
+            font-style: italic;
+            color: var(--black);
+        }
+
+        .rv-case-client {
+            margin-top: 0.75rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--dark-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rv-case-logo {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .rv-case-logo img {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
+
+        .case-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+            margin-bottom: 6rem;
+        }
+
+        .case-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #CCCCCC;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .case-dot:hover {
+            background: var(--dark-grey);
+        }
+
+        .case-dot.active {
+            background: var(--coral);
+            transform: scale(1.2);
+        }
+
+        .rv-case-photo {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .rv-case-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* ============================================
+           PATH TOGGLE
+           ============================================ */
+        .path-section {
+            padding: 4rem 2rem 3rem;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .path-header {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .path-header .eyebrow {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 0.5rem;
+        }
+
+        .path-header h2 {
+            font-family: Georgia, serif;
+            font-size: 1.6rem;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+            line-height: 1.35;
+        }
+
+        .path-toggle-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        .path-toggle {
+            display: flex;
+            background: var(--light-grey);
+            border-radius: 50px;
+            padding: 0.3rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+        }
+
+        .path-toggle-btn {
+            padding: 0.85rem 2rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--dark-grey);
+            cursor: pointer;
+            border-radius: 50px;
+            border: none;
+            background: none;
+            transition: all 0.3s ease;
+        }
+
+        .path-micro {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.82rem;
+            color: var(--dark-grey);
+            margin-top: 1.5rem;
+            margin-bottom: 0;
+        }
+        .path-micro strong { color: var(--black); }
+
+        .path-toggle-btn.active {
+            background: var(--coral);
+            color: var(--white);
+            box-shadow: 0 2px 10px rgba(255,90,95,0.3);
+        }
+
+        a.path-toggle-btn {
+            text-decoration: none;
+        }
+
+
+        /* ============================================
+           SUPERSKILL PROPOSITIE
+           ============================================ */
+        .superskill-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+            text-align: center;
+        }
+        .superskill-heading {
+            font-family: Georgia, serif;
+            font-size: 2.4rem;
+            font-weight: normal;
+            color: var(--black);
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+            text-transform: none;
+            letter-spacing: 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .superskill-body {
+            font-family: Georgia, serif;
+            font-size: 1.175rem;
+            color: var(--dark-grey);
+            line-height: 1.7;
+            max-width: 650px;
+            margin: 0 auto 3.5rem;
+        }
+        .superskill-formula {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            gap: 0;
+            max-width: 950px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+        .superskill-block {
+            border-radius: 16px;
+            padding: 2.25rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .superskill-block.bd-block {
+            background: var(--light-grey);
+        }
+        .superskill-block.ai-block {
+            background: var(--coral-lighter);
+        }
+        .superskill-block.result-block {
+            background: var(--coral);
+        }
+        .superskill-block .block-icon {
+            margin-bottom: 0.75rem;
+            line-height: 1;
+        }
+        .superskill-block .block-icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        .superskill-block h4 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .superskill-block.bd-block h4 { color: var(--black); }
+        .superskill-block.ai-block h4 { color: var(--coral); }
+        .superskill-block.result-block h4 { color: var(--white); opacity: 0.85; }
+        .superskill-block p {
+            font-family: Georgia, serif;
+            font-size: 1.175rem;
+            line-height: 1.7;
+        }
+        .superskill-block.bd-block p,
+        .superskill-block.ai-block p { color: var(--dark-grey); }
+        .superskill-block.result-block p {
+            color: var(--white);
+        }
+        .superskill-operator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1.25rem;
+        }
+        .superskill-operator span {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--coral);
+            line-height: 1;
+            transform: rotate(-3deg);
+            display: inline-block;
+        }
+
+        /* ============================================
+           RICHTING 4: Zelf volgen
+           ============================================ */
+        .zelf-section {
+            padding: 6rem 2rem 5rem;
+            background: var(--light-grey);
+        }
+
+        .zelf-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+
+        .zelf-header .ai-badge-circle,
+        .ta-header .ai-badge-circle {
+            position: absolute;
+            top: -1rem;
+            right: -3.5rem;
+            width: 110px;
+            height: 110px;
+            transform: rotate(8deg);
+            z-index: 2;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 35% 35%, rgba(255,255,255,0.25) 0%, transparent 60%),
+                var(--coral);
+            border: 3px solid var(--white);
+            box-shadow:
+                0 3px 8px rgba(0,0,0,0.15),
+                0 1px 3px rgba(0,0,0,0.1),
+                inset 0 -2px 4px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding: 0.5rem;
+            cursor: default;
+        }
+        .ta-header .ai-badge-circle {
+            top: -2.5rem;
+        }
+
+        .zelf-header .ai-badge-circle span,
+        .ta-header .ai-badge-circle span {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.55rem;
+            line-height: 1.4;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+        }
+
+        .zelf-header .ai-badge-circle span.ai-big,
+        .ta-header .ai-badge-circle span.ai-big {
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-top: 0.1rem;
+        }
+
+        .zelf-header .eyebrow {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 0.5rem;
+        }
+
+        .zelf-header h2 {
+            font-family: Georgia, serif;
+            font-size: 2.4rem;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+            line-height: 1.35;
+        }
+
+        /* Promise bar */
+        .promise-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 950px;
+            margin: 0 auto 3rem;
+            counter-reset: promise;
+        }
+
+        .promise-item {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.75rem 1.75rem 1.75rem 5rem;
+            position: relative;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .promise-item .promise-icon {
+            position: absolute;
+            top: 1.25rem; left: 1.25rem;
+            width: 48px; height: 48px;
+            object-fit: contain;
+        }
+
+        .promise-item h5 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+            color: var(--black);
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .promise-item p {
+            font-size: 1.175rem;
+            color: var(--dark-grey);
+            line-height: 1.5;
+        }
+
+        .zelf-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--dark-grey);
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+        }
+
+        .zelf-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .zelf-meta .meta-icon {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+
+        .zelf-format-label {
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+        .zelf-format-label h3 {
+            font-family: Georgia, serif;
+            font-size: 1.3rem;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+            margin-bottom: 0.3rem;
+        }
+        .zelf-format-label p {
+            font-size: 0.97rem;
+            color: var(--dark-grey);
+        }
+
+        /* Format cards with photos */
+        .fmt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .fmt-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .fmt-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .fmt-card.green { border-color: var(--green-accent); }
+
+        .fmt-visual {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fmt-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+        .fmt-visual .ov {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.4) 100%);
+            padding: 1.25rem;
+            display: flex; flex-direction: column; justify-content: space-between;
+            color: var(--white);
+        }
+
+        .fmt-badge {
+            display: inline-block;
+            padding: 0.35rem 0.9rem; border-radius: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.65rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            align-self: flex-start;
+        }
+        .fmt-badge.bg-green { background: var(--green-accent); }
+        .fmt-badge.bg-coral { background: var(--coral); }
+
+        .fmt-scene {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem; font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .fmt-body {
+            padding: 1.75rem; flex-grow: 1;
+            display: flex; flex-direction: column;
+        }
+
+        .fmt-body h4 {
+            font-size: 0.85rem; letter-spacing: 1.5px; margin-bottom: 0.3rem;
+        }
+
+        .fmt-body .tagline {
+            font-family: Georgia, serif;
+            font-size: 0.95rem; font-style: italic; margin-bottom: 1rem;
+        }
+        .fmt-card.green .tagline { color: var(--green-accent); }
+        .fmt-card:not(.green) .tagline { color: var(--coral); }
+
+        .fmt-feats { list-style: none; margin-bottom: 1.5rem; }
+        .fmt-feats li {
+            display: flex; align-items: center; gap: 0.6rem;
+            padding: 0.5rem 0;
+            font-family: 'Open Sans', sans-serif; font-size: 0.9rem;
+            border-bottom: 1px solid var(--light-grey);
+        }
+        .fmt-feats li:last-child { border-bottom: none; }
+        .fmt-feats li::before { content: '\2713'; font-weight: bold; flex-shrink: 0; }
+        .fmt-card.green .fmt-feats li::before { color: var(--green-accent); }
+        .fmt-card:not(.green) .fmt-feats li::before { color: var(--coral); }
+
+        .fmt-feats li.ai-highlight,
+        .ta-includes li.ai-highlight {
+            border-bottom: none;
+            font-weight: 700;
+        }
+        .fmt-feats li.ai-highlight::before,
+        .ta-includes li.ai-highlight::before {
+            content: none;
+        }
+        .fmt-feats li.ai-highlight .ai-icon,
+        .ta-includes li.ai-highlight .ai-icon {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .fmt-bottom {
+            margin-top: auto; padding-top: 1.25rem; border-top: 1px solid var(--light-grey);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+
+        .fmt-price { font-family: Georgia, serif; font-size: 1.8rem; }
+        .fmt-price span { font-family: 'Open Sans', sans-serif; font-size: 0.75rem; color: var(--dark-grey); }
+
+        .fmt-cta {
+            display: inline-block; padding: 0.75rem 1.75rem; border-radius: 8px;
+            text-decoration: none; font-family: 'Open Sans', sans-serif;
+            font-weight: 700; font-size: 0.85rem; color: var(--white);
+            transition: all 0.2s ease;
+        }
+        .fmt-cta:hover { transform: translateY(-2px); }
+        .fmt-cta.bg-green { background: #43A047; box-shadow: 0 4px 15px rgba(67,160,71,0.3); }
+        .fmt-cta.bg-coral { background: var(--coral); box-shadow: 0 4px 15px rgba(255,90,95,0.3); }
+
+        .fmt-footnote {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif; font-size: 0.97rem;
+            color: var(--dark-grey); max-width: 700px;
+            margin: 2rem auto 5rem; line-height: 1.6;
+        }
+
+        .client-logos-section {
+            max-width: 950px;
+            margin: 0 auto 2rem;
+            padding-top: 2rem;
+            text-align: center;
+        }
+        .client-logos-section h3 {
+            font-family: Georgia, serif;
+            font-size: 2.4rem;
+            font-weight: normal;
+            color: var(--black);
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .client-logos-section > p {
+            font-size: 0.95rem;
+            color: var(--dark-grey);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .logo-ticker-wrapper {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+        .logo-ticker-wrapper::before,
+        .logo-ticker-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .logo-ticker-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--white), transparent);
+        }
+        .logo-ticker-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--white), transparent);
+        }
+        .logo-ticker {
+            display: flex;
+            align-items: center;
+            gap: 3.5rem;
+            animation: ticker-scroll 70s linear infinite;
+            width: max-content;
+        }
+        .logo-ticker img {
+            height: 70px;
+            max-width: 180px;
+            object-fit: contain;
+            opacity: 1;
+            flex-shrink: 0;
+        }
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Dates block (photo + cards) */
+        .dates-block {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            max-width: 950px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .dates-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .dates-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dates-section-header .dates-title {
+            font-family: Georgia, serif;
+            font-size: 2.4rem;
+            color: var(--black);
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
+        }
+
+        .dates-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .dates-header h3 {
+            font-family: Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--coral);
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+            margin-bottom: 0.35rem;
+        }
+
+        .dates-header p {
+            font-size: 0.9rem;
+            color: var(--dark-grey);
+        }
+
+        .dates-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .date-card {
+            background: var(--coral-lighter);
+            border-radius: 12px;
+            padding: 1.15rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .date-card:hover {
+            border-color: var(--coral);
+            transform: translateX(5px);
+        }
+
+        .date-card .days {
+            font-family: Georgia, serif;
+            font-size: 1.15rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .date-card .meta {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.82rem;
+            color: var(--dark-grey);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .date-card .status {
+            display: inline-block;
+            padding: 0.55rem 1.25rem;
+            border-radius: 25px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .date-card .status.urgent {
+            background: var(--coral);
+            color: var(--white);
+        }
+
+        .date-card .status.available {
+            background: #43A047;
+            color: var(--white);
+        }
+
+        .dates-link {
+            margin-top: 1.25rem;
+        }
+
+        .dates-link a {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--coral);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .dates-link a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ============================================
+           TEAMS SECTION (Prototype A: side-by-side)
+           ============================================ */
+        .teams-section {
+            padding: 6rem 2rem 5rem;
+            background: var(--white);
+        }
+
+        .ta-header {
+            text-align: center; max-width: 750px; margin: 0 auto 2.5rem;
+        }
+        .ta-header .eyebrow {
+            font-family: 'Open Sans', sans-serif; font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700;
+            color: var(--coral); margin-bottom: 0.5rem;
+        }
+        .ta-header h2 {
+            font-family: Georgia, serif; font-size: 2.4rem;
+            text-transform: none; letter-spacing: 0; font-weight: normal;
+            line-height: 1.35; margin-bottom: 0.75rem;
+        }
+        .ta-header > p {
+            font-size: 1.175rem; color: var(--dark-grey); line-height: 1.5;
+        }
+
+        .ta-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 2rem; max-width: 1000px; margin: 0 auto 2.5rem;
+        }
+
+        .ta-card {
+            background: var(--white); border-radius: 20px;
+            overflow: hidden; border: 2px solid transparent;
+            transition: all 0.3s ease; display: flex; flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .ta-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+        .ta-card.coral-border { border-color: var(--coral); }
+        .ta-card.dark-border { border-color: var(--black); }
+
+        .ta-card-top { padding: 2rem 2rem 0; }
+
+        .ta-card-top .badge {
+            display: inline-block; padding: 0.45rem 1.1rem; border-radius: 20px;
+            font-family: 'Open Sans', sans-serif; font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .badge.bg-coral { background: var(--coral); }
+        .badge.bg-black { background: var(--black); }
+
+        .ta-card-top h3 {
+            font-size: 1rem; letter-spacing: 1.5px; margin-bottom: 0.25rem;
+        }
+
+        .ta-card-top .tagline {
+            font-family: Georgia, serif; font-size: 1.05rem;
+            font-style: italic; margin-bottom: 0.75rem;
+        }
+        .ta-card.coral-border .tagline { color: var(--coral); }
+        .ta-card.dark-border .tagline { color: var(--black); }
+
+        .ta-card-top > p {
+            font-size: 1.05rem; color: var(--dark-grey); line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .ta-includes { list-style: none; margin-bottom: 1.25rem; }
+        .ta-includes li {
+            font-family: 'Open Sans', sans-serif; font-size: 0.95rem;
+            padding: 0.4rem 0 0.4rem 1.1rem; position: relative;
+            border-bottom: 1px solid var(--light-grey);
+        }
+        .ta-includes li:last-child { border-bottom: none; }
+        .ta-includes li::before {
+            content: '\2713'; position: absolute; left: 0; font-weight: bold;
+        }
+        .ta-card.coral-border .ta-includes li::before { color: var(--coral); }
+        .ta-card.dark-border .ta-includes li::before { color: var(--black); }
+
+        .ta-ideal { padding: 0 2rem 1.5rem; }
+        .ta-ideal-label {
+            font-family: 'Open Sans', sans-serif; font-size: 0.6rem;
+            text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;
+            color: var(--dark-grey); margin-bottom: 0.4rem;
+        }
+        .ta-ideal-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .ta-ideal-tags span {
+            font-family: 'Open Sans', sans-serif; font-size: 0.85rem;
+            background: var(--light-grey); padding: 0.35rem 0.85rem;
+            border-radius: 6px; color: var(--dark-grey); font-weight: 600;
+        }
+
+        .ta-card-bottom {
+            padding: 1.25rem 2rem 2rem;
+            border-top: 1px solid var(--light-grey);
+            margin-top: auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .ta-price { font-family: Georgia, serif; font-size: 1.6rem; }
+        .ta-price span {
+            font-family: 'Open Sans', sans-serif; font-size: 0.7rem; color: var(--dark-grey);
+        }
+        .ta-price-note {
+            font-family: 'Open Sans', sans-serif; font-size: 0.7rem; color: var(--dark-grey);
+        }
+
+        .ta-cta {
+            display: inline-block; padding: 0.75rem 1.75rem; border-radius: 8px;
+            text-decoration: none; font-family: 'Open Sans', sans-serif;
+            font-weight: 700; font-size: 0.85rem; color: var(--white);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+        .ta-cta:hover { transform: translateY(-2px); }
+        .ta-cta.bg-green { background: #43A047; box-shadow: 0 4px 15px rgba(67,160,71,0.3); }
+
+        /* Authority strip */
+        .ta-authority {
+            max-width: 1000px; margin: 0 auto;
+            background: var(--white); border-radius: 16px;
+            padding: 1.75rem 2.5rem;
+            display: grid; grid-template-columns: auto 1fr;
+            gap: 2rem; align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+        }
+
+        .ta-auth-label {
+            font-family: 'Open Sans', sans-serif; font-size: 0.6rem;
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+            color: var(--dark-grey); white-space: nowrap;
+        }
+
+        .ta-logos {
+            display: flex; flex-wrap: wrap; gap: 1.5rem;
+            align-items: center; margin-bottom: 0.75rem;
+        }
+        .ta-logos span {
+            font-family: 'Open Sans', sans-serif; font-size: 0.78rem;
+            font-weight: 700; color: var(--dark-grey); opacity: 0.5;
+        }
+
+        .ta-teams-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .ta-teams-row span {
+            font-family: 'Open Sans', sans-serif; font-size: 0.65rem;
+            background: var(--coral-lighter); color: var(--coral);
+            padding: 0.2rem 0.55rem; border-radius: 4px; font-weight: 600;
+        }
+
+
+        /* ============================================
+           SFEER STRIP
+           ============================================ */
+        .sfeer-section {
+            padding: 6rem 2rem 6rem;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .sfeer-header {
+            margin-bottom: 2rem;
+        }
+
+        .sfeer-header .eyebrow {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 700;
+            color: var(--coral);
+            margin-bottom: 0.4rem;
+        }
+
+        .sfeer-header h2 {
+            font-family: Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: normal;
+            color: var(--black);
+        }
+
+        .sfeer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .sfeer-grid img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 0;
+            display: block;
+        }
+
+
+        /* ============================================
+           STICKY CTA BAR
+           ============================================ */
+        .sticky-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding: 0.85rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.35s ease;
+        }
+        .sticky-cta-bar.visible {
+            transform: translateY(0);
+        }
+        .sticky-cta-bar p {
+            font-family: Georgia, serif;
+            font-size: 1rem;
+            color: var(--black);
+        }
+        .sticky-cta-bar a {
+            display: inline-block;
+            padding: 0.7rem 1.75rem;
+            background: #43A047;
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(67,160,71,0.3);
+            transition: all 0.2s ease;
+        }
+        .sticky-cta-bar a:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(67,160,71,0.4);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            padding: 3rem 2rem; background: var(--black);
+            color: rgba(255,255,255,0.6); text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+        }
+        footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; min-height: auto; }
+            .hero-left { padding: 6rem 2rem 2rem; }
+            .hero-right { padding: 0 2rem 3rem; }
+            .reveal-panel.active { grid-template-columns: 1fr; }
+            .fmt-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .promise-bar { flex-direction: column; }
+            .promise-item { border-right: none; border-bottom: 1px solid var(--light-grey); }
+            .promise-item:last-child { border-bottom: none; }
+            .dates-row { flex-direction: column; }
+            .ta-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .dates-block { grid-template-columns: 1fr; }
+            .dates-image { max-height: 250px; }
+            .ta-authority { grid-template-columns: 1fr; text-align: center; }
+            nav ul { display: none; }
+            .bd-ai-block { grid-template-columns: 1fr; }
+            .sfeer-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+            .sfeer-grid img { height: 160px; border-radius: 0; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-left h1 { font-size: 1.5rem; }
+            .doelgroep-pills { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; }
+            .path-toggle-btn { padding: 0.7rem 1.25rem; font-size: 0.78rem; }
+            .hero-toggle-btn { padding: 0.7rem 1.25rem; font-size: 0.78rem; }
+            .sfeer-grid { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+            .sfeer-grid img { height: 130px; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-circle"><span>SUE</span></div>
+            <div>
+                <div class="logo-text">SUE</div>
+                <div class="logo-sub">Behavioural Design Academy</div>
+            </div>
+        </a>
+        <ul>
+            <li><a href="#trainingen">Trainingen</a></li>
+            <li><a href="#teams">Teams</a></li>
+            <li><a href="#about">Over SUE</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#" class="nav-cta">Bekijk Kalender</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- ============================================
+         HERO — Split layout
+         Left: title + subtitle + toggle
+         Right: superskills grid
+         ============================================ -->
+    <section class="hero">
+        <div class="hero-left">
+            <h1>De meest gezochte skill in het AI tijdperk: <span class="highlight">gedrag begrijpen, voorspellen en veranderen.</span></h1>
+            <p class="hero-subtitle">In een wereld waarin AI steeds meer taken overneemt, is er &eacute;&eacute;n vaardigheid die je onvervangbaar maakt: menselijk gedrag begrijpen. Van klanten, medewerkers, stakeholders, gebruikers of burgers. Combineer die kennis met AI en je wordt onverslaanbaar.</p>
+
+            <div class="hero-toggle-wrap">
+                <div class="hero-toggle">
+                    <a href="#path-zelf" class="hero-toggle-btn active" id="hero-zelf-btn">Ik wil dit zelf leren</a>
+                    <a href="#teams" class="hero-toggle-btn" id="hero-team-btn">Ik wil dat mijn team dit leert</a>
+                </div>
+            </div>
+
+            <p class="hero-micro"><strong>9,7/10</strong> beoordeling &middot; <strong>10.000+</strong> professionals &middot; <strong>45+</strong> landen &middot; <strong>EQAC</strong> erkend</p>
+        </div>
+        <div class="hero-right">
+            <div class="skills-panel">
+                <div class="panel-header">
+                    <span class="panel-badge">Behavioural Design &times; AI = professionele superkracht</span>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-title">Weerstand doorbreken</div>
+                        <div class="skill-sub">Je leert de angsten en barri&egrave;res herkennen &times; AI formuleert geruststellende communicatie</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Conversies verhogen</div>
+                        <div class="skill-sub">Je leert de gedragsprincipes &times; AI test bij synthetische gebruikers</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Klantgedrag voorspellen</div>
+                        <div class="skill-sub">Je leert de psychologische drijfveren &times; AI analyseert patronen in je data</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Campagnes laten landen</div>
+                        <div class="skill-sub">Je leert wat mensen beweegt &times; AI schrijft voor elk segment</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Talent behouden</div>
+                        <div class="skill-sub">Je leert waarom mensen vertrekken &times; AI signaleert risico&rsquo;s vroegtijdig</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-title">Verandering omarmen</div>
+                        <div class="skill-sub">Je leert wat gedrag in stand houdt &times; AI maakt zichtbaar welk nieuw gedrag wel en niet landt</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SUPERSKILL PROPOSITIE
+         ============================================ -->
+    <section class="superskill-section">
+        <h2 class="superskill-heading">Waarom Behavioural Design × AI<br>zo krachtig is</h2>
+        <p class="superskill-body">Gedragswetenschap leert je waarom mensen doen wat ze doen. AI versnelt, schaalt en verscherpt die kennis. Apart zijn ze nuttig. Samen zijn ze onverslaanbaar.</p>
+
+        <div class="superskill-formula">
+            <div class="superskill-block bd-block">
+                <div class="block-icon"><img src="bd x ai/SUE New Icons_2025_Brain Top View kopie.png" alt="Behavioural Design"></div>
+                <h4>Behavioural Design</h4>
+                <p>Je begrijpt de psychologie achter elke beslissing. Je ziet de barri&egrave;res, de drijfveren en de momenten die ertoe doen.</p>
+            </div>
+            <div class="superskill-operator"><span>&times;</span></div>
+            <div class="superskill-block ai-block">
+                <div class="block-icon"><img src="bd x ai/SUE New Icons_2025_Gains kopie.png" alt="AI"></div>
+                <h4>AI</h4>
+                <p>AI geeft je snelheid en informatie. AI m&eacute;t gedragskennis geeft je snelheid &eacute;n wijsheid. Je analyses zijn scherper, je voorstellen overtuigender, je resultaten sterker.</p>
+            </div>
+            <div class="superskill-operator"><span>=</span></div>
+            <div class="superskill-block result-block">
+                <div class="block-icon"><img src="bd x ai/SUE New Icons_2025__Idea 01 smile kopie.png" alt="Wie je wordt"></div>
+                <h4>Wie je wordt</h4>
+                <p>Jij begrijpt wat mensen beweegt. En jij zet AI in om dat razendsnel om te zetten in concrete idee&euml;n en te leren wat werkt.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         ZELF VOLGEN (Richting 4) — altijd zichtbaar
+         ============================================ -->
+        <section class="zelf-section" id="path-zelf">
+            <div class="container">
+
+                <div class="zelf-header">
+                    <div class="ai-badge-circle">
+                        <span>Powered up</span>
+                        <span>with</span>
+                        <span class="ai-big">AI</span>
+                    </div>
+                    <div class="eyebrow">Aanbevolen Startpunt</div>
+                    <h2 class="hero-bridge" style="margin-bottom: 0;">Fundamentals Course:<br>Word beter in beïnvloeden.</h2>
+                </div>
+
+
+                <div class="promise-bar">
+                    <div class="promise-item">
+                        <img class="promise-icon" src="Icons numbers/4510_SUE Icon Extra Set_400x400-01 kopie.png" alt="1">
+                        <h5>Waarom mensen niet doen wat ze zeggen</h5>
+                        <p>Je krijgt een bril die laat zien hoe beslissingen &eacute;cht ontstaan.</p>
+                    </div>
+                    <div class="promise-item">
+                        <img class="promise-icon" src="Icons numbers/4510_SUE Icon Extra Set_400x400-02 kopie.png" alt="2">
+                        <h5>Wat mensen tegenhoudt en wat ze beweegt</h5>
+                        <p>Je ontdekt waar de slimste kansen voor verandering of overtuiging liggen.</p>
+                    </div>
+                    <div class="promise-item">
+                        <img class="promise-icon" src="Icons numbers/4510_SUE Icon Extra Set_400x400-03 kopie.png" alt="3">
+                        <h5>Hoe je een 'ja' krijgt</h5>
+                        <p>Je leert ideeën ontwikkelen en versterken met gedragswetenschap.</p>
+                    </div>
+                    <div class="promise-item">
+                        <img class="promise-icon" src="Icons numbers/4510_SUE Icon Extra Set_400x400-04 kopie.png" alt="4">
+                        <h5>Hoe je weet dat het werkt</h5>
+                        <p>Je leert snel valideren zodat je met zekerheid verder kunt.</p>
+                    </div>
+                </div>
+
+                <div class="zelf-meta">
+                    <span><img class="meta-icon" src="confirmation icons/ceritificaat.png" alt="Certificaat"> Met certificaat</span>
+                    <span><img class="meta-icon" src="confirmation icons/praktisch.png" alt="Praktisch"> 100% praktisch</span>
+                    <span><img class="meta-icon" src="confirmation icons/amsterdam of online.png" alt="Amsterdam of Online"> Amsterdam of Online</span>
+                    <span><img class="meta-icon" src="confirmation icons/9.7 beoordeling.png" alt="9.7 beoordeling"> 9,7 beoordeling</span>
+                </div>
+
+
+                <div class="zelf-format-label">
+                    <h3 style="font-size: 1.75rem;">Hoe wil je leren?</h3>
+                    <p style="font-family: Georgia, 'Times New Roman', serif; font-size: 1.175rem; color: var(--dark-grey);">Dezelfde diepgang, twee manieren om te leren</p>
+                </div>
+
+                <div class="fmt-grid">
+                    <!-- Live -->
+                    <div class="fmt-card green">
+                        <div class="fmt-visual">
+                            <img src="img/sfeer-groep.jpg" alt="Live training in Amsterdam">
+                            <div class="ov">
+                                <span class="fmt-badge bg-green">Meest gekozen</span>
+                                <div class="fmt-scene">Interactieve groepstraining in Amsterdam</div>
+                            </div>
+                        </div>
+                        <div class="fmt-body">
+                            <h4>Live in Amsterdam</h4>
+                            <div class="tagline">Twee dagen, intensief met peers</div>
+                            <ul class="fmt-feats">
+                                <li>2 volle dagen (9:00 &ndash; 17:30)</li>
+                                <li>Maximaal 16 deelnemers per editie</li>
+                                <li>Directe feedback van ervaren trainer op groepscase</li>
+                                <li>Toolbox met templates en cheat cards</li>
+                                <li>Netwerken met gelijkgestemde professionals</li>
+                                <li>6 maanden wekelijkse follow-up training per mail</li>
+                                <li>Met certificaat</li>
+                                <li class="ai-highlight"><img class="ai-icon" src="Confirmation icons/AI inside 1.png" alt="AI"> Behavioural Design × AI, de superskill die je concurrentie niet heeft</li>
+                            </ul>
+                            <div class="fmt-bottom">
+                                <div class="fmt-price">&euro;1.490 <span>excl. BTW</span></div>
+                                <a href="#" class="fmt-cta bg-green">Schrijf je in</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Online -->
+                    <div class="fmt-card">
+                        <div class="fmt-visual">
+                            <img src="img/online_academy.jpg" alt="Online leren op je eigen tempo">
+                            <div class="ov">
+                                <span class="fmt-badge bg-coral">Flexibel</span>
+                                <div class="fmt-scene">Leer op je eigen tempo, waar je wilt</div>
+                            </div>
+                        </div>
+                        <div class="fmt-body">
+                            <h4>Online Self-Paced</h4>
+                            <div class="tagline">Dezelfde content, wanneer het jou past</div>
+                            <ul class="fmt-feats">
+                                <li>Start direct na inschrijving</li>
+                                <li>Werk in je eigen tempo (ca. 16 uur)</li>
+                                <li>Persoonlijke 1-op-1 feedback op jouw case</li>
+                                <li>Toolbox met templates en cheat cards als PDF</li>
+                                <li>Levenslange 24/7 toegang</li>
+                                <li>Q&amp;A support via het platform</li>
+                                <li>Met certificaat</li>
+                                <li class="ai-highlight"><img class="ai-icon" src="Confirmation icons/AI inside 1.png" alt="AI"> Behavioural Design × AI, de superskill die je concurrentie niet heeft</li>
+                            </ul>
+                            <div class="fmt-bottom">
+                                <div class="fmt-price">&euro;1.190 <span>excl. BTW</span></div>
+                                <a href="#" class="fmt-cta bg-coral">Start vandaag</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="fmt-footnote"><strong>Beide formats</strong> bevatten exact dezelfde content en diepgang. Kies <strong>Live</strong> als je de energie van een groep wilt. Kies <strong>Online</strong> als je flexibiliteit nodig hebt.</p>
+
+                <div class="dates-section-header" style="text-align: center; max-width: 950px; margin: 0 auto 2.5rem;">
+                    <h3 class="dates-title">Eerstvolgende live trainingen</h3>
+                    <p style="font-size: 0.97rem; color: var(--dark-grey);">Kleine groepen, maximaal 16 deelnemers per editie</p>
+                </div>
+
+                <div class="dates-block">
+                    <div class="dates-image">
+                        <img src="img/sfeer-training.jpg" alt="SUE Academy live training Amsterdam">
+                    </div>
+                    <div class="dates-content">
+                        <div class="dates-list">
+                            <div class="date-card">
+                                <div class="date-info">
+                                    <div class="days">5 &amp; 6 februari 2026</div>
+                                    <div class="meta"><span>Amsterdam</span><span>English</span></div>
+                                </div>
+                                <span class="status available">Boek je plek</span>
+                            </div>
+                            <div class="date-card">
+                                <div class="date-info">
+                                    <div class="days">12 &amp; 13 februari 2026</div>
+                                    <div class="meta"><span>Amsterdam</span><span>Nederlands</span></div>
+                                </div>
+                                <span class="status available">Boek je plek</span>
+                            </div>
+                            <div class="date-card">
+                                <div class="date-info">
+                                    <div class="days">5 &amp; 6 maart 2026</div>
+                                    <div class="meta"><span>Amsterdam</span><span>Nederlands</span></div>
+                                </div>
+                                <span class="status available">Boek je plek</span>
+                            </div>
+                        </div>
+                        <div class="dates-link">
+                            <a href="#">Bekijk alle data en hoeveel plekken er nog zijn (max. 16) &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+
+    <!-- ============================================
+         TEAM (Prototype A: side-by-side) — altijd zichtbaar
+         ============================================ -->
+        <section class="teams-section" id="teams">
+            <div class="container">
+
+                <div class="ta-header" style="position: relative;">
+                    <div class="ai-badge-circle">
+                        <span>Powered up</span>
+                        <span>with</span>
+                        <span class="ai-big">AI</span>
+                    </div>
+                    <h2 class="dates-title" style="margin-bottom: 0.5rem;">Wil je een heel team trainen?</h2>
+                    <p style="padding: 0 4rem;">Elk team heeft ideeën. Maar het team dat snapt hoe mensen beslissen én AI inzet om dat te benutten, wint. Geen theorie voor later. Jullie werken vanaf minuut één aan jullie eigen uitdaging.</p>
+                </div>
+
+                <div class="ta-grid">
+                    <!-- Deep Dive In-Company -->
+                    <div class="ta-card coral-border">
+                        <div class="ta-card-top">
+                            <span class="badge bg-coral">E&eacute;ndaagse Training</span>
+                            <h3>Deep Dive In-Company</h3>
+                            <div class="tagline">E&eacute;n dag die alles verandert</div>
+                            <p>Jullie team leert Behavioural Design denken, toegespitst op jullie domein. Kies uit 11 thema's, van Fundamentals tot Behavioural AI, van CX tot Persuasive Communication.</p>
+                            <ul class="ta-includes">
+                                <li>1 dag live, op jullie of onze locatie</li>
+                                <li>Tot 16 deelnemers per sessie</li>
+                                <li>Keuze uit 11 thema's (Nederlands of Engels)</li>
+                                <li>Behavioural Design Toolbox + certificaat</li>
+                                <li>Trainer is senior SUE consultant</li>
+                                <li>Behavioural Design × AI, de superskill die de concurrentie niet heeft</li>
+                            </ul>
+                        </div>
+                        <div class="ta-ideal">
+                            <div class="ta-ideal-label" style="text-transform: uppercase;">Deep Dives</div>
+                            <div class="ta-ideal-tags">
+                                <span>Behavioural AI</span>
+                                <span>Behavioural Marketing</span>
+                                <span>Behavioural Finance: de psychologie van geld en waarde</span>
+                                <span>Leading Change &amp; Transformation</span>
+                                <span>Gedragsinzichten</span>
+                                <span>Teamwelzijn &amp; Vitaliteit</span>
+                                <span>Prijspsychologie</span>
+                                <span>Draagvlak &amp; Conflictbeheersing</span>
+                                <span>Overtuigend schrijven</span>
+                                <span>9+ Klantbeleving Ontwerpen</span>
+                                <span>Talent aantrekken &amp; behouden</span>
+                            </div>
+                        </div>
+                        <div class="ta-card-bottom">
+                            <div class="ta-price-block">
+                                <div class="ta-price">&euro;6.900 <span>excl. BTW</span></div>
+                                <div class="ta-price-note">per team, tot 16 deelnemers</div>
+                            </div>
+                            <a href="#" class="ta-cta bg-green">Neem contact op</a>
+                        </div>
+                    </div>
+
+                    <!-- Learning Journey -->
+                    <div class="ta-card dark-border">
+                        <div class="ta-card-top">
+                            <span class="badge bg-black">Learning Journey</span>
+                            <h3>Behavioural Design Sprint</h3>
+                            <div class="tagline">Leren door te doen, op jullie uitdaging</div>
+                            <p>Jullie hebben een vraagstuk waar je niet uitkomt. Wij begeleiden je team om die specifieke uitdaging te kraken met Behavioural Design, terwijl ze dit ook zelf leren toepassen. De ultieme combinatie van je team upgraden met nieuwe vaardigheden en toepassen in de praktijk.</p>
+                            <ul class="ta-includes">
+                                <li>Fundamentals training + begeleide toepassing</li>
+                                <li>Tot 16 deelnemers per traject</li>
+                                <li>Werken op jullie concrete case</li>
+                                <li>Senior SUE trainer-facilitator</li>
+                                <li>3 programma's: Fluency / Practice / Edge</li>
+                                <li>Behavioural Design × AI, de superskill die de concurrentie niet heeft</li>
+                            </ul>
+                        </div>
+                        <div class="ta-ideal">
+                            <div class="ta-ideal-label">Ideaal voor</div>
+                            <div class="ta-ideal-tags">
+                                <span>Marketing &amp; Communicatieteams</span>
+                                <span>Leiderschapsteams</span>
+                                <span>Product &amp; UX teams</span>
+                                <span>Sales teams</span>
+                                <span>Innovatieteams</span>
+                                <span>HR &amp; People teams</span>
+                                <span>Customer Experience teams</span>
+                            </div>
+                        </div>
+                        <div class="ta-card-bottom">
+                            <div class="ta-price-block">
+                                <div class="ta-price">v.a. &euro;14.900 <span>excl. BTW</span></div>
+                                <div class="ta-price-note">per team, tot 16 deelnemers</div>
+                            </div>
+                            <a href="#" class="ta-cta bg-green">Neem contact op</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin: 3rem 0 6rem;">
+                    <p style="font-family: Georgia, serif; font-size: 1.15rem; color: #1a1a1a; margin-bottom: 1rem;">Toch liever eerst zelf de training doen?</p>
+                    <a href="#trainingen" style="display: inline-block; padding: 1rem 2.5rem; background: transparent; color: #43A047; border: 2px solid #43A047; font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 0.95rem; text-decoration: none; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s ease;">Bekijk de open trainingen</a>
+                </div>
+
+                <!-- Client logos ticker -->
+                <div class="client-logos-section">
+                    <h3>Deze organisaties gingen je al voor</h3>
+                    <p>Van corporates en overheden tot scale-ups en non-profits.</p>
+                    <div class="logo-ticker-wrapper">
+                        <div class="logo-ticker">
+                            <img src="Logo/clients/LOGO's kopie/rabobank.png" alt="Rabobank">
+                            <img src="Logo/clients/LOGO's kopie/heineken.png" alt="Heineken">
+                            <img src="Logo/clients/LOGO's kopie/abngoed.png" alt="ABN AMRO">
+                            <img src="Logo/clients/LOGO's kopie/kpn.png" alt="KPN">
+                            <img src="Logo/clients/KHN-logo kopie.png" alt="Koninklijke Horeca Nederland">
+                            <img src="Logo/clients/eneco-vector-logo kopie.png" alt="Eneco">
+                            <img src="Logo/clients/ASR_Nederland_logo kopie.svg.png" alt="ASR">
+                            <img src="Logo/clients/LOGO's kopie/amnesty.png" alt="Amnesty International">
+                            <img src="Logo/clients/randstad kopie.png" alt="Randstad">
+                            <img src="Logo/clients/LOGO's kopie/swinckels family brewers.png" alt="Swinckels">
+                            <img src="Logo/clients/LOGO's kopie/schiphol.png" alt="Schiphol">
+                            <img src="Logo/clients/roche.png" alt="Roche">
+                            <img src="Logo/clients/Sony_logo kopie.svg.png" alt="Sony Music">
+                            <img src="Logo/clients/LOGO's kopie/unhcr.png" alt="UNHCR">
+                            <img src="Logo/clients/LOGO's kopie/medtronic.png" alt="Medtronic">
+                            <img src="Logo/clients/LOGO's kopie/friesland campina.png" alt="FrieslandCampina">
+                            <img src="documentatie/logos/Oxfam-novib.png" alt="Oxfam Novib">
+                            <img src="Logo/clients/aramco.png" alt="Aramco">
+                            <img src="Logo/clients/europees-parlement.png" alt="Europees Parlement">
+                            <img src="Logo/clients/LOGO's kopie/ing.png" alt="ING">
+                            <img src="Logo/clients/LOGO's kopie/anwb.png" alt="ANWB">
+                            <img src="Logo/clients/LOGO's kopie/centraal beheer nieuw.png" alt="Centraal Beheer">
+                            <img src="Logo/clients/LOGO's kopie/ebay.png" alt="eBay">
+                            <img src="Logo/clients/LOGO's kopie/marktplaats.png" alt="Marktplaats">
+                            <img src="Logo/clients/LOGO's kopie/amsterdam.png" alt="Gemeente Amsterdam">
+                            <img src="Logo/clients/LOGO's kopie/rijkswaterstaat.png" alt="Rijkswaterstaat">
+                            <img src="Logo/clients/LOGO's kopie/royal flora holland.png" alt="Royal FloraHolland">
+                            <img src="Logo/clients/LOGO's kopie/humanitas.png" alt="Humanitas">
+                            <img src="Logo/clients/LOGO's kopie/bovemij.png" alt="Bovemij">
+                            <img src="Logo/clients/LOGO's kopie/acerta.png" alt="Acerta">
+                            <!-- Duplicaat voor naadloze loop -->
+                            <img src="Logo/clients/LOGO's kopie/rabobank.png" alt="Rabobank">
+                            <img src="Logo/clients/LOGO's kopie/heineken.png" alt="Heineken">
+                            <img src="Logo/clients/LOGO's kopie/abngoed.png" alt="ABN AMRO">
+                            <img src="Logo/clients/LOGO's kopie/kpn.png" alt="KPN">
+                            <img src="Logo/clients/KHN-logo kopie.png" alt="Koninklijke Horeca Nederland">
+                            <img src="Logo/clients/eneco-vector-logo kopie.png" alt="Eneco">
+                            <img src="Logo/clients/ASR_Nederland_logo kopie.svg.png" alt="ASR">
+                            <img src="Logo/clients/LOGO's kopie/amnesty.png" alt="Amnesty International">
+                            <img src="Logo/clients/randstad kopie.png" alt="Randstad">
+                            <img src="Logo/clients/LOGO's kopie/swinckels family brewers.png" alt="Swinckels">
+                            <img src="Logo/clients/LOGO's kopie/schiphol.png" alt="Schiphol">
+                            <img src="Logo/clients/roche.png" alt="Roche">
+                            <img src="Logo/clients/Sony_logo kopie.svg.png" alt="Sony Music">
+                            <img src="Logo/clients/LOGO's kopie/unhcr.png" alt="UNHCR">
+                            <img src="Logo/clients/LOGO's kopie/medtronic.png" alt="Medtronic">
+                            <img src="Logo/clients/LOGO's kopie/friesland campina.png" alt="FrieslandCampina">
+                            <img src="documentatie/logos/Oxfam-novib.png" alt="Oxfam Novib">
+                            <img src="Logo/clients/aramco.png" alt="Aramco">
+                            <img src="Logo/clients/europees-parlement.png" alt="Europees Parlement">
+                            <img src="Logo/clients/LOGO's kopie/ing.png" alt="ING">
+                            <img src="Logo/clients/LOGO's kopie/anwb.png" alt="ANWB">
+                            <img src="Logo/clients/LOGO's kopie/centraal beheer nieuw.png" alt="Centraal Beheer">
+                            <img src="Logo/clients/LOGO's kopie/ebay.png" alt="eBay">
+                            <img src="Logo/clients/LOGO's kopie/marktplaats.png" alt="Marktplaats">
+                            <img src="Logo/clients/LOGO's kopie/amsterdam.png" alt="Gemeente Amsterdam">
+                            <img src="Logo/clients/LOGO's kopie/rijkswaterstaat.png" alt="Rijkswaterstaat">
+                            <img src="Logo/clients/LOGO's kopie/royal flora holland.png" alt="Royal FloraHolland">
+                            <img src="Logo/clients/LOGO's kopie/humanitas.png" alt="Humanitas">
+                            <img src="Logo/clients/LOGO's kopie/bovemij.png" alt="Bovemij">
+                            <img src="Logo/clients/LOGO's kopie/acerta.png" alt="Acerta">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+    <!-- ============================================
+         HERO INTERACTIVE (bridge + pills + reveal panels)
+         ============================================ -->
+    <section>
+        <div class="hero-interactive">
+            <h2 class="hero-bridge">Wie moet jij in beweging krijgen?</h2>
+            <p class="hero-bridge-sub">Elke organisatie wil mensen in beweging krijgen. Klanten, medewerkers, burgers, stakeholders: het maakt niet uit wie. Wat w&eacute;l uitmaakt: snap je waarom ze niet bewegen? Wij trainden 10.000+ professionals uit 45+ landen in precies die vaardigheid. Hieronder een aantal klanten die we hebben geholpen.</p>
+
+            <div class="doelgroep-pills" id="doelgroep-pills">
+                <div class="doelgroep-pill active" data-target="consumenten">Consumenten</div>
+                <div class="doelgroep-pill" data-target="kiezers">Kiezers</div>
+                <div class="doelgroep-pill" data-target="donateurs">Donateurs</div>
+                <div class="doelgroep-pill" data-target="werknemers">Werknemers</div>
+                <div class="doelgroep-pill" data-target="professionals">Professionals</div>
+                <div class="doelgroep-pill" data-target="talent">Talent</div>
+                <div class="doelgroep-pill" data-target="stakeholders">Stakeholders</div>
+                <div class="doelgroep-pill" data-target="burgers">Burgers</div>
+            </div>
+
+            <!-- REVEAL PANELS -->
+            <!-- Consumenten -->
+            <div class="reveal-panel reveal-panel-photo active" id="panel-consumenten">
+                <div class="rv-left">
+                    <div class="rv-eyebrow">Consumenten in beweging krijgen</div>
+                    <h3>De kortste weg naar conversie loopt via het <span class="highlight">brein van je klant.</span></h3>
+                    <p>A/B tests op knopkleuren missen het punt. Wie begrijpt welke psychologische drempel de aankoop blokkeert, ontwerpt klantreizen die &eacute;cht converteren.</p>
+                    <div class="bd-ai-block">
+                        <div class="bd-side">
+                            <div class="bai-label bd">Behavioural Design</div>
+                            <ul>
+                                <li>Aankoopbarri&egrave;res herkennen op elk touchpoint</li>
+                                <li>Choice architectuur ontwerpen die conversie stuurt</li>
+                                <li>Loyaliteit bouwen vanuit gedragspatronen</li>
+                            </ul>
+                        </div>
+                        <div class="ai-side">
+                            <div class="bai-label ai">Versterkt met AI</div>
+                            <ul>
+                                <li>AI identificeert friction in je customer journey</li>
+                                <li>AI genereert nudge-varianten per touchpoint</li>
+                                <li>AI test bij synthetische gebruikers v&oacute;&oacute;r je live gaat</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="rv-right">
+                    <div class="rv-case-brief">
+                        <div class="rv-case-label">Case uitgelicht</div>
+                        <p class="rv-case-question">&ldquo;Hoe kunnen we onze klanten verleiden om na te denken over hun energievraagstukken en dit via KBC te regelen?&rdquo;</p>
+                        <div class="rv-case-logo">
+                            <img src="Logo/kbc-logo-transparent.png" alt="KBC Bank logo" style="height: 48px;">
+                        </div>
+                    </div>
+                    <div class="rv-case-photo">
+                        <img src="img/kbc-app.jpg" alt="KBC Bank app">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiezers -->
+            <div class="reveal-panel reveal-panel-photo" id="panel-kiezers">
+                <div class="rv-left">
+                    <div class="rv-eyebrow">Kiezers in beweging krijgen</div>
+                    <h3>Als 72% van de kiezers pas in de laatste week beslist, hoe be&iuml;nvloed je <span class="highlight">die ene beslissing?</span></h3>
+                    <p>Het probleem is nooit motivatie, het is het moment. Wie begrijpt hoe kiesgedrag &eacute;cht werkt, ontwerpt campagnes die mensen naar de stembus brengen.</p>
+                    <div class="bd-ai-block">
+                        <div class="bd-side">
+                            <div class="bai-label bd">Behavioural Design</div>
+                            <ul>
+                                <li>Stemgedrag doorgronden met het Influence Framework</li>
+                                <li>Social commitment-strategie&euml;n ontwerpen</li>
+                                <li>Barri&egrave;res voor actie wegnemen</li>
+                            </ul>
+                        </div>
+                        <div class="ai-side">
+                            <div class="bai-label ai">Versterkt met AI</div>
+                            <ul>
+                                <li>AI analyseert sentiment per doelgroep</li>
+                                <li>AI genereert boodschappen per kiezerssegment</li>
+                                <li>AI simuleert campagne-impact vooraf</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="rv-right">
+                    <div class="rv-case-brief">
+                        <div class="rv-case-label">Case uitgelicht</div>
+                        <p class="rv-case-question">&ldquo;Hoe kunnen we ervoor zorgen dat zo veel mogelijk mensen komen stemmen op de dag van de Europese verkiezingen, ongeacht hun politieke voorkeur?&rdquo;</p>
+                        <div class="rv-case-logo">
+                            <img src="Logo/europees parlement.png" alt="Europees Parlement logo" style="height: 108px;">
+                        </div>
+                    </div>
+                    <div class="rv-case-photo">
+                        <img src="img/Europa.jpeg" alt="Europese verkiezingen">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Donateurs -->
+            <div class="reveal-panel reveal-panel-photo" id="panel-donateurs">
+                <div class="rv-left">
+                    <div class="rv-eyebrow">Donateurs in beweging krijgen</div>
+                    <h3>Tussen &lsquo;dit raakt me&rsquo; en &lsquo;ik maak geld over&rsquo; zit een kloof. <span class="highlight">Die kloof kun je dichten.</span></h3>
+                    <p>Meer emotie helpt niet. Wie begrijpt welke psychologische drempels donateurs tegenhouden, ontwerpt concepten die w&eacute;l converteren.</p>
+                    <div class="bd-ai-block">
+                        <div class="bd-side">
+                            <div class="bai-label bd">Behavioural Design</div>
+                            <ul>
+                                <li>Donatiebarri&egrave;res identificeren</li>
+                                <li>Interventies ontwerpen die geven makkelijk maken</li>
+                                <li>Commitment-ladders bouwen voor herhaaldonaties</li>
+                            </ul>
+                        </div>
+                        <div class="ai-side">
+                            <div class="bai-label ai">Versterkt met AI</div>
+                            <ul>
+                                <li>AI personaliseert donatievoorstellen</li>
+                                <li>AI test boodschappen bij synthetische donateurs</li>
+                                <li>AI optimaliseert de donatiereis per segment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="rv-right">
+                    <div class="rv-case-brief">
+                        <div class="rv-case-label">Case uitgelicht</div>
+                        <p class="rv-case-question">&ldquo;Hoe overtuigen we vermogende particulieren om structureel te geven aan een probleem dat onoplosbaar lijkt?&rdquo;</p>
+                        <div class="rv-case-logo">
+                            <img src="Logo/unhcr-logo-png-transparent.png" alt="UNHCR logo" style="height: 48px;">
+                        </div>
+                    </div>
+                    <div class="rv-case-photo">
+                        <img src="img/unhcr.jpeg" alt="UNHCR vluchtelingenwerk">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Werknemers -->
+            <div class="reveal-panel reveal-panel-photo" id="panel-werknemers">
+                <div class="rv-left">
+                    <div class="rv-eyebrow">Werknemers in beweging krijgen</div>
+                    <h3>Wat werkt in Australi&euml;, botst in Brazili&euml;. Hoe ontwerp je cultuur <span class="highlight">die overal landt?</span></h3>
+                    <p>Engagement surveys veranderen niets. Wie begrijpt hoe gewoontes en context gedrag sturen, ontwerpt werkplekken waar mensen w&iacute;llen presteren.</p>
+                    <div class="bd-ai-block">
+                        <div class="bd-side">
+                            <div class="bai-label bd">Behavioural Design</div>
+                            <ul>
+                                <li>Gedragsdrivers in teams blootleggen</li>
+                                <li>Leiderschapsmomenten ontwerpen die cultuur vormen</li>
+                                <li>Nieuw gedrag verankeren in dagelijkse routines</li>
+                            </ul>
+                        </div>
+                        <div class="ai-side">
+                            <div class="bai-label ai">Versterkt met AI</div>
+                            <ul>
+                                <li>AI herkent patronen in teamdynamiek</li>
+                                <li>AI personaliseert leerinterventies per team</li>
+                                <li>AI monitort gedragsverandering over tijd</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="rv-right">
+                    <div class="rv-case-brief">
+                        <div class="rv-case-label">Case uitgelicht</div>
+                        <p class="rv-case-question">&ldquo;Hoe ontwerpen we een gedeelde leiderschapscultuur in een organisatie die razendsnel schaalt over 4 continenten?&rdquo;</p>
+                        <div class="rv-case-logo">
+                            <img src="Logo/NewCold-Logo-rgb-dark-blue_1600px.png" alt="NewCold logo">
+                        </div>
+                    </div>
+                    <div class="rv-case-photo">
+                        <img src="img/newcold.jpeg" alt="NewCold warehouse">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professionals -->
+            <div class="reveal-panel reveal-panel-photo" id="panel-professionals">
+                <div class="rv-left">
+                    <div class="rv-eyebrow">Professionals in beweging krijgen</div>
+                    <h3>Een arts heeft 12 minuten per pati&euml;nt. In die 12 minuten moet jouw <span class="highlight">innovatie landen.</span></h3>
+                    <p>Artsen, adviseurs, specialisten, ze beslissen niet op congressen of in vergaderingen. Ze beslissen in het moment. Wie dat moment begrijpt, wint.</p>
+                    <div class="bd-ai-block">
+                        <div class="bd-side">
+                            <div class="bai-label bd">Behavioural Design</div>
+                            <ul>
+                                <li>Beslismomenten van professionals in kaart brengen</li>
+                                <li>Interventies ontwerpen die passen in de workflow</li>
+                                <li>Adoptiepaden bouwen vanuit Jobs to be Done</li>
+                            </ul>
+                        </div>
+                        <div class="ai-side">
+                            <div class="bai-label ai">Versterkt met AI</div>
+                            <ul>
+                                <li>AI analyseert adoptiepatronen in je data</li>
+                                <li>AI genereert touchpoints per professioneel profiel</li>
+                                <li>AI simuleert adoptiescenario&rsquo;s vooraf</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="rv-right">
+                    <div class="rv-case-brief">
+                        <div class="rv-case-label">Case uitgelicht</div>
+                        <p class="rv-case-question">&ldquo;Hoe kunnen we diabetes artsen, verplegers en zorgverzekeraars overtuigen dat ons nieuwe abonnementsmodel veel beter is voor pati&euml;nt, behandelaar en betaler?&rdquo;</p>
+                        <div class="rv-case-logo">
+                            <img src="Logo/medtronic-logo-transparent.png" alt="Medtronic logo">
+                        </div>
+                    </div>
+                    <div class="rv-case-photo">
+                        <img src="img/medtronic.png" alt="Medtronic diabetes platform">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Talent -->
+            <div class="reveal-panel reveal-panel-photo" id="panel-talent">
+                <div class="rv-left">
+                    <div class="rv-eyebrow">Talent in beweging krijgen</div>
+                    <h3>Top-talent kiest geen bedrijf, maar een missie waarvan ze <span class="highlight">onderdeel willen zijn.</span></h3>
+                    <p>De beste mensen kiezen niet de beste deal. Ze kiezen het verhaal waar ze bij willen horen. Wie dat begrijpt, ontwerpt recruitment die de juiste mensen aantrekt.</p>
+                    <div class="bd-ai-block">
+                        <div class="bd-side">
+                            <div class="bai-label bd">Behavioural Design</div>
+                            <ul>
+                                <li>De echte drijfveren van talent achterhalen</li>
+                                <li>Sollicitatieprocessen ontwerpen als selectie-ervaring</li>
+                                <li>Employer branding bouwen vanuit gedragsinzicht</li>
+                            </ul>
+                        </div>
+                        <div class="ai-side">
+                            <div class="bai-label ai">Versterkt met AI</div>
+                            <ul>
+                                <li>AI segmenteert talent op motivatie, niet op CV</li>
+                                <li>AI personaliseert de candidate journey</li>
+                                <li>AI test employer brand-boodschappen vooraf</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="rv-right">
+                    <div class="rv-case-brief">
+                        <div class="rv-case-label">Case uitgelicht</div>
+                        <p class="rv-case-question">&ldquo;Hoe verleiden we de slimste jonge ingenieurs van Saudi-Arabi&euml; om voor ons te kiezen in plaats van voor een hippe tech-startup?&rdquo;</p>
+                        <div class="rv-case-logo">
+                            <img src="Logo/aramco-logo-transparent.png" alt="Aramco logo">
+                        </div>
+                    </div>
+                    <div class="rv-case-photo">
+                        <img src="img/aramco.jpeg" alt="Aramco recruitment">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stakeholders -->
+            <div class="reveal-panel reveal-panel-photo" id="panel-stakeholders">
+                <div class="rv-left">
+                    <div class="rv-eyebrow">Stakeholders in beweging krijgen</div>
+                    <h3>Iedereen is v&oacute;&oacute;r natuurbeleid. Tot het hun <span class="highlight">achtertuin of portemonnee raakt.</span></h3>
+                    <p>Burgers, boeren, beleidsmakers, ze verzetten zich niet tegen verandering. Ze verzetten zich tegen verlies. Wie dat begrijpt, kan weerstand ombuigen naar betrokkenheid.</p>
+                    <div class="bd-ai-block">
+                        <div class="bd-side">
+                            <div class="bai-label bd">Behavioural Design</div>
+                            <ul>
+                                <li>Weerstandspatronen doorgronden per stakeholdergroep</li>
+                                <li>Framing ontwerpen die beeldvorming kantelt</li>
+                                <li>Coalitie-strategie&euml;n bouwen vanuit gedeeld belang</li>
+                            </ul>
+                        </div>
+                        <div class="ai-side">
+                            <div class="bai-label ai">Versterkt met AI</div>
+                            <ul>
+                                <li>AI analyseert sentiment per stakeholdergroep</li>
+                                <li>AI genereert frames per doelgroep</li>
+                                <li>AI simuleert draagvlak-scenario&rsquo;s</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="rv-right">
+                    <div class="rv-case-brief">
+                        <div class="rv-case-label">Case uitgelicht</div>
+                        <p class="rv-case-question">&ldquo;Hoe krijgen we boeren, burgers &eacute;n beleidsmakers op &eacute;&eacute;n lijn achter ambitieus natuurbeleid?&rdquo;</p>
+                        <div class="rv-case-logo">
+                            <img src="Logo/natuur en milieu.png" alt="Natuur & Milieu logo">
+                        </div>
+                    </div>
+                    <div class="rv-case-photo">
+                        <img src="img/natuurenmilieu.jpg" alt="Natuur en milieu beleid">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Burgers -->
+            <div class="reveal-panel reveal-panel-photo" id="panel-burgers">
+                <div class="rv-left">
+                    <div class="rv-eyebrow">Burgers in beweging krijgen</div>
+                    <h3>Goed beleid verandert de regels. Slim beleid verandert <span class="highlight">de context.</span></h3>
+                    <p>Bewustwordingscampagnes werken niet. Boetes werken slechter. Wie begrijpt hoe context gedrag stuurt, ontwerpt beleid dat mensen ook &eacute;cht opvolgen.</p>
+                    <div class="bd-ai-block">
+                        <div class="bd-side">
+                            <div class="bai-label bd">Behavioural Design</div>
+                            <ul>
+                                <li>Gedragsbarri&egrave;res in beleidscontext blootleggen</li>
+                                <li>Nudges en choice architectuur ontwerpen</li>
+                                <li>Interventies testen v&oacute;&oacute;r implementatie</li>
+                            </ul>
+                        </div>
+                        <div class="ai-side">
+                            <div class="bai-label ai">Versterkt met AI</div>
+                            <ul>
+                                <li>AI analyseert nalevingspatronen</li>
+                                <li>AI genereert nudge-varianten per context</li>
+                                <li>AI simuleert beleidsimpact op gedrag</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="rv-right">
+                    <div class="rv-case-brief">
+                        <div class="rv-case-label">Case uitgelicht</div>
+                        <p class="rv-case-question">&ldquo;Waarom wassen mensen op kantoor hun handen niet &mdash; ook al weten ze dat het moet en staan er overal dispensers?&rdquo;</p>
+                        <div class="rv-case-logo">
+                            <img src="Logo/Ministerie-VWS-logo.png" alt="Ministerie van VWS logo" style="height: 88px;">
+                        </div>
+                    </div>
+                    <div class="rv-case-photo">
+                        <img src="img/handenwassen.jpg" alt="Handenwassen campagne">
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-dots" id="case-dots">
+                <div class="case-dot active" data-target="consumenten"></div>
+                <div class="case-dot" data-target="kiezers"></div>
+                <div class="case-dot" data-target="donateurs"></div>
+                <div class="case-dot" data-target="werknemers"></div>
+                <div class="case-dot" data-target="professionals"></div>
+                <div class="case-dot" data-target="talent"></div>
+                <div class="case-dot" data-target="stakeholders"></div>
+                <div class="case-dot" data-target="burgers"></div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SFEER VISUAL
+         ============================================ -->
+    <section class="sfeer-section">
+        <div class="sfeer-header">
+            <h2 class="dates-title" style="text-align: center; font-family: Georgia, serif; font-size: 2.4rem; font-weight: normal; text-transform: none; letter-spacing: 0;">Een indruk van wie we zijn</h2>
+        </div>
+        <div class="sfeer-grid">
+            <img src="fotoblok/1.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/2.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/3.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/4.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/5.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/6.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/7.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/8.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/9.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/10.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/11.jpg" alt="SUE Academy sfeer">
+            <img src="fotoblok/12.jpg" alt="SUE Academy sfeer">
+        </div>
+    </section>
+
+
+    <!-- STICKY CTA BAR -->
+    <div class="sticky-cta-bar" id="sticky-cta">
+        <p>Klaar om te starten? <strong>9,7/10</strong> beoordeling &middot; <strong>10.000+</strong> professionals</p>
+        <a href="#trainingen">Bekijk trainingen &amp; data</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 SUE Behavioural Design. Alle rechten voorbehouden. &nbsp;|&nbsp; <a href="#">Privacy</a> &nbsp;|&nbsp; <a href="#">Voorwaarden</a></p>
+    </footer>
+
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+    (function() {
+        // Sticky CTA bar — show after hero, hide at footer
+        const stickyBar = document.getElementById('sticky-cta');
+        const hero = document.querySelector('.hero');
+        const footer = document.querySelector('footer');
+        if (stickyBar && hero && footer) {
+            window.addEventListener('scroll', function() {
+                const heroBottom = hero.getBoundingClientRect().bottom;
+                const footerTop = footer.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (heroBottom < 0 && footerTop > windowHeight) {
+                    stickyBar.classList.add('visible');
+                } else {
+                    stickyBar.classList.remove('visible');
+                }
+            });
+        }
+
+        // Doelgroep pills + reveal panels + dots
+        const pills = document.querySelectorAll('.doelgroep-pill');
+        const panels = document.querySelectorAll('.reveal-panel');
+        const dots = document.querySelectorAll('.case-dot');
+
+        function activateCase(target) {
+            pills.forEach(p => p.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            const activePill = document.querySelector('.doelgroep-pill[data-target="' + target + '"]');
+            const activeDot = document.querySelector('.case-dot[data-target="' + target + '"]');
+            const targetPanel = document.getElementById('panel-' + target);
+
+            if (activePill) activePill.classList.add('active');
+            if (activeDot) activeDot.classList.add('active');
+            if (targetPanel) targetPanel.classList.add('active');
+        }
+
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => activateCase(pill.dataset.target));
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => activateCase(dot.dataset.target));
+        });
+
+        // Team button in path toggle: smooth scroll to teams section
+        const teamBtn = document.getElementById('team-scroll-btn');
+        if (teamBtn) {
+            teamBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const teamsSection = document.getElementById('trainingen-team');
+                if (teamsSection) {
+                    teamsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        }
+
+        // Zelf button (in second toggle): smooth scroll to zelf section
+        const zelfBtn = document.getElementById('zelf-scroll-btn');
+        if (zelfBtn) {
+            zelfBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const zelfSection = document.getElementById('trainingen');
+                if (zelfSection) {
+                    zelfSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        }
+
+        // Hero toggle: smooth scroll to sections + toggle active state
+        const heroZelfBtn = document.getElementById('hero-zelf-btn');
+        const heroTeamBtn = document.getElementById('hero-team-btn');
+        function toggleHeroBtns(activeBtn) {
+            [heroZelfBtn, heroTeamBtn].forEach(function(btn) {
+                if (btn) btn.classList.remove('active');
+            });
+            if (activeBtn) activeBtn.classList.add('active');
+        }
+        if (heroZelfBtn) {
+            heroZelfBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleHeroBtns(heroZelfBtn);
+                var target = document.getElementById('path-zelf');
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+        if (heroTeamBtn) {
+            heroTeamBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleHeroBtns(heroTeamBtn);
+                var target = document.getElementById('teams');
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+    })();
+    </script>
+
+</body>
+</html>
