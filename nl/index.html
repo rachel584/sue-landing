@@ -32,6 +32,7 @@
             color: var(--black);
             line-height: 1.6;
             background: var(--white);
+            padding-top: 70px;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -65,19 +66,7 @@
             text-decoration: none; color: var(--black);
         }
 
-        .logo-circle {
-            width: 40px; height: 40px;
-            background: var(--coral); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .logo-circle span {
-            color: var(--white); font-family: 'Open Sans', sans-serif;
-            font-size: 11px; font-weight: bold; letter-spacing: 0.5px;
-        }
-
-        .logo-text { font-family: 'Open Sans', sans-serif; font-weight: bold; font-size: 1.1rem; }
-        .logo-sub { font-family: 'Open Sans', sans-serif; font-size: 0.65rem; color: var(--dark-grey); text-transform: uppercase; letter-spacing: 1px; }
+        /* old logo styles overridden below */
 
         nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
         nav a { text-decoration: none; color: var(--black); font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 0.9rem; }
@@ -1506,6 +1495,255 @@
             .sfeer-grid { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
             .sfeer-grid img { height: 130px; border-radius: 0; }
         }
+
+        /* ===== WEBSITE-MATCHED NAV ===== */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 70px;
+            background: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .logo-circle {
+            width: 42px;
+            height: 42px;
+            border: 2.5px dotted #FF5A5F;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-circle span {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #FF5A5F;
+            letter-spacing: 2px;
+        }
+        .logo-text-block {
+            line-height: 1.15;
+        }
+        .logo-text {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1a1a1a;
+            letter-spacing: 0;
+        }
+        .logo-sub {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: #1a1a1a;
+            letter-spacing: 0;
+        }
+        nav ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0;
+        }
+        nav ul li a {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: #1a1a1a;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 0.85rem;
+            transition: color 0.2s ease;
+        }
+        nav ul li a:hover {
+            color: #FF5A5F;
+        }
+        nav .nav-cta {
+            background: #FF5A5F;
+            color: #fff !important;
+            padding: 0.6rem 1.4rem !important;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            transition: background 0.2s ease;
+        }
+        nav .nav-cta:hover {
+            background: #e04e52;
+        }
+        @media (max-width: 900px) {
+            nav ul { display: none; }
+        }
+
+        /* ===== WEBSITE-MATCHED FOOTER ===== */
+        .site-footer {
+            background: #fff;
+            padding: 0;
+            margin-top: 4rem;
+        }
+        .footer-divider {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 0;
+        }
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.5fr;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .footer-col {
+            border-left: 2px solid #e0e0e0;
+            padding-left: 1.5rem;
+        }
+        .footer-col:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+        .footer-col h4 {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            margin: 0 0 1rem;
+        }
+        .footer-col p, .footer-col a {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            color: #797979;
+            line-height: 1.7;
+            text-decoration: none;
+        }
+        .footer-col a:hover {
+            color: #FF5A5F;
+        }
+        .footer-col a.footer-contact-link {
+            color: #FF5A5F;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .footer-social {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .footer-social a {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #797979;
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+        .footer-social a:hover {
+            border-color: #FF5A5F;
+            color: #FF5A5F;
+        }
+        .footer-newsletter-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            background: #FF5A5F;
+            color: #fff !important;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .footer-newsletter-btn:hover {
+            background: #e04e52;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        .footer-links a {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.82rem;
+            color: #FF5A5F;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-links-col {
+            border-left: 2px solid #e0e0e0;
+            padding-left: 1.5rem;
+        }
+        .footer-links-col:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        .footer-bottom p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: #797979;
+            margin: 0;
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .footer-bottom-links a {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: #FF5A5F;
+            text-decoration: none;
+        }
+        .footer-bottom-links a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .footer-main { grid-template-columns: 1fr; }
+            .footer-links { grid-template-columns: 1fr 1fr; }
+            .footer-col { border-left: none; padding-left: 0; border-top: 1px solid #e0e0e0; padding-top: 1.5rem; }
+            .footer-col:first-child { border-top: none; padding-top: 0; }
+            .footer-links-col { border-left: none; padding-left: 0; }
+            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+        }
+
     </style>
 </head>
 <body>
@@ -1516,19 +1754,17 @@
 
     <!-- NAVIGATION -->
     <nav>
-        <a href="#" class="logo">
-            <div class="logo-circle"><span>SUE</span></div>
-            <div>
-                <div class="logo-text">SUE</div>
-                <div class="logo-sub">Behavioural Design Academy</div>
-            </div>
+        <a href="https://www.suebehaviouraldesign.com/" class="logo">
+            <img src="Logo/SUE-Logo-bol-Behavioural-Design-Academy.png" alt="SUE Behavioural Design Academy" class="nav-logo-img">
         </a>
         <ul>
-            <li><a href="#trainingen">Trainingen</a></li>
-            <li><a href="#teams">Teams</a></li>
-            <li><a href="#about">Over SUE</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#" class="nav-cta">Bekijk Kalender</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/academy/fundamentals">Fundamentals</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/course-calendar">Kalender</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/academy/team-training">Team Training</a></li>
+            <li><a href="https://online.suebehaviouraldesign.com/">Online Academy</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/about-us-we-are-sue">Over Ons</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/blog">Blog</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/contact" class="nav-cta">Contact</a></li>
         </ul>
     </nav>
 
@@ -1695,7 +1931,7 @@
                             </ul>
                             <div class="fmt-bottom">
                                 <div class="fmt-price">&euro;1.490 <span>excl. BTW</span></div>
-                                <a href="#" class="fmt-cta bg-green">Schrijf je in</a>
+                                <a href="https://www.suebehaviouraldesign.com/course-calendar" class="fmt-cta bg-green">Schrijf je in</a>
                             </div>
                         </div>
                     </div>
@@ -1724,7 +1960,7 @@
                             </ul>
                             <div class="fmt-bottom">
                                 <div class="fmt-price">&euro;1.190 <span>excl. BTW</span></div>
-                                <a href="#" class="fmt-cta bg-coral">Start vandaag</a>
+                                <a href="https://online.suebehaviouraldesign.com/" class="fmt-cta bg-coral">Start vandaag</a>
                             </div>
                         </div>
                     </div>
@@ -1766,7 +2002,7 @@
                             </div>
                         </div>
                         <div class="dates-link">
-                            <a href="#">Bekijk alle data en hoeveel plekken er nog zijn (max. 16) &rarr;</a>
+                            <a href="https://www.suebehaviouraldesign.com/course-calendar">Bekijk alle data en hoeveel plekken er nog zijn (max. 16) &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -1830,7 +2066,7 @@
                                 <div class="ta-price">&euro;6.900 <span>excl. BTW</span></div>
                                 <div class="ta-price-note">per team, tot 16 deelnemers</div>
                             </div>
-                            <a href="#" class="ta-cta bg-green">Neem contact op</a>
+                            <a href="https://www.suebehaviouraldesign.com/contact" class="ta-cta bg-green">Neem contact op</a>
                         </div>
                     </div>
 
@@ -1867,14 +2103,14 @@
                                 <div class="ta-price">v.a. &euro;14.900 <span>excl. BTW</span></div>
                                 <div class="ta-price-note">per team, tot 16 deelnemers</div>
                             </div>
-                            <a href="#" class="ta-cta bg-green">Neem contact op</a>
+                            <a href="https://www.suebehaviouraldesign.com/contact" class="ta-cta bg-green">Neem contact op</a>
                         </div>
                     </div>
                 </div>
 
                 <div style="text-align: center; margin: 3rem 0 6rem;">
                     <p style="font-family: Georgia, serif; font-size: 1.15rem; color: #1a1a1a; margin-bottom: 1rem;">Toch liever eerst zelf de training doen?</p>
-                    <a href="#trainingen" style="display: inline-block; padding: 1rem 2.5rem; background: transparent; color: #43A047; border: 2px solid #43A047; font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 0.95rem; text-decoration: none; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s ease;">Bekijk de open trainingen</a>
+                    <a href="#path-zelf" style="display: inline-block; padding: 1rem 2.5rem; background: transparent; color: #43A047; border: 2px solid #43A047; font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 0.95rem; text-decoration: none; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s ease;">Bekijk de open trainingen</a>
                 </div>
 
                 <!-- Client logos ticker -->
@@ -2326,13 +2562,64 @@
     <!-- STICKY CTA BAR -->
     <div class="sticky-cta-bar" id="sticky-cta">
         <p>Klaar om te starten? <strong>9,7/10</strong> beoordeling &middot; <strong>10.000+</strong> professionals</p>
-        <a href="#trainingen">Bekijk trainingen &amp; data</a>
+        <a href="https://www.suebehaviouraldesign.com/course-calendar">Bekijk trainingen &amp; data</a>
     </div>
 
     <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 SUE Behavioural Design. Alle rechten voorbehouden. &nbsp;|&nbsp; <a href="#">Privacy</a> &nbsp;|&nbsp; <a href="#">Voorwaarden</a></p>
-    </footer>
+    <div class="site-footer">
+        <hr class="footer-divider">
+        <div class="footer-main">
+            <div class="footer-col">
+                <h4>Adres</h4>
+                <p>'s-Gravenhekje 1a<br>1011 TG Amsterdam<br>The Netherlands</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="mailto:academy@sueamsterdam.com" class="footer-contact-link">Stuur een e-mail</a>
+                <a href="tel:+31202234626" class="footer-contact-link">(+31) 20 223 46 26</a>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/suebehaviouraldesign/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+                    <a href="https://www.linkedin.com/school/sue-behavioural-design/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+                    <a href="https://www.youtube.com/@suebehaviouraldesign" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Toegepaste psychologie in je inbox</h4>
+                <p>Ontvang onze &lsquo;1,5 Minutes on Influence&rsquo; nieuwsbrief en sluit je aan bij forward-thinking professionals die onze inzichten en methode gebruiken.</p>
+                <a href="https://www.suebehaviouraldesign.com/newsletter" class="footer-newsletter-btn">Schrijf me in</a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div class="footer-links-col">
+                <a href="https://www.suebehaviouraldesign.com/academy/fundamentals">Fundamentals Course</a>
+                <a href="https://www.suebehaviouraldesign.com/academy/advanced">Advanced Course</a>
+                <a href="https://www.suebehaviouraldesign.com/academy/team-training">Team Training</a>
+            </div>
+            <div class="footer-links-col">
+                <a href="https://www.suebehaviouraldesign.com/course-calendar">Trainingskalender</a>
+                <a href="https://online.suebehaviouraldesign.com/">Online Academy</a>
+            </div>
+            <div class="footer-links-col">
+                <a href="https://www.suebehaviouraldesign.com/about-us-we-are-sue">We Are SUE</a>
+                <a href="https://www.suebehaviouraldesign.com/about-us-astridgroenewegen">Astrid Groenewegen</a>
+                <a href="https://www.suebehaviouraldesign.com/about-us-testimonials">Testimonials</a>
+                <a href="https://www.suebehaviouraldesign.com/about-us-success-stories">Succesverhalen</a>
+            </div>
+            <div class="footer-links-col">
+                <a href="https://www.suebehaviouraldesign.com/the-art-of-designing-behaviour-book">Het Boek</a>
+                <a href="https://www.suebehaviouraldesign.com/blog">Blog</a>
+                <a href="https://www.suebehaviouraldesign.com/behavioural-design-ethics">Behavioural Design Ethics</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SUE | Behavioural Design Academy. Alle rechten voorbehouden.</p>
+            <div class="footer-bottom-links">
+                <a href="https://www.suebehaviouraldesign.com/privacy-policy">Privacy Policy</a>
+                <a href="https://www.suebehaviouraldesign.com/terms-of-service">Terms of Service</a>
+                <a href="https://www.suebehaviouraldesign.com/complaints">Klachten</a>
+            </div>
+        </div>
+    </div>
 
 
     <!-- ============================================
