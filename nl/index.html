@@ -69,23 +69,25 @@
 
         /* old logo styles overridden below */
 
-        nav ul.nav-desktop { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        nav ul.nav-desktop { display: flex; list-style: none; gap: 1.75rem; align-items: center; }
+        nav ul.nav-desktop > li { position: relative; }
         nav a {
             text-decoration: none;
             color: var(--black);
             font-family: 'Open Sans', sans-serif;
-            font-weight: 400;
-            font-size: 0.75rem;
+            font-weight: 300;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
         nav a:hover { color: var(--coral); }
         .nav-cta {
             background: var(--coral);
             color: var(--white) !important;
-            padding: 0.75rem 1.75rem;
-            border-radius: 30px;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
             font-weight: 600;
+            font-size: 0.8rem;
         }
         .nav-cta:hover {
             background: #e04e52;
@@ -99,7 +101,7 @@
         }
         .nav-dropdown::after {
             content: '∨';
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 300;
             color: var(--black);
             transition: color 0.2s ease;
@@ -358,24 +360,11 @@
             white-space: nowrap;
             transition: all 0.25s ease;
             user-select: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .doelgroep-pill::after {
-            content: '→';
-            font-size: 0.85rem;
-            transition: transform 0.2s ease;
         }
 
         .doelgroep-pill:hover {
             border-color: var(--coral);
             color: var(--coral);
-        }
-
-        .doelgroep-pill:hover::after {
-            transform: translateX(2px);
         }
 
         .doelgroep-pill.active {
@@ -536,6 +525,40 @@
             width: auto;
             object-fit: contain;
             mix-blend-mode: multiply;
+        }
+
+        /* Case study navigation wrapper */
+        .case-nav-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .case-arrow {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+            color: var(--dark-grey);
+        }
+
+        .case-arrow:hover {
+            border-color: var(--coral);
+            color: var(--coral);
+        }
+
+        .case-panels-container {
+            flex: 1;
+            min-width: 0;
         }
 
         .case-dots {
@@ -2995,7 +3018,10 @@
                 <div class="doelgroep-pill" data-target="burgers">Burgers</div>
             </div>
 
-            <!-- REVEAL PANELS -->
+            <!-- REVEAL PANELS WITH NAVIGATION -->
+            <div class="case-nav-wrapper">
+                <div class="case-arrow case-arrow-prev" id="case-prev" onclick="navigateCase(-1)">←</div>
+                <div class="case-panels-container">
             <!-- Consumenten -->
             <div class="reveal-panel reveal-panel-photo active" id="panel-consumenten">
                 <div class="rv-left">
@@ -3307,6 +3333,9 @@
                     </div>
                 </div>
             </div>
+                </div>
+                <div class="case-arrow case-arrow-next" id="case-next" onclick="navigateCase(1)">→</div>
+            </div>
 
             <div class="case-dots" id="case-dots">
                 <div class="case-dot active" data-target="consumenten"></div>
@@ -3487,6 +3516,24 @@
         dots.forEach(dot => {
             dot.addEventListener('click', () => activateCase(dot.dataset.target));
         });
+
+        // Arrow navigation for case studies
+        const caseTargets = ['consumenten', 'kiezers', 'donateurs', 'werknemers', 'professionals', 'talent', 'stakeholders', 'burgers'];
+
+        window.navigateCase = function(direction) {
+            const currentActive = document.querySelector('.doelgroep-pill.active');
+            if (!currentActive) return;
+
+            const currentTarget = currentActive.dataset.target;
+            const currentIndex = caseTargets.indexOf(currentTarget);
+            let newIndex = currentIndex + direction;
+
+            // Loop around
+            if (newIndex < 0) newIndex = caseTargets.length - 1;
+            if (newIndex >= caseTargets.length) newIndex = 0;
+
+            activateCase(caseTargets[newIndex]);
+        };
 
         // Team button in path toggle: smooth scroll to teams section
         const teamBtn = document.getElementById('team-scroll-btn');
