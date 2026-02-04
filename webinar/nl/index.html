@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gratis Webinar: AI × Gedragswetenschap | SUE Behavioural Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #FF5A5F;
+            --coral-light: #FFB7B9;
+            --coral-lighter: #FFE5E5;
+            --coral-bg: #FFF5F5;
+            --dark-grey: #797979;
+            --light-grey: #F2F2F2;
+            --black: #1a1a1a;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.7;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── SUE TYPOGRAPHY ─── */
+        h1, h2, h3, h4, h5 {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .highlight { color: var(--coral); }
+
+
+        /* ─── GLOBALS ─── */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .container-wide {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .eyebrow {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--coral);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: normal;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .section-title .highlight {
+            color: var(--coral);
+        }
+
+
+        /* ─── NAVIGATION ─── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo-img {
+            height: 32px;
+            width: auto;
+            max-width: 280px;
+        }
+
+        nav ul.nav-desktop {
+            display: flex;
+            list-style: none;
+            gap: 1.75rem;
+            align-items: center;
+        }
+
+        nav ul.nav-desktop > li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            color: var(--coral);
+        }
+
+        .nav-cta {
+            background: var(--coral);
+            color: var(--white) !important;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nav-cta:hover {
+            background: #e04e52;
+        }
+
+        /* Dropdown menu styles */
+        .nav-item-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: rgb(0, 0, 0);
+        }
+
+        .nav-dropdown:hover {
+            color: var(--coral);
+        }
+
+        .nav-dropdown::after {
+            content: '∨';
+            font-size: 0.6rem;
+            font-weight: 300;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-item-dropdown:hover .nav-dropdown::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            padding: 0.75rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+
+        .nav-item-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.25rem;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            color: rgb(255, 90, 95);
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-grey);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #1a1a1a;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #fff;
+            z-index: 999;
+            padding: 2rem;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu ul li {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .mobile-menu ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu ul li a {
+            display: block;
+            padding: 1rem 0;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1a1a1a;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: #FF5A5F;
+        }
+
+        .mobile-menu .nav-cta {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-photo-bg {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--white) 0%, var(--coral-lighter) 100%);
+        }
+
+        .hero-photo-bg::before {
+            content: '';
+            position: absolute;
+            top: -10%; right: -10%;
+            width: 600px; height: 600px;
+            background: var(--coral-light);
+            border-radius: 50%;
+            opacity: 0.15;
+            filter: blur(140px);
+        }
+
+        .hero-photo-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -5%; left: -10%;
+            width: 400px; height: 400px;
+            background: var(--coral-light);
+            border-radius: 50%;
+            opacity: 0.08;
+            filter: blur(120px);
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 7rem 2.5rem 5rem;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--coral);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .live-dot {
+            width: 8px; height: 8px;
+            background: var(--coral);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-pill {
+            display: inline-block;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--coral);
+            border: 2px solid var(--coral);
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 500;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .hero h1 .highlight {
+            color: var(--coral);
+        }
+
+        .hero-sub {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            line-height: 1.75;
+            margin-bottom: 2.25rem;
+            max-width: 500px;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: #43A047;
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-size: 0.92rem;
+            padding: 1.1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(67,160,71,0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta:hover {
+            background: #388E3C;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(67,160,71,0.4);
+        }
+
+        .hero-cta-sub {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.78rem;
+            color: var(--dark-grey);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .hero-meta-item .value {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--black);
+            display: block;
+        }
+
+        .hero-meta-item .label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.7rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-speaker {
+            position: relative;
+            width: 400px;
+        }
+
+        .hero-speaker .speaker-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .hero-speaker .name-card {
+            color: var(--black);
+            padding: 0;
+            text-align: left;
+            margin-top: 0.75rem;
+            position: relative;
+        }
+
+        .name-card .name {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0;
+            margin-bottom: 2px;
+        }
+
+        .name-card .role {
+            font-family: Georgia, serif;
+            font-size: 0.85rem;
+            color: var(--dark-grey);
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+            font-style: italic;
+        }
+
+
+        /* ─── SOCIAL PROOF STRIP ─── */
+        .social-proof-strip {
+            padding: 2rem 2rem;
+            background: var(--white);
+            text-align: center;
+            border-bottom: 1px solid var(--light-grey);
+        }
+
+        .proof-headline {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            margin-bottom: 1.25rem;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+        }
+
+        .proof-headline em {
+            color: var(--coral);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .proof-logos {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .proof-logos img {
+            height: 35px;
+            width: auto;
+            object-fit: contain;
+        }
+
+
+        /* ─── AUDIENCE ─── */
+        .audience-section {
+            padding: 5rem 0;
+            background: var(--light-grey);
+            color: var(--black);
+        }
+
+        .audience-section .section-title {
+            color: var(--black);
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 500;
+            text-align: center;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .audience-intro {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            line-height: 1.75;
+            text-align: center;
+        }
+
+        .audience-roles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .audience-role {
+            padding: 2rem;
+            background: var(--white);
+            border: 1.5px solid rgba(0,0,0,0.06);
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .audience-role:hover {
+            border-color: var(--coral);
+            background: var(--coral-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        .audience-role h4 {
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+
+        .audience-role p {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            line-height: 1.65;
+            text-transform: none;
+            letter-spacing: 0;
+            font-family: Georgia, serif;
+        }
+
+
+        /* ─── PAIN SECTION ─── */
+        .pain-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .pain-section p {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            line-height: 1.85;
+            margin-bottom: 20px;
+            color: var(--dark-grey);
+        }
+
+        .pain-section p:last-child { margin-bottom: 0; }
+
+        .pull-quote {
+            font-family: Georgia, serif;
+            font-size: 1.35rem;
+            line-height: 1.55;
+            font-style: italic;
+            color: var(--coral);
+            padding: 28px 0 28px 24px;
+            border-left: 3px solid var(--coral);
+            margin: 36px 0;
+        }
+
+
+        /* ─── LEARN ─── */
+        .learn-section {
+            padding: 5rem 0;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .learn-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .learn-card {
+            padding: 2rem;
+            background: var(--coral-bg);
+            border-radius: 16px;
+            transition: all 0.25s;
+            position: relative;
+            text-align: left;
+        }
+
+        .learn-card:hover {
+            background: var(--coral-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .learn-card-number {
+            margin-bottom: 10px;
+        }
+
+        .learn-card-number img {
+            height: 50px;
+            width: auto;
+        }
+
+        .learn-card h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+            color: var(--black);
+        }
+
+        .learn-card p {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: var(--dark-grey);
+            text-transform: none;
+            letter-spacing: 0;
+            font-family: Georgia, serif;
+        }
+
+
+        /* ─── MID-PAGE CTA ─── */
+        .mid-cta-section {
+            padding: 4rem 0;
+            background: var(--light-grey);
+            text-align: center;
+        }
+
+        .mid-cta-section p {
+            font-family: Georgia, serif;
+            font-size: 1.3rem;
+            font-style: normal;
+            line-height: 1.65;
+            color: var(--black);
+            max-width: 540px;
+            margin: 0 auto 2rem;
+        }
+
+        .marker-circle {
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .marker-circle::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -10px;
+            right: -10px;
+            bottom: -6px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M 20 40 C 5 15, 60 2, 100 5 C 140 8, 195 12, 188 35 C 182 58, 145 72, 100 74 C 55 76, 8 68, 12 45 C 14 32, 25 28, 30 38' fill='none' stroke='%23FF5A5F' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 0;
+            transform: rotate(-2deg);
+        }
+
+        .marker-circle span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .marker-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .marker-underline::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            right: -4px;
+            bottom: -2px;
+            height: 8px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M 2 6 C 50 4, 100 7, 150 5 C 175 4, 195 6, 198 5' fill='none' stroke='%23FF5A5F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+
+        .mid-cta-btn {
+            display: inline-block;
+            background: #43A047;
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-size: 1rem;
+            padding: 1.1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(67,160,71,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .mid-cta-btn:hover {
+            background: #388E3C;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(67,160,71,0.4);
+        }
+
+        .mid-cta-sub {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            color: var(--dark-grey);
+            margin-top: 1rem;
+        }
+
+
+        /* ─── SPEAKER ─── */
+        .speaker-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .speaker-visual { position: relative; }
+
+        .speaker-photo {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .speaker-book {
+            position: absolute;
+            bottom: -24px;
+            right: -24px;
+            width: 120px;
+            border-radius: 6px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: rotate(3deg);
+            transition: transform 0.3s;
+        }
+
+        .speaker-book:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .speaker-content .eyebrow { margin-bottom: 4px; }
+
+        .speaker-content h3 {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .speaker-content p {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--dark-grey);
+            margin-bottom: 14px;
+        }
+
+        .speaker-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .stat-number {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--coral);
+            display: block;
+        }
+
+        .stat-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--dark-grey);
+            margin-top: 2px;
+        }
+
+
+        /* ─── TRUST ─── */
+        .trust-section {
+            padding: 5rem 0;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .trust-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            transition: all 0.25s;
+        }
+
+        .trust-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .trust-card h4 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+            color: var(--black);
+        }
+
+        .trust-card h4 .qm { color: var(--coral); }
+
+        .trust-card p {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: var(--dark-grey);
+        }
+
+
+        /* ─── CTA FINAL (urgency + action combined) ─── */
+        .cta-section {
+            padding: 5rem 0;
+            background: var(--light-grey);
+            text-align: center;
+            color: var(--black);
+        }
+
+        .cta-section .eyebrow { color: var(--coral); }
+
+        .cta-section h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.4rem;
+            font-weight: normal;
+            color: var(--black);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .cta-urgency {
+            font-family: Georgia, serif;
+            font-size: 1.3rem;
+            font-style: normal;
+            color: var(--dark-grey);
+            max-width: 560px;
+            margin: 0 auto 1rem;
+            line-height: 1.65;
+        }
+
+        .cta-subtitle {
+            font-family: Georgia, serif;
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            margin-bottom: 2rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: normal;
+        }
+
+        .cta-btn-coral {
+            display: inline-block;
+            background: #43A047;
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-size: 0.92rem;
+            padding: 1.1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(67,160,71,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-coral:hover {
+            background: #388E3C;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(67,160,71,0.4);
+        }
+
+        .cta-details {
+            margin-top: 32px;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-detail {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--dark-grey);
+        }
+
+        .cta-detail strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+
+        /* ─── FOOTER ─── */
+        .site-footer {
+            background: #fff;
+            padding: 0;
+            margin-top: 4rem;
+        }
+
+        .footer-divider {
+            border: none;
+            border-top: 2px solid #FF5A5F;
+            margin: 0;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.5fr;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .footer-col {
+            border-left: 2px solid #e0e0e0;
+            padding-left: 1.5rem;
+        }
+
+        .footer-col:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .footer-col h4 {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            margin: 0 0 1rem;
+        }
+
+        .footer-col p, .footer-col a {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            color: #797979;
+            line-height: 1.7;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: #FF5A5F;
+        }
+
+        .footer-col a.footer-contact-link {
+            color: #FF5A5F;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid #FF5A5F;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FF5A5F;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .footer-social a:hover {
+            background: #FF5A5F;
+            color: #fff;
+        }
+
+        .footer-newsletter-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            background: #FF5A5F;
+            color: #fff !important;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .footer-newsletter-btn:hover {
+            background: #e04e52;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-links a {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.82rem;
+            color: #FF5A5F;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links-col {
+            border-left: 2px solid #e0e0e0;
+            padding-left: 1.5rem;
+        }
+
+        .footer-links-col:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-bottom p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: #797979;
+            margin: 0;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-bottom-links a {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: #FF5A5F;
+            text-decoration: none;
+        }
+
+        .footer-bottom-links a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ─── STICKY BAR ─── */
+        .sticky-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 999;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0.65rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.35s ease;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+        }
+
+        .sticky-bar.visible { transform: translateY(0); }
+
+        .sticky-bar p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.82rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .sticky-bar a {
+            padding: 0.55rem 1.4rem;
+            background: #43A047;
+            color: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-decoration: none;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 12px rgba(67,160,71,0.3);
+            transition: all 0.25s;
+        }
+
+        .sticky-bar a:hover {
+            background: #388E3C;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(67,160,71,0.4);
+        }
+
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .nav-desktop { display: none; }
+            .hamburger { display: flex; }
+            .hero-inner {
+                grid-template-columns: 1fr;
+                padding: 6.5rem 2rem 4rem;
+                gap: 3rem;
+            }
+            .hero-right { order: -1; }
+            .hero-speaker { width: 280px; margin: 0 auto; }
+            .hero-meta { gap: 1.25rem; }
+            .speaker-grid { grid-template-columns: 1fr; gap: 32px; }
+            .speaker-visual { max-width: 260px; }
+            .speaker-book { right: -16px; bottom: -16px; width: 100px; }
+            .learn-cards { grid-template-columns: 1fr; }
+            .trust-grid { grid-template-columns: 1fr; }
+            .audience-roles { grid-template-columns: 1fr; }
+            .proof-logos { gap: 2rem; }
+            .footer-main { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-col { border-left: none; padding-left: 0; border-top: 1px solid #e0e0e0; padding-top: 1.5rem; }
+            .footer-col:first-child { border-top: none; padding-top: 0; }
+            .footer-links { grid-template-columns: 1fr 1fr; }
+            .footer-links-col { border-left: none; padding-left: 0; }
+            .footer-links-col:nth-child(odd) { border-left: none; }
+            .footer-links-col:nth-child(even) { border-left: 2px solid #e0e0e0; padding-left: 1.5rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+
+        @media (max-width: 600px) {
+            nav { padding: 0.7rem 1.25rem; }
+            .nav-logo-img { height: 24px; }
+            .hero h1 { font-size: 1.2rem; letter-spacing: 1.5px; }
+            .hero-speaker { width: 220px; }
+            .hero-cta { width: 100%; text-align: center; }
+            .cta-details { flex-direction: column; gap: 8px; }
+            .sticky-bar { flex-direction: column; gap: 0.5rem; padding: 0.6rem 1.5rem; }
+            .sticky-bar p { font-size: 0.72rem; }
+            .section-title { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
+            .proof-logos { gap: 1.5rem; }
+            .proof-logos span { font-size: 0.7rem; }
+            .mid-cta-btn { width: 100%; }
+            .footer-links { grid-template-columns: 1fr; }
+            .footer-links-col { border-left: none !important; padding-left: 0 !important; }
+            .footer-bottom-links { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════
+         1. NAVIGATION
+         ═══════════════════════════════════════════ -->
+    <nav>
+        <a href="https://www.suebehaviouraldesign.com" class="logo">
+            <img src="https://www.suebehaviouraldesign.com/wp-content/uploads/SUE-Behavioural-Design-Logo.svg" alt="SUE Behavioural Design" class="nav-logo-img">
+        </a>
+        <ul class="nav-desktop">
+            <li class="nav-item-dropdown">
+                <span class="nav-dropdown">Onze Trainingen</span>
+                <div class="dropdown-menu">
+                    <a href="https://www.suebehaviouraldesign.com/nl/fundamentals-course/">Fundamentals Training</a>
+                    <a href="https://www.suebehaviouraldesign.com/nl/advanced-course/">Advanced Training</a>
+                    <a href="https://www.suebehaviouraldesign.com/nl/calendar/">Training Kalender</a>
+                </div>
+            </li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/calendar/">Training Kalender</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/team-training/">Team Training</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/online-academy/">Online Academy</a></li>
+            <li class="nav-item-dropdown">
+                <span class="nav-dropdown">Over Ons</span>
+                <div class="dropdown-menu">
+                    <a href="https://www.suebehaviouraldesign.com/nl/about-us/">Over SUE</a>
+                    <a href="https://www.suebehaviouraldesign.com/nl/team/">Ons Team</a>
+                    <a href="https://www.suebehaviouraldesign.com/nl/cases/">Cases</a>
+                    <a href="https://www.suebehaviouraldesign.com/nl/blog/">Blog</a>
+                </div>
+            </li>
+            <li class="nav-lang"><a href="../en/index.html">EN</a></li>
+            <li><a href="#aanmelden" class="nav-cta">Reserveer mijn plek</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/fundamentals-course/" onclick="closeMobileMenu()">Fundamentals Training</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/advanced-course/" onclick="closeMobileMenu()">Advanced Training</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/calendar/" onclick="closeMobileMenu()">Training Kalender</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/team-training/" onclick="closeMobileMenu()">Team Training</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/online-academy/" onclick="closeMobileMenu()">Online Academy</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/about-us/" onclick="closeMobileMenu()">Over SUE</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/cases/" onclick="closeMobileMenu()">Cases</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/blog/" onclick="closeMobileMenu()">Blog</a></li>
+        </ul>
+        <a href="#aanmelden" class="nav-cta" onclick="closeMobileMenu()">Reserveer mijn plek</a>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════
+         2. HERO — CTA #1
+         De uitdaging van nu + boardroom-urgentie
+         ═══════════════════════════════════════════ -->
+    <section class="hero">
+        <div class="hero-photo-bg">
+            <div class="hero-inner">
+                <div class="hero-left">
+                    <div class="hero-label">
+                        <span class="live-dot"></span>
+                        Exclusieve masterclass voor leadership en L&amp;D
+                    </div>
+
+                    <h1>Van AI tools naar AI voorsprong: <span class="highlight">gedrag als sleutel.</span></h1>
+
+                    <p class="hero-sub">Iedereen investeert in AI. Maar de meeste organisaties halen er nog geen waarde uit. Niet door de technologie. Door hoe mensen ermee werken. Tom de Bruyne laat zien hoe je door kennis van gedrag AI adoptie kan versnellen en AI je team 10x slimmer kan maken.</p>
+
+                    <a href="#aanmelden" class="hero-cta">Meld je gratis aan &rarr;</a>
+
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <span class="value">24 februari 2026</span>
+                            <span class="label">Datum</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="value">13:00 uur</span>
+                            <span class="label">60 minuten</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="value">MS Teams</span>
+                            <span class="label">Online</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="value">Gratis</span>
+                            <span class="label">Kosten</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="hero-speaker">
+                        <img class="speaker-img" src="tom de bruyne.jpg" alt="Tom De Bruyne">
+                        <div class="name-card">
+                            <div class="name">Tom De Bruyne</div>
+                            <div class="role">Oprichter SUE &bull; Auteur Gamechangers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         3. SOCIAL PROOF STRIP
+         ═══════════════════════════════════════════ -->
+    <section class="social-proof-strip">
+        <p class="proof-headline">SUE Behavioural Design begeleidde gedragsverandering bij o.a.</p>
+        <div class="proof-logos">
+            <img src="abn-amro-bank kopie.svg" alt="ABN AMRO" style="height: 120px;">
+            <img src="logo-rabobank.png" alt="Rabobank" style="height: 75px;">
+            <img src="Ministerie-VWS-logo.png" alt="Ministerie van VWS" style="height: 65px;">
+            <img src="centraal beheer.png" alt="Centraal Beheer" style="height: 75px;">
+            <img src="medtronic.png" alt="Medtronic" style="height: 27px;">
+            <img src="unhcr.png" alt="UNHCR" style="height: 75px;">
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         4. AUDIENCE — Herkenning: "Dit gaat over mij"
+         Resolve Anxiety 3: frame als voorsprong nemen
+         ═══════════════════════════════════════════ -->
+    <section class="audience-section">
+        <div class="container-wide">
+            <h2 class="section-title">Voor leiders die nu aan zet zijn bij de AI-transitie</h2>
+            <p class="audience-intro">Dit is niet de zoveelste sessie die AI uitlegt. Dit is een gerichte masterclass voor beslissers die het mandaat hebben om AI-adoptie te laten slagen en daar nu de juiste stappen in willen zetten.</p>
+
+            <div class="audience-roles">
+                <div class="audience-role">
+                    <h4>CEO&rsquo;s &amp; Directieleden</h4>
+                    <p>Die willen dat de AI-investering nu echt gaat opleveren wat de business case belooft.</p>
+                </div>
+                <div class="audience-role">
+                    <h4>Leidinggevenden</h4>
+                    <p>Die hun team AI willen laten omarmen &eacute;n gebruiken op een manier die hen 10x slimmer maakt.</p>
+                </div>
+                <div class="audience-role">
+                    <h4>L&amp;D &amp; HR Directors</h4>
+                    <p>Die verantwoordelijk zijn voor AI-adoptie en klaar zijn voor een aanpak die w&eacute;l werkt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         6. LEARN — Wat je meeneemt
+         Enhance Gain 3+4: nieuwe lens + concrete stappen
+         ═══════════════════════════════════════════ -->
+    <section class="learn-section">
+        <div class="container-wide">
+            <div class="eyebrow">Wat je gaat leren in deze masterclass</div>
+            <h2 class="section-title">Vier inzichten die bepalen of jullie AI-investering<br>waarde gaat opleveren</h2>
+
+            <div class="learn-cards">
+                <div class="learn-card">
+                    <div class="learn-card-number"><img src="4510_SUE Icon Extra Set_400x400-01 kopie 2.png" alt="1"></div>
+                    <h4>Waar de echte hefboom zit</h4>
+                    <p>Het antwoord is niet meer technologie, niet meer kennis en niet meer urgentie. Tom laat zien welke onzichtbare krachten in het systeem AI-adoptie tegenhouden en waar de doorbraak begint.</p>
+                </div>
+                <div class="learn-card">
+                    <div class="learn-card-number"><img src="4510_SUE Icon Extra Set_400x400-02 kopie 2.png" alt="2"></div>
+                    <h4>Hoe je van veredelde zoekmachine naar echte waarde gaat</h4>
+                    <p>Het verschil tussen organisaties die AI inzetten voor spellingschecks en organisaties die er concurrentievoordeel mee cre&euml;ren. En wat dat verschil veroorzaakt.</p>
+                </div>
+                <div class="learn-card">
+                    <div class="learn-card-number"><img src="4510_SUE Icon Extra Set_400x400-03 kopie 2.png" alt="3"></div>
+                    <h4>Hoe je angst omzet in activatie</h4>
+                    <p>Medewerkers zijn niet tegen AI. Ze zijn onzeker. Tom laat zien hoe je die onzekerheid ombuigt naar eigenaarschap zonder weerstand te forceren.</p>
+                </div>
+                <div class="learn-card">
+                    <div class="learn-card-number"><img src="4510_SUE Icon Extra Set_400x400-04 kopie 2.png" alt="4"></div>
+                    <h4>Wat je maandag anders kunt doen</h4>
+                    <p>Concrete gedragsingrepen die je direct kunt toepassen. Geen abstracte modellen, maar stappen die passen bij jouw organisatie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         7. MID-PAGE CTA — CTA #2
+         De voorsprong pakken
+         ═══════════════════════════════════════════ -->
+    <section class="mid-cta-section">
+        <div class="container">
+            <p>Gartner voorspelt dat 30% van alle gen-AI projecten strandt na de pilotfase. De vraag is: welke aanpak maakt jouw organisatie tot de 70% die <span class="marker-circle"><span>doorbreekt</span></span>?</p>
+            <a href="#aanmelden" class="mid-cta-btn">Ja, ik meld me gratis aan &rarr;</a>
+            <div class="mid-cta-sub">24 februari &bull; 13:00 uur &bull; Gratis &bull; Online</div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         9. TRUST — Bezwaren wegnemen
+         Resolve Comfort 5 + Anxiety 1
+         ═══════════════════════════════════════════ -->
+    <section class="trust-section">
+        <div class="container-wide">
+            <div class="eyebrow">Is dit een uurtje van je tijd waard?</div>
+            <h2 class="section-title">Goede vragen. Onze antwoorden.</h2>
+
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <h4><span class="qm">&ldquo;</span>Weer een AI-sessie vol hype?<span class="qm">&rdquo;</span></h4>
+                    <p>Dit is geen AI-sessie. Dit is een gedragssessie. Geen demo&rsquo;s, geen tool tips, geen beloftes. Tom kijkt naar het systeem erachter: waarom mensen doen wat ze doen en wat je daaraan kunt veranderen.</p>
+                </div>
+                <div class="trust-card">
+                    <h4><span class="qm">&ldquo;</span>Wij hebben al flink ge&iuml;nvesteerd in AI.<span class="qm">&rdquo;</span></h4>
+                    <p>Dat is precies het punt. De investering staat. De vraag is: waarom levert die nog niet op wat je ervan verwacht? Dit webinar gaat over het laatste stuk, het stuk dat de meeste organisaties missen.</p>
+                </div>
+                <div class="trust-card">
+                    <h4><span class="qm">&ldquo;</span>Ik heb maar 60 minuten.<span class="qm">&rdquo;</span></h4>
+                    <p>Daarom hebben we het bewust compact gehouden. Lunchpauze-format: 60 minuten, concrete inzichten, direct toepasbaar. Geen opgenomen webinar, live met ruimte voor vragen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         10. CTA FINAL — Urgentie + actie (CTA #3)
+         ═══════════════════════════════════════════ -->
+    <section class="cta-section" id="aanmelden">
+        <div class="container">
+            <div class="eyebrow">Gratis Masterclass &bull; 24 februari 2026</div>
+            <h2>Doe mee en ontdek hoe gedrag de sleutel is<br>tot AI-voorsprong</h2>
+            <p class="cta-urgency">De organisaties die nu het gedrag rond AI veranderen, bouwen een voorsprong die moeilijk in te halen is.</p>
+            <p class="cta-subtitle">Met <span class="marker-underline">Tom de Bruyne</span>, auteur van <span class="marker-underline">Gamechangers</span> en mede-oprichter van SUE Behavioural Design.</p>
+
+            <a href="#" class="cta-btn-coral">Meld je gratis aan &rarr;</a>
+
+            <div class="cta-details">
+                <span class="cta-detail"><strong>24 februari 2026</strong></span>
+                <span class="cta-detail"><strong>13:00 uur</strong> &bull; 60 minuten</span>
+                <span class="cta-detail"><strong>Online</strong> via MS Teams</span>
+                <span class="cta-detail"><strong>Gratis</strong> &bull; beperkt aantal plekken</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- STICKY BAR -->
+    <div class="sticky-bar" id="sticky-bar">
+        <p>Gratis online masterclass &bull; 24 februari &bull; 13:00 uur</p>
+        <a href="#aanmelden">Reserveer mijn plek</a>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <hr class="footer-divider">
+        <div class="footer-main">
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="mailto:hello@suebehaviouraldesign.com" class="footer-contact-link">hello@suebehaviouraldesign.com</a>
+                <a href="tel:+31207223543" class="footer-contact-link">+31 (0)20 722 35 43</a>
+                <p style="margin-top: 0.75rem;">Panamalaan 5d<br>1019 AS Amsterdam<br>The Netherlands</p>
+            </div>
+            <div class="footer-col">
+                <h4>Volg Ons</h4>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/suebehaviouraldesign/" target="_blank" aria-label="Instagram">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/sue-behavioural-design/" target="_blank" aria-label="LinkedIn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@suebehaviouraldesign" target="_blank" aria-label="YouTube">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Nieuwsbrief</h4>
+                <p>Ontvang maandelijks gratis tips, inzichten en cases over gedragsverandering.</p>
+                <a href="https://www.suebehaviouraldesign.com/nl/nieuwsbrief/" class="footer-newsletter-btn">Aanmelden</a>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div class="footer-links-col">
+                <a href="https://www.suebehaviouraldesign.com/nl/fundamentals-course/">Fundamentals Training</a>
+                <a href="https://www.suebehaviouraldesign.com/nl/advanced-course/">Advanced Training</a>
+                <a href="https://www.suebehaviouraldesign.com/nl/calendar/">Training Kalender</a>
+            </div>
+            <div class="footer-links-col">
+                <a href="https://www.suebehaviouraldesign.com/nl/team-training/">Team Training</a>
+                <a href="https://www.suebehaviouraldesign.com/nl/online-academy/">Online Academy</a>
+                <a href="https://www.suebehaviouraldesign.com/nl/method/">SUE Methode</a>
+            </div>
+            <div class="footer-links-col">
+                <a href="https://www.suebehaviouraldesign.com/nl/about-us/">Over SUE</a>
+                <a href="https://www.suebehaviouraldesign.com/nl/team/">Ons Team</a>
+                <a href="https://www.suebehaviouraldesign.com/nl/cases/">Cases</a>
+            </div>
+            <div class="footer-links-col">
+                <a href="https://www.suebehaviouraldesign.com/nl/blog/">Blog</a>
+                <a href="https://www.suebehaviouraldesign.com/nl/contact/">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SUE | Behavioural Design. Alle rechten voorbehouden.</p>
+            <div class="footer-bottom-links">
+                <a href="https://www.suebehaviouraldesign.com/nl/privacy-policy/">Privacybeleid</a>
+                <a href="https://www.suebehaviouraldesign.com/nl/terms-conditions/">Algemene voorwaarden</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        const stickyBar = document.getElementById('sticky-bar');
+        const hero = document.querySelector('.hero');
+        const cta = document.querySelector('.cta-section');
+
+        window.addEventListener('scroll', () => {
+            const heroBottom = hero.getBoundingClientRect().bottom;
+            const ctaTop = cta.getBoundingClientRect().top;
+            if (heroBottom < 0 && ctaTop > window.innerHeight) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
+                const t = document.querySelector(this.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+            });
+        });
+
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+
+</body>
+</html>
