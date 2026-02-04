@@ -74,6 +74,27 @@
         nav a:hover { color: var(--coral); }
         .nav-cta { background: var(--coral); color: var(--white) !important; padding: 0.6rem 1.25rem; border-radius: 6px; }
 
+        /* Dropdown chevron for nav items */
+        .nav-dropdown {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .nav-dropdown::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid var(--black);
+            margin-left: 2px;
+            transition: transform 0.2s ease;
+        }
+        .nav-dropdown:hover::after {
+            border-top-color: var(--coral);
+        }
+
 
         /* ============================================
            HERO — Split layout (from v14)
@@ -2482,11 +2503,11 @@
             <img src="/Logo/SUE-Logo-bol-Behavioural-Design-Academy.png" alt="SUE Behavioural Design Academy" class="nav-logo-img">
         </a>
         <ul class="nav-desktop">
-            <li><a href="https://www.suebehaviouraldesign.com/academy/fundamentals">Our Courses</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/academy/fundamentals" class="nav-dropdown">Our Courses</a></li>
             <li><a href="https://www.suebehaviouraldesign.com/course-calendar">Course Calendar</a></li>
-            <li><a href="https://www.suebehaviouraldesign.com/academy/team-training">Team Training</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/academy/team-training" class="nav-dropdown">Team Training</a></li>
             <li><a href="https://online.suebehaviouraldesign.com/">Online Academy</a></li>
-            <li><a href="https://www.suebehaviouraldesign.com/about-us-we-are-sue">About Us</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/about-us-we-are-sue" class="nav-dropdown">About Us</a></li>
             <li class="nav-lang"><a href="https://www.suebehaviouraldesign.com/">EN</a></li>
             <li><a href="https://www.suebehaviouraldesign.com/contact" class="nav-cta">Contact</a></li>
         </ul>
@@ -3480,3 +3501,10 @@
                 e.preventDefault();
                 toggleHeroBtns(heroTeamBtn);
                 var target = document.getElementById('teams');
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+    })();
+    </script>
+</body>
+</html>

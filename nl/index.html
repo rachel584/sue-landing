@@ -74,6 +74,27 @@
         nav a:hover { color: var(--coral); }
         .nav-cta { background: var(--coral); color: var(--white) !important; padding: 0.6rem 1.25rem; border-radius: 6px; }
 
+        /* Dropdown chevron for nav items */
+        .nav-dropdown {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .nav-dropdown::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid var(--black);
+            margin-left: 2px;
+            transition: transform 0.2s ease;
+        }
+        .nav-dropdown:hover::after {
+            border-top-color: var(--coral);
+        }
+
 
         /* ============================================
            HERO — Split layout (from v14)
@@ -2481,11 +2502,11 @@
             <img src="/Logo/SUE-Logo-bol-Behavioural-Design-Academy.png" alt="SUE Behavioural Design Academy" class="nav-logo-img">
         </a>
         <ul class="nav-desktop">
-            <li><a href="https://www.suebehaviouraldesign.com/nl/academy/fundamentals">Onze Trainingen</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/academy/fundamentals" class="nav-dropdown">Onze Trainingen</a></li>
             <li><a href="https://www.suebehaviouraldesign.com/nl/course-calendar">Trainingskalender</a></li>
-            <li><a href="https://www.suebehaviouraldesign.com/nl/academy/team-training">Team Trainingen</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/academy/team-training" class="nav-dropdown">Team Trainingen</a></li>
             <li><a href="https://online.suebehaviouraldesign.com/">Online Academy</a></li>
-            <li><a href="https://www.suebehaviouraldesign.com/nl/about-us-we-are-sue">Over Ons</a></li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/about-us-we-are-sue" class="nav-dropdown">Over Ons</a></li>
             <li class="nav-lang"><a href="https://www.suebehaviouraldesign.com/nl">NL</a></li>
             <li><a href="https://www.suebehaviouraldesign.com/nl/contact" class="nav-cta">Contact</a></li>
         </ul>
@@ -3481,3 +3502,10 @@
                 e.preventDefault();
                 toggleHeroBtns(heroTeamBtn);
                 var target = document.getElementById('teams');
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+    })();
+    </script>
+</body>
+</html>
