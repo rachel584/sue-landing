@@ -102,16 +102,21 @@
             align-items: center;
             gap: 0.35rem;
             cursor: pointer;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--black);
+        }
+        .nav-dropdown:hover {
+            color: var(--coral);
         }
         .nav-dropdown::after {
             content: '∨';
             font-size: 0.6rem;
             font-weight: 300;
-            color: var(--black);
             transition: color 0.2s ease, transform 0.2s ease;
-        }
-        .nav-dropdown:hover::after {
-            color: var(--coral);
         }
         .nav-item-dropdown:hover .nav-dropdown::after {
             transform: rotate(180deg);
@@ -2600,13 +2605,7 @@
                 </div>
             </li>
             <li><a href="https://www.suebehaviouraldesign.com/nl/course-calendar">Trainingskalender</a></li>
-            <li class="nav-item-dropdown">
-                <span class="nav-dropdown">Team Trainingen</span>
-                <div class="dropdown-menu">
-                    <a href="https://www.suebehaviouraldesign.com/nl/academy/team-training">Team Training Overzicht</a>
-                    <a href="https://www.suebehaviouraldesign.com/nl/academy/in-company">In-Company Training</a>
-                </div>
-            </li>
+            <li><a href="https://www.suebehaviouraldesign.com/nl/academy/team-training">Team Trainingen</a></li>
             <li><a href="https://online.suebehaviouraldesign.com/">Online Academy</a></li>
             <li class="nav-item-dropdown">
                 <span class="nav-dropdown">Over Ons</span>
