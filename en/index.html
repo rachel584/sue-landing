@@ -1749,218 +1749,630 @@
 
 
         /* ============================================
-           RESPONSIVE — ALL BREAKPOINTS
+           MOBILE RESPONSIVE — COMPREHENSIVE
            ============================================ */
+
+        /* Large tablet breakpoint */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-left {
+                padding: 4rem 2rem 2rem;
+            }
+
+            .hero-right {
+                padding: 0 2rem 3rem;
+            }
+
+            .superskill-formula {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .superskill-operator {
+                padding: 0.5rem 0;
+            }
+
+            .superskill-operator span {
+                font-size: 2rem;
+                transform: rotate(0);
+            }
+
+            .promise-bar {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .fmt-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .ta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dates-block {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .reveal-panel.active {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Tablet breakpoint */
         @media (max-width: 900px) {
             /* NAV */
-            nav { padding: 0 1rem; height: 60px; }
-            nav ul { display: none; }
-            body { padding-top: 60px; }
-
-            /* ZELF-META BAR */
-            .zelf-meta { 
-                flex-wrap: wrap; 
-                gap: 1rem 1.5rem; 
-                justify-content: center;
-                padding: 0 0.5rem;
+            nav {
+                padding: 0 1rem;
+                height: 60px;
             }
-            .zelf-meta span { font-size: 0.8rem; }
-            .zelf-meta .meta-icon { width: 28px; height: 28px; }
+            nav ul {
+                display: none;
+            }
+            body {
+                padding-top: 60px;
+            }
 
             /* HERO */
-            .hero { grid-template-columns: 1fr; min-height: auto; }
-            .hero-left { padding: 3rem 1.25rem 1.5rem; }
-            .hero-right { padding: 0 1.25rem 2rem; }
-            .hero-left h1 { font-size: 1.5rem; line-height: 1.3; }
-            .hero-subtitle { font-size: 0.95rem; }
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            .hero-left {
+                padding: 3rem 1.25rem 1.5rem;
+            }
+            .hero-right {
+                padding: 0 1.25rem 2rem;
+            }
+            .hero-left h1 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
 
-            /* HERO BD×AI GRID (right side) */
-            .bd-ai-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-            .bd-ai-header { font-size: 0.65rem; padding: 0.4rem 0.75rem; }
-            .bd-ai-card { padding: 1rem; }
-            .bd-ai-card h4 { font-size: 0.75rem; }
-            .bd-ai-card p { font-size: 0.75rem; line-height: 1.4; }
+            /* SKILLS GRID */
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            .skill-card {
+                padding: 1.25rem;
+            }
 
-            /* SKILLS GRID (6-column → 1-column) */
-            .skills-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-            .skill-card { padding: 1.25rem; }
-
-            /* SUPERSKILL FORMULA (3-col → stack) */
-            .superskill-section { padding: 3rem 1.25rem; }
-            .superskill-heading { font-size: 1.15rem; }
-            .superskill-body { font-size: 0.95rem; }
+            /* SUPERSKILL FORMULA */
+            .superskill-section {
+                padding: 3rem 1.25rem;
+            }
+            .superskill-heading {
+                font-size: 1.4rem;
+            }
+            .superskill-body {
+                font-size: 0.95rem;
+            }
             .superskill-formula {
-                grid-template-columns: 1fr !important;
+                grid-template-columns: 1fr;
                 gap: 0.5rem;
                 max-width: 100%;
             }
-            .superskill-operator { padding: 0.25rem 0; }
-            .superskill-operator span { font-size: 1.5rem; }
-            .superskill-block { padding: 1.5rem 1.25rem; }
-            .superskill-block h4 { font-size: 0.85rem; }
-            .superskill-block p { font-size: 0.95rem; }
-
-            /* FUNDAMENTALS / ZELF SECTION */
-            .zelf-section { padding: 3rem 1.25rem; }
-            .hero-bridge { font-size: 1.4rem !important; line-height: 1.3 !important; }
-            .promise-bar { flex-direction: column; gap: 0; }
-            .promise-item { 
-                border-right: none; 
-                border-bottom: 1px solid var(--light-grey); 
-                padding: 1rem 1.25rem; 
+            .superskill-operator {
+                padding: 0.25rem 0;
             }
-            .promise-item:last-child { border-bottom: none; }
-
-            /* FORMAT CARDS (2-col → stack) */
-            .fmt-grid { grid-template-columns: 1fr !important; max-width: 100%; gap: 1.5rem; }
-            .fmt-card { max-width: 100%; }
-            .fmt-visual { height: 200px; }
-            .fmt-body { padding: 1.25rem; }
-            .fmt-feats li { font-size: 0.85rem; }
-            .fmt-bottom { 
-                flex-direction: column; 
-                align-items: stretch; 
-                gap: 0.75rem; 
+            .superskill-operator span {
+                font-size: 1.5rem;
             }
-            .fmt-price { font-size: 1.4rem; }
-            .fmt-cta { width: 100%; text-align: center; display: block; }
-
-            /* CONFIRMATION META BAR */
-            .confirmation-meta { 
-                flex-direction: row; 
-                flex-wrap: wrap; 
-                justify-content: center; 
-                gap: 0.75rem 1.5rem; 
-                padding: 1.5rem 1rem; 
+            .superskill-block {
+                padding: 1.5rem 1.25rem;
             }
-            .confirmation-meta span { font-size: 0.8rem; }
-            .confirmation-meta img { width: 30px; height: 30px; }
-
-            /* DATES SECTION */
-            .date-card a.status { 
-                display: block; 
-                width: 100%; 
-                padding: 0.65rem 1rem; 
-                text-align: center;
+            .superskill-block h4 {
+                font-size: 0.85rem;
             }
-            .dates-row { flex-direction: column; }
-            .dates-block { grid-template-columns: 1fr; padding: 0 1rem; }
-            .dates-image { max-height: 200px; }
-            .date-card { 
-                padding: 1rem; 
-                flex-direction: row; 
-                align-items: center; 
-                gap: 1rem; 
+            .superskill-block p {
+                font-size: 0.95rem;
             }
-            .date-info { flex: 1; }
-            .date-book { white-space: nowrap; }
 
-            /* TEAM TRAINING SECTION */
-            .ta-grid { grid-template-columns: 1fr !important; max-width: 100%; }
-            .ta-card { max-width: 100%; overflow: hidden; }
-            .ta-card-top { padding: 1.25rem; }
-            .ta-card-top h3 { font-size: 1.1rem; }
-            .pill-list { flex-wrap: wrap; gap: 0.4rem; }
-            .pill { font-size: 0.7rem; padding: 0.35rem 0.65rem; }
-            .ta-card-bottom { padding: 1.25rem; }
-            .ta-cta { width: 100%; text-align: center; display: block; }
-            .ta-authority { grid-template-columns: 1fr; text-align: center; }
-
-            /* BD × AI BLOCK */
-            .bd-ai-block { grid-template-columns: 1fr; }
-
-            /* AUDIENCE / DOELGROEP */
-            .doelgroep-section { padding: 3rem 1rem; }
-            .doelgroep-pills { 
-                flex-wrap: wrap; 
-                overflow-x: visible; 
-                justify-content: center; 
-                gap: 0.5rem; 
+            /* ZELF SECTION */
+            .zelf-section {
+                padding: 3rem 1.25rem;
             }
-            .doelgroep-pill { font-size: 0.7rem; padding: 0.5rem 0.7rem; white-space: nowrap; }
-            .reveal-panel.active,
-            .reveal-panel-photo.active { grid-template-columns: 1fr; gap: 1.5rem; }
-            .reveal-panel-photo .case-photo { height: 200px; }
-            .case-text { padding: 1.5rem; }
+            .hero-bridge {
+                font-size: 1.4rem !important;
+                line-height: 1.3 !important;
+            }
+            .promise-bar {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .promise-item {
+                padding: 1.25rem 1.25rem 1.25rem 4.5rem;
+            }
 
-            /* GALLERY / SFEER */
-            .sfeer-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-            .sfeer-grid img { height: 140px; border-radius: 0; }
+            /* ZELF-META BAR */
+            .zelf-meta {
+                flex-wrap: wrap;
+                gap: 1rem 1.5rem;
+                justify-content: center;
+                padding: 0 0.5rem;
+            }
+            .zelf-meta span {
+                font-size: 0.85rem;
+            }
+            .zelf-meta .meta-icon {
+                width: 32px;
+                height: 32px;
+            }
 
-            /* CLIENT TICKER */
-            .ticker-track img { height: 28px; margin: 0 1.5rem; }
-
-            /* FOOTER */
-            .site-footer { margin-top: 2rem; }
-            .footer-main { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.25rem; }
-            .footer-col { border-left: none; padding-left: 0; border-top: 1px solid #e0e0e0; padding-top: 1.5rem; }
-            .footer-col:first-child { border-top: none; padding-top: 0; }
-            .footer-links { grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem 1.25rem; }
-            .footer-links-col { border-left: none; padding-left: 0; }
-            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.5rem 1.25rem; }
-
-            /* STICKY CTA */
-            .sticky-cta-bar { padding: 0.75rem 1rem; }
-            .sticky-cta-bar p { font-size: 0.8rem; }
-            .sticky-cta-bar a { font-size: 0.7rem; padding: 0.5rem 1rem; }
-
-            /* GENERAL */
-            section { padding-left: 1.25rem; padding-right: 1.25rem; }
-        }
-
-        @media (max-width: 600px) {
-            .hero-left { padding: 2.5rem 1rem 1rem; }
-            .hero-left h1 { font-size: 1.3rem; }
-            .hero-subtitle { font-size: 0.85rem; }
-            .hero-right { padding: 0 1rem 1.5rem; }
-            .hero-micro { font-size: 0.75rem; }
-
-            /* TOGGLE BUTTONS */
-            .hero-toggle { flex-direction: column; gap: 0; border-radius: 12px; }
-            .hero-toggle-btn { padding: 0.65rem 1rem; font-size: 0.8rem; border-radius: 12px; }
-            .path-toggle { flex-direction: column; gap: 0; }
-            .path-toggle-btn { padding: 0.65rem 1rem; font-size: 0.78rem; }
-
-            /* SUPERSKILL */
-            .superskill-section { padding: 2rem 1rem; }
-            .superskill-heading { font-size: 1.1rem; }
-            .superskill-body { font-size: 0.85rem; }
-            .superskill-block { padding: 1.25rem 1rem; }
-            .superskill-block h4 { font-size: 0.75rem; }
-            .superskill-block p { font-size: 0.85rem; }
-            
-            /* BD×AI GRID */
-            .bd-ai-grid { grid-template-columns: 1fr; }
+            /* AI BADGE */
+            .zelf-header .ai-badge-circle,
+            .ta-header .ai-badge-circle {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto 1.5rem;
+                width: 90px;
+                height: 90px;
+            }
 
             /* FORMAT CARDS */
-            .fmt-visual { height: 160px; }
-            .fmt-scene { font-size: 0.8rem; }
-            .fmt-badge { font-size: 0.6rem; }
+            .fmt-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                gap: 1.5rem;
+            }
+            .fmt-card {
+                max-width: 100%;
+            }
+            .fmt-visual {
+                height: 200px;
+            }
+            .fmt-body {
+                padding: 1.25rem;
+            }
+            .fmt-feats li {
+                font-size: 0.85rem;
+            }
+            .fmt-bottom {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.75rem;
+            }
+            .fmt-price {
+                font-size: 1.4rem;
+            }
+            .fmt-cta {
+                width: 100%;
+                text-align: center;
+                display: block;
+            }
 
-            /* GALLERY */
-            .sfeer-grid { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
-            .sfeer-grid img { height: 120px; }
+            /* DATES SECTION */
+            .dates-block {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+                gap: 2rem;
+            }
+            .dates-image {
+                max-height: 250px;
+                border-radius: 12px;
+                overflow: hidden;
+            }
+            .date-card {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+            .date-card .status {
+                width: 100%;
+            }
 
-            /* DATES */
-            .date-card { flex-direction: column; text-align: center; gap: 0.5rem; }
-            .date-book { width: 100%; text-align: center; }
+            /* TEAM TRAINING SECTION */
+            .ta-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+            .ta-card {
+                max-width: 100%;
+                overflow: hidden;
+            }
+            .ta-card-top {
+                padding: 1.5rem;
+            }
+            .ta-card-top h3 {
+                font-size: 1rem;
+            }
+            .ta-card-bottom {
+                padding: 1.5rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .ta-cta {
+                width: 100%;
+                text-align: center;
+                display: block;
+            }
+            .ta-authority {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
 
-            /* ZELF-META */
-            .zelf-meta { gap: 0.75rem 1rem; font-size: 0.8rem; }
-            .zelf-meta .meta-icon { width: 24px; height: 24px; }
+            /* BD × AI BLOCK */
+            .bd-ai-block {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            /* DOELGROEP / AUDIENCE */
+            .doelgroep-pills {
+                flex-wrap: wrap;
+                overflow-x: visible;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            .doelgroep-pill {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.8rem;
+                white-space: nowrap;
+            }
+            .reveal-panel.active {
+                grid-template-columns: 1fr;
+            }
+            .rv-left {
+                padding: 1.5rem;
+            }
+            .rv-left h3 {
+                font-size: 1.1rem;
+            }
+            .rv-case-brief {
+                padding: 1.25rem;
+            }
+            .rv-case-photo {
+                height: 200px;
+            }
+
+            /* GALLERY / SFEER */
+            .sfeer-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+            .sfeer-grid img {
+                height: 140px;
+                border-radius: 0;
+            }
+
+            /* CLIENT LOGOS */
+            .client-logos-section h3 {
+                font-size: 1.6rem;
+            }
+            .logo-ticker img {
+                height: 50px;
+                max-width: 120px;
+            }
 
             /* FOOTER */
-            .footer-links { grid-template-columns: 1fr; }
-            .footer-main { padding: 1.5rem 1rem; }
+            .site-footer {
+                margin-top: 2rem;
+            }
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 2rem 1.25rem;
+            }
+            .footer-col {
+                border-left: none;
+                padding-left: 0;
+                border-top: 1px solid #e0e0e0;
+                padding-top: 1.5rem;
+            }
+            .footer-col:first-child {
+                border-top: none;
+                padding-top: 0;
+            }
+            .footer-links {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                padding: 1.5rem 1.25rem;
+            }
+            .footer-links-col {
+                border-left: none;
+                padding-left: 0;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.75rem;
+                text-align: center;
+                padding: 1.5rem 1.25rem;
+            }
+
+            /* STICKY CTA */
+            .sticky-cta-bar {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1rem;
+                text-align: center;
+            }
+            .sticky-cta-bar p {
+                font-size: 0.85rem;
+            }
+            .sticky-cta-bar a {
+                width: 100%;
+                padding: 0.75rem 1.5rem;
+            }
 
             /* GENERAL */
-            section { padding-left: 1rem; padding-right: 1rem; }
+            section {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+
+            /* HERO INTERACTIVE */
+            .hero-interactive {
+                padding: 2rem 1.25rem 0;
+            }
+            .hero-bridge-sub {
+                font-size: 0.95rem;
+            }
         }
 
+        /* Mobile breakpoint */
+        @media (max-width: 600px) {
+            .hero-left {
+                padding: 2.5rem 1rem 1rem;
+            }
+            .hero-left h1 {
+                font-size: 1.3rem;
+            }
+            .hero-subtitle {
+                font-size: 0.85rem;
+            }
+            .hero-right {
+                padding: 0 1rem 1.5rem;
+            }
+            .hero-micro {
+                font-size: 0.75rem;
+                text-align: center;
+            }
+
+            /* TOGGLE BUTTONS */
+            .hero-toggle {
+                flex-direction: column;
+                gap: 0;
+                border-radius: 12px;
+                width: 100%;
+            }
+            .hero-toggle-btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.85rem;
+                border-radius: 10px;
+                text-align: center;
+            }
+            .path-toggle {
+                flex-direction: column;
+                gap: 0;
+            }
+            .path-toggle-btn {
+                padding: 0.65rem 1rem;
+                font-size: 0.78rem;
+            }
+
+            /* SKILLS PANEL */
+            .skills-panel {
+                padding: 1rem;
+            }
+            .skills-panel .panel-badge {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.7rem;
+            }
+
+            /* SUPERSKILL */
+            .superskill-section {
+                padding: 2rem 1rem;
+            }
+            .superskill-heading {
+                font-size: 1.2rem;
+            }
+            .superskill-body {
+                font-size: 0.85rem;
+            }
+            .superskill-block {
+                padding: 1.25rem 1rem;
+            }
+            .superskill-block h4 {
+                font-size: 0.75rem;
+            }
+            .superskill-block p {
+                font-size: 0.85rem;
+            }
+
+            /* ZELF SECTION */
+            .zelf-header h2 {
+                font-size: 1.3rem;
+            }
+            .zelf-format-label h3 {
+                font-size: 1.3rem !important;
+            }
+            .zelf-format-label p {
+                font-size: 0.9rem;
+            }
+
+            /* ZELF-META */
+            .zelf-meta {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .zelf-meta span {
+                font-size: 0.8rem;
+            }
+            .zelf-meta .meta-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            /* PROMISE BAR */
+            .promise-item {
+                padding: 1rem 1rem 1rem 3.5rem;
+            }
+            .promise-item .promise-icon {
+                width: 32px;
+                height: 32px;
+                top: 0.85rem;
+                left: 0.85rem;
+            }
+            .promise-item h5 {
+                font-size: 0.8rem;
+            }
+            .promise-item p {
+                font-size: 1rem;
+            }
+
+            /* FORMAT CARDS */
+            .fmt-visual {
+                height: 160px;
+            }
+            .fmt-scene {
+                font-size: 0.8rem;
+            }
+            .fmt-badge {
+                font-size: 0.6rem;
+            }
+            .fmt-body h4 {
+                font-size: 0.8rem;
+            }
+
+            /* DATES */
+            .dates-section-header h3 {
+                font-size: 1.3rem;
+            }
+            .date-card .days {
+                font-size: 1rem;
+            }
+            .date-card .meta {
+                font-size: 0.75rem;
+            }
+
+            /* GALLERY */
+            .sfeer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.4rem;
+            }
+            .sfeer-grid img {
+                height: 120px;
+            }
+            .sfeer-header h2 {
+                font-size: 1.3rem !important;
+            }
+
+            /* TEAMS */
+            .ta-header h2 {
+                font-size: 1.3rem;
+            }
+            .ta-header > p {
+                padding: 0 !important;
+                font-size: 0.9rem;
+            }
+            .ta-ideal-tags span {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            /* DOELGROEP */
+            .doelgroep-pills {
+                gap: 0.4rem;
+                margin-bottom: 2rem;
+            }
+            .doelgroep-pill {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.7rem;
+            }
+
+            /* CLIENT LOGOS */
+            .client-logos-section h3 {
+                font-size: 1.3rem;
+            }
+            .logo-ticker img {
+                height: 40px;
+                max-width: 100px;
+            }
+
+            /* FOOTER */
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+            .footer-main {
+                padding: 1.5rem 1rem;
+            }
+
+            /* GENERAL */
+            section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
+        /* Small mobile */
         @media (max-width: 400px) {
-            .hero-left h1 { font-size: 1.15rem; }
-            .hero-toggle-btn { font-size: 0.75rem; padding: 0.6rem 0.75rem; }
-            nav { padding: 0 0.75rem; }
+            .hero-left h1 {
+                font-size: 1.15rem;
+            }
+            .hero-toggle-btn {
+                font-size: 0.75rem;
+                padding: 0.6rem 0.75rem;
+            }
+            nav {
+                padding: 0 0.75rem;
+            }
+            .nav-logo-img {
+                height: 24px !important;
+                max-width: 160px !important;
+            }
+
+            .superskill-heading {
+                font-size: 1.1rem;
+            }
+
+            .zelf-header h2,
+            .ta-header h2 {
+                font-size: 1.15rem;
+            }
+
+            .sfeer-grid {
+                grid-template-columns: 1fr;
+            }
+            .sfeer-grid img {
+                height: 180px;
+            }
+
+            .doelgroep-pill {
+                font-size: 0.65rem;
+                padding: 0.35rem 0.6rem;
+            }
+
+            .rv-left h3 {
+                font-size: 1rem;
+            }
+
+            .fmt-price {
+                font-size: 1.3rem;
+            }
+
+            .ta-price {
+                font-size: 1.3rem;
+            }
         }
 
     </style>
