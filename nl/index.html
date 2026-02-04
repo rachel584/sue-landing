@@ -982,7 +982,6 @@
             object-fit: contain;
             flex-shrink: 0;
         }
-
         .fmt-bottom {
             margin-top: auto; padding-top: 1.25rem; border-top: 1px solid var(--light-grey);
             display: flex; align-items: center; justify-content: space-between;
@@ -1066,8 +1065,7 @@
             object-fit: contain;
             opacity: 1;
             flex-shrink: 0;
-        }
-        @keyframes ticker-scroll {
+        }        @keyframes ticker-scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
@@ -1517,8 +1515,7 @@
             gap: 0.6rem;
             text-decoration: none;
             flex-shrink: 0;
-        }
-        .logo-circle {
+        }        .logo-circle {
             width: 42px;
             height: 42px;
             border: 2.5px dotted #FF5A5F;
@@ -1744,6 +1741,13 @@
             .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
         }
 
+
+        nav .nav-logo-img {
+            height: 32px !important;
+            width: auto !important;
+            max-width: 280px !important;
+            display: block;
+        }
     </style>
 </head>
 <body>
