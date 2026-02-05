@@ -1285,10 +1285,7 @@
          ═══════════════════════════════════════════ -->
     <nav>
         <a href="https://www.suebehaviouraldesign.com" class="logo" target="_blank">
-            <svg class="nav-logo-img" viewBox="0 0 280 32" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="24" font-family="'Open Sans', sans-serif" font-weight="700" font-size="18" fill="#1a1a1a">SUE</text>
-                <text x="40" y="24" font-family="'Open Sans', sans-serif" font-weight="400" font-size="14" fill="#1a1a1a">| Behavioural Design</text>
-            </svg>
+            <img src="../../Logo/SUE-Logo-bol-Behavioural-Design-Academy.png" alt="SUE Behavioural Design Academy" class="nav-logo-img">
         </a>
         <ul class="nav-desktop">
             <li class="nav-item-dropdown">
@@ -1616,8 +1613,11 @@
 
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', function(e) {
-                const t = document.querySelector(this.getAttribute('href'));
-                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+                const href = this.getAttribute('href');
+                if (href && href.length > 1) {
+                    const t = document.querySelector(href);
+                    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+                }
             });
         });
 
