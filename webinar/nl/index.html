@@ -1231,15 +1231,17 @@
 
 
         /* ─── RESPONSIVE ─── */
-        @media (max-width: 900px) {
-            .nav-desktop { display: none; }
-            .hamburger { display: flex; }
+        /* Tablet and below */
+        @media (max-width: 1024px) {
+            .nav-desktop { display: none !important; }
+            .hamburger { display: flex !important; }
             .hero-inner {
                 grid-template-columns: 1fr;
                 padding: 5rem 1.5rem 3rem;
                 gap: 2rem;
             }
-            .hero-right { order: -1; }
+            .hero-right { order: 1; }
+            .hero-left { order: -1; }
             .hero-speaker { width: 280px; margin: 0 auto; }
             .hero-meta { gap: 1.25rem; flex-wrap: wrap; }
             .hero-meta-item { min-width: 45%; }
@@ -1264,7 +1266,8 @@
             .audience-section, .learn-section, .trust-section, .cta-section, .pain-section, .speaker-section { padding: 3rem 0; }
         }
 
-        @media (max-width: 600px) {
+        /* Mobile */
+        @media (max-width: 768px) {
             body { font-size: 16px; }
             nav { padding: 0.7rem 1rem; }
             .nav-logo-img { height: 28px; width: auto; }
