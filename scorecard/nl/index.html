@@ -584,10 +584,28 @@
             .hero { padding: 3rem 0 2.5rem; }
             .hero h1 { font-size: 1.6rem; }
             .dimension-section { padding: 2.5rem 0; }
-            .score-options { flex-wrap: wrap; }
+            .score-options {
+                flex-wrap: nowrap;
+                justify-content: center;
+            }
+            .score-label {
+                font-size: 0.6rem;
+                margin-right: 0.15rem;
+            }
+            .score-label:last-child {
+                margin-left: 0.15rem;
+            }
+            .score-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+            }
             .score-circle { width: 120px; height: 120px; }
             .score-circle .score-value { font-size: 2.2rem; }
             .header .container { flex-direction: column; gap: 0.75rem; }
+            .statement-card { padding: 1.25rem; }
+            .statement-text { font-size: 0.95rem; margin-bottom: 1rem; }
         }
 
         /* ─── ANIMATION ─── */
