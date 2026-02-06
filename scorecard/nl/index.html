@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Adoptie Scorecard | SUE Behavioural Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #FF5A5F;
+            --coral-light: #FFB7B9;
+            --coral-lighter: #FFE5E5;
+            --coral-bg: #FFF5F5;
+            --dark-grey: #797979;
+            --light-grey: #F2F2F2;
+            --black: #1a1a1a;
+            --white: #FFFFFF;
+            --green: #43A047;
+            --green-hover: #388E3C;
+            --amber: #F59E0B;
+            --red: #EF4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.7;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .eyebrow {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--coral);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: normal;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        /* ─── HEADER ─── */
+        .header {
+            background: var(--white);
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 36px;
+            width: auto;
+        }
+
+        .header-tag {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark-grey);
+            background: var(--light-grey);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 5rem 0 4rem;
+            text-align: center;
+        }
+
+        .hero .eyebrow {
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 500;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #444;
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .hero .start-btn {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .hero .start-btn:hover {
+            background: var(--green-hover);
+        }
+
+        .hero-meta {
+            margin-top: 1.5rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--dark-grey);
+        }
+
+        /* ─── PROGRESS BAR ─── */
+        .progress-section {
+            background: var(--light-grey);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: none;
+        }
+
+        .progress-section.active {
+            display: block;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--dark-grey);
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-bar-track {
+            flex: 1;
+            height: 6px;
+            background: #ddd;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--coral);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .progress-step-count {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--coral);
+            white-space: nowrap;
+        }
+
+        /* ─── SCORECARD DIMENSIONS ─── */
+        .dimension-section {
+            padding: 4rem 0;
+            display: none;
+        }
+
+        .dimension-section.active {
+            display: block;
+        }
+
+        .dimension-section:nth-child(even) {
+            background: var(--light-grey);
+        }
+
+        .dimension-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .dimension-number {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--coral);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .dimension-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: normal;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        .dimension-description {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 600px;
+        }
+
+        /* ─── STATEMENTS ─── */
+        .statement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .statement-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .statement-card:hover {
+            border-color: #ddd;
+        }
+
+        .statement-card.selected {
+            border-color: var(--coral);
+            box-shadow: 0 0 0 1px var(--coral);
+        }
+
+        .statement-text {
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .score-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .score-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.7rem;
+            color: var(--dark-grey);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 0.25rem;
+        }
+
+        .score-label:last-child {
+            margin-left: 0.25rem;
+        }
+
+        .score-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            background: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark-grey);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-btn:hover {
+            border-color: var(--coral);
+            color: var(--coral);
+        }
+
+        .score-btn.active {
+            background: var(--coral);
+            border-color: var(--coral);
+            color: white;
+        }
+
+        /* ─── NAVIGATION BUTTONS ─── */
+        .dimension-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .nav-btn-back {
+            background: transparent;
+            color: var(--dark-grey);
+            border: 1px solid #ddd;
+        }
+
+        .nav-btn-back:hover {
+            border-color: #999;
+            color: var(--black);
+        }
+
+        .nav-btn-next {
+            background: var(--coral);
+            color: white;
+        }
+
+        .nav-btn-next:hover {
+            background: #E54E52;
+        }
+
+        .nav-btn-results {
+            background: var(--green);
+            color: white;
+        }
+
+        .nav-btn-results:hover {
+            background: var(--green-hover);
+        }
+
+        /* ─── RESULTS ─── */
+        .results-section {
+            padding: 4rem 0 5rem;
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .overall-score {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: var(--coral-bg);
+            border-radius: 12px;
+        }
+
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 6px solid var(--coral);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .score-circle .score-value {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.8rem;
+            font-weight: 500;
+            color: var(--coral);
+            line-height: 1;
+        }
+
+        .score-circle .score-max {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--dark-grey);
+            margin-top: 2px;
+        }
+
+        .score-verdict {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .score-summary {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ─── DIMENSION RESULTS ─── */
+        .dimension-results {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .dim-result-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .dim-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .dim-result-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--black);
+        }
+
+        .dim-result-score {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .dim-result-score.high { color: var(--green); }
+        .dim-result-score.medium { color: var(--amber); }
+        .dim-result-score.low { color: var(--red); }
+
+        .dim-bar-track {
+            height: 8px;
+            background: var(--light-grey);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .dim-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+
+        .dim-bar-fill.high { background: var(--green); }
+        .dim-bar-fill.medium { background: var(--amber); }
+        .dim-bar-fill.low { background: var(--coral); }
+
+        .dim-result-insight {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .dim-result-insight strong {
+            color: var(--black);
+        }
+
+        /* ─── CTA SECTION ─── */
+        .results-cta {
+            background: var(--light-grey);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .results-cta .eyebrow {
+            margin-bottom: 0.75rem;
+        }
+
+        .results-cta h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .results-cta p {
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .results-cta .cta-btn {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .results-cta .cta-btn:hover {
+            background: var(--green-hover);
+        }
+
+        .results-cta .cta-meta {
+            margin-top: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--dark-grey);
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            padding: 2rem 0;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .footer p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--dark-grey);
+        }
+
+        .footer a {
+            color: var(--coral);
+            text-decoration: none;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 640px) {
+            .hero { padding: 3rem 0 2.5rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .dimension-section { padding: 2.5rem 0; }
+            .score-options { flex-wrap: wrap; }
+            .score-circle { width: 120px; height: 120px; }
+            .score-circle .score-value { font-size: 2.2rem; }
+            .header .container { flex-direction: column; gap: 0.75rem; }
+        }
+
+        /* ─── ANIMATION ─── */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dimension-section.active {
+            animation: fadeIn 0.4s ease;
+        }
+
+        .results-section.active {
+            animation: fadeIn 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="sue-logo.png" alt="SUE Behavioural Design Academy">
+            </div>
+            <div class="header-tag">Gratis tool</div>
+        </div>
+    </div>
+
+    <!-- HERO / INTRO -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="eyebrow">AI &times; Gedrag Scorecard</div>
+            <h1>Benut jouw team het volle potentieel van AI?</h1>
+            <p>De meeste teams gebruiken AI als een veredelde zoekmachine. Deze scorecard laat zien waar jullie staan en welke skills 10&times; zo goed kunnen worden als je AI op de juiste manier inzet.</p>
+            <button class="start-btn" onclick="startScorecard()">Start de scorecard</button>
+            <div class="hero-meta">5 dimensies &bull; 20 stellingen &bull; circa 5 minuten</div>
+        </div>
+    </section>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-section" id="progressBar">
+        <div class="container">
+            <div class="progress-container">
+                <span class="progress-label">Voortgang</span>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-step-count" id="progressCount">1 / 5</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIMENSION 1: WAT DOET JOUW TEAM NU MET AI? -->
+    <section class="dimension-section" id="dim1">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimensie 1 van 5</div>
+                <h2 class="dimension-title">Wat doet jouw team nu echt met AI?</h2>
+                <p class="dimension-description">78% van de professionals brengt eigen AI-tools mee naar werk (Microsoft Work Trend Index, 2025). Maar wat doen ze ermee?</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="1" data-q="1">
+                    <p class="statement-text">AI wordt bij ons vooral ingezet om iets op te zoeken of teksten te schrijven.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(1,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(1,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(1,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(1,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(1,1,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="1" data-q="2">
+                    <p class="statement-text">Medewerkers gebruiken AI om te begrijpen waarom klanten, gebruikers of collega's bepaalde keuzes maken. Niet alleen om taken af te vinken.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(1,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(1,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(1,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(1,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(1,2,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="1" data-q="3">
+                    <p class="statement-text">AI zit ingebouwd in hoe we werken. Het is geen los tabblad dat je opent als je eraan denkt.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(1,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(1,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(1,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(1,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(1,3,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="1" data-q="4">
+                    <p class="statement-text">Als ik eerlijk ben: de meeste collega's gebruiken AI vooral om sneller te doen wat ze al deden. Niet om beter te worden in hun vak.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(1,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(1,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(1,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(1,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(1,4,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <div></div>
+                <button class="nav-btn nav-btn-next" onclick="nextDimension(2)">Volgende dimensie &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIMENSION 2: WELKE SKILLS WORDEN 10× STERKER? -->
+    <section class="dimension-section" id="dim2">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimensie 2 van 5</div>
+                <h2 class="dimension-title">Welke skills worden 10&times; sterker?</h2>
+                <p class="dimension-description">Harvard/BCG-onderzoek toont: AI tilt gemiddelde medewerkers naar expertniveau (+40% kwaliteit). Maar alleen als je verder gaat dan sneller typen.</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="2" data-q="1">
+                    <p class="statement-text">Medewerkers gebruiken AI om analyses te maken die ze zonder AI niet hadden kunnen doen. Niet sneller, maar dieper.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(2,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(2,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(2,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(2,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(2,1,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="2" data-q="2">
+                    <p class="statement-text">Mensen pakken met AI taken op die eerder buiten hun expertise lagen.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(2,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(2,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(2,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(2,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(2,2,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="2" data-q="3">
+                    <p class="statement-text">We weten hoe we AI moeten inzetten om onze eigen aannames te ontmaskeren.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(2,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(2,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(2,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(2,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(2,3,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="2" data-q="4">
+                    <p class="statement-text">Onze voorstellen en adviezen zijn door AI overtuigender geworden. Klanten en stakeholders zeggen vaker 'ja'.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(2,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(2,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(2,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(2,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(2,4,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <button class="nav-btn nav-btn-back" onclick="prevDimension(1)">&larr; Vorige</button>
+                <button class="nav-btn nav-btn-next" onclick="nextDimension(3)">Volgende dimensie &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIMENSION 3: WAAROM MENSEN HET WEL OF NIET DOEN -->
+    <section class="dimension-section" id="dim3">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimensie 3 van 5</div>
+                <h2 class="dimension-title">AI-adoptie is een gedragsvraagstuk</h2>
+                <p class="dimension-description">70% van AI-implementatieproblemen gaat niet over technologie maar over mensen (BCG, AI at Work 2025).</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="3" data-q="1">
+                    <p class="statement-text">We begrijpen waarom sommige collega's AI vermijden en hebben daar een aanpak voor die verder gaat dan nóg een tooltraining.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(3,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(3,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(3,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(3,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(3,1,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="3" data-q="2">
+                    <p class="statement-text">Als iemand AI probeert en het resultaat valt tegen, weet diegene wat er anders moet. Er ontstaat geen "zie je wel, het werkt niet"-moment.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(3,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(3,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(3,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(3,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(3,2,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="3" data-q="3">
+                    <p class="statement-text">Het is bij ons makkelijker om AI te gebruiken dan om het niet te doen.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(3,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(3,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(3,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(3,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(3,3,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="3" data-q="4">
+                    <p class="statement-text">Er zijn collega's die AI vermijden uit angst of onzekerheid. Wij weten waarom.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(3,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(3,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(3,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(3,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(3,4,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <button class="nav-btn nav-btn-back" onclick="prevDimension(2)">&larr; Vorige</button>
+                <button class="nav-btn nav-btn-next" onclick="nextDimension(4)">Volgende dimensie &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIMENSION 4: VAN UITPROBEREN NAAR IMPACT -->
+    <section class="dimension-section" id="dim4">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimensie 4 van 5</div>
+                <h2 class="dimension-title">Van uitproberen naar impact</h2>
+                <p class="dimension-description">88% van de organisaties gebruikt AI. Slechts 6% ziet er financieel resultaat van (McKinsey Global Survey, 2025).</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="4" data-q="1">
+                    <p class="statement-text">We kunnen concreet benoemen welk resultaat er beter is geworden doordat we AI inzetten.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(4,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(4,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(4,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(4,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(4,1,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="4" data-q="2">
+                    <p class="statement-text">Als het management vraagt wat AI heeft opgeleverd, hebben we een overtuigend antwoord.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(4,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(4,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(4,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(4,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(4,2,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="4" data-q="3">
+                    <p class="statement-text">De leiding gebruikt AI zichtbaar zelf. Niet alleen aanmoedigen, maar voordoen.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(4,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(4,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(4,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(4,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(4,3,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="4" data-q="4">
+                    <p class="statement-text">We meten niet alleen of AI wordt gebruikt, maar of het tot betere uitkomsten leidt.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(4,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(4,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(4,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(4,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(4,4,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <button class="nav-btn nav-btn-back" onclick="prevDimension(3)">&larr; Vorige</button>
+                <button class="nav-btn nav-btn-next" onclick="nextDimension(5)">Volgende dimensie &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIMENSION 5: DE 10× BELOFTE -->
+    <section class="dimension-section" id="dim5">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimensie 5 van 5</div>
+                <h2 class="dimension-title">De 10&times; belofte</h2>
+                <p class="dimension-description">Organisaties die AI goed inzetten halen 5&times; meer omzetgroei (McKinsey, 2025). Het verschil? Niet de tool, maar hoe mensen ermee werken.</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="5" data-q="1">
+                    <p class="statement-text">Mensen in ons team doen dingen die een jaar geleden ondenkbaar waren.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(5,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(5,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(5,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(5,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(5,1,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="5" data-q="2">
+                    <p class="statement-text">AI maakt ons niet alleen sneller, maar ook overtuigender. Onze voorstellen en presentaties zijn er meetbaar beter door geworden.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(5,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(5,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(5,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(5,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(5,2,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="5" data-q="3">
+                    <p class="statement-text">We weten niet alleen hoe we AI moeten inzetten, maar ook waarom bepaalde aanpakken bij onze doelgroep wel of niet landen.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(5,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(5,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(5,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(5,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(5,3,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="5" data-q="4">
+                    <p class="statement-text">Wat we nu met AI bereiken voelt als een fractie van wat er mogelijk is.</p>
+                    <div class="score-options">
+                        <span class="score-label">Oneens</span>
+                        <button class="score-btn" onclick="setScore(5,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(5,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(5,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(5,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(5,4,5)">5</button>
+                        <span class="score-label">Eens</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <button class="nav-btn nav-btn-back" onclick="prevDimension(4)">&larr; Vorige</button>
+                <button class="nav-btn nav-btn-results" onclick="showResults()">Bekijk mijn resultaten &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="results-section" id="results">
+        <div class="container">
+
+            <div class="overall-score">
+                <div class="eyebrow">Jouw score</div>
+                <div class="score-circle">
+                    <span class="score-value" id="totalScore">0</span>
+                    <span class="score-max">van 100</span>
+                </div>
+                <h2 class="score-verdict" id="verdict"></h2>
+                <p class="score-summary" id="verdictText"></p>
+            </div>
+
+            <div class="eyebrow" style="margin-top: 2rem;">Score per dimensie</div>
+            <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1.5rem;">Waar liggen jouw grootste kansen?</h2>
+
+            <div class="dimension-results" id="dimResults"></div>
+
+            <div class="results-cta">
+                <div class="eyebrow">Gratis online masterclass</div>
+                <h2>Leer hoe je deze scores verbetert</h2>
+                <p id="ctaText">In deze masterclass leer je wat de top 6% anders doet: kennis van menselijk gedrag toevoegen aan AI. Zowel voor adoptie als voor output die echt effect heeft.</p>
+                <a href="https://training.suebehaviouraldesign.com/webinar/nl/" class="cta-btn" target="_blank">Meld je gratis aan voor de masterclass</a>
+                <div class="cta-meta">Exclusief voor Leadership & L&D managers &bull; 24 februari &bull; 13:00 uur &bull; Online</div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="nav-btn nav-btn-back" onclick="resetScorecard()">Opnieuw invullen</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2026 <a href="https://suebehaviouraldesign.com" target="_blank">SUE Behavioural Design</a>. Alle rechten voorbehouden.</p>
+        </div>
+    </div>
+
+<script>
+    // ═══════════════════════════════════════
+    // SCORECARD ENGINE
+    // ═══════════════════════════════════════
+
+    const scores = {};
+    const totalDimensions = 5;
+    const questionsPerDim = 4;
+
+    // Reverse-scored questions (higher agreement = lower score)
+    const reverseScored = ['1-1', '1-4', '5-4'];
+
+    const dimensions = {
+        1: {
+            name: 'Wat doet jouw team met AI?',
+            insights: {
+                low: {
+                    text: 'Bij jullie is AI nog vooral een typemachine: teksten oppoetsen, snel iets opzoeken. Dat is waar 90% van de organisaties zit. Het verschil met de top? Die laten AI meedenken bij het werk zelf.',
+                    tip: 'Neem \u00E9\u00E9n concreet werkstuk van deze week en vraag AI om het te challengen vanuit een ander perspectief. Het verschil is onmiddellijk voelbaar.'
+                },
+                medium: {
+                    text: 'Jullie gebruiken AI al verder dan de basis, maar het is nog een los tabblad dat je erbij pakt. Het zit niet in het werkproces zelf ingebakken. Zolang het optioneel is, blijft het incidenteel.',
+                    tip: 'Kies \u00E9\u00E9n terugkerend werkproces en maak AI er een standaardstap in. Niet als optie, maar als onderdeel.'
+                },
+                high: {
+                    text: 'AI zit bij jullie in het kernwerk. Dat is uitzonderlijk \u2014 de meeste organisaties komen niet voorbij e-mails en samenvattingen.',
+                    tip: 'Maak jullie werkwijze zichtbaar voor de rest van de organisatie. Collega\u2019s overtuigen collega\u2019s.'
+                }
+            }
+        },
+        2: {
+            name: 'Welke skills worden 10\u00D7 sterker?',
+            insights: {
+                low: {
+                    text: 'AI maakt iedereen sneller. Maar de echte sprong zit in diepere analyses, betere voorstellen en het aanpakken van taken die eerder buiten bereik lagen. Dat potentieel wordt bij jullie nog niet benut.',
+                    tip: 'Vraag je af: welke output is door AI niet alleen sneller, maar ook \u00E9cht beter geworden? Als je geen concreet antwoord hebt, ligt daar de grootste kans.'
+                },
+                medium: {
+                    text: 'Sommige teamleden ontdekken dat AI hun denken versterkt. De volgende stap is het structureel inzetten: elk plan laten toetsen, elke analyse een niveau dieper brengen.',
+                    tip: 'Kies \u00E9\u00E9n specifieke vaardigheid per team waar AI het meest vermenigvuldigt. Denk aan: overtuigen, analyseren, of strategie bouwen.'
+                },
+                high: {
+                    text: 'Jullie team is niet alleen sneller, maar fundamenteel beter in hun vak. Medewerkers pakken taken op die eerder buiten hun bereik lagen. Dat is het echte concurrentievoordeel.',
+                    tip: 'Documenteer \u00E9\u00E9n concreet voorbeeld waar AI iemand in staat stelde iets te doen dat voorheen onmogelijk was. Dat verhaal is goud waard voor interne adoptie.'
+                }
+            }
+        },
+        3: {
+            name: 'AI-adoptie als gedrag',
+            insights: {
+                low: {
+                    text: '70% van AI-implementatieproblemen gaat over mensen, niet technologie. De collega die het \u00E9\u00E9n keer probeerde en concludeerde dat het niet werkt. De manager die het eng vindt maar dat niet zegt. Het team dat denkt: dit waait over. Herkenbaar?',
+                    tip: 'Loop deze week langs drie collega\u2019s die AI weinig gebruiken. Vraag niet \u00F3f ze het gebruiken, maar wat hen tegenhoudt. De antwoorden zullen je verrassen.'
+                },
+                medium: {
+                    text: 'De tooltraining is gegeven, de licenties zijn beschikbaar, maar toch gebruikt de helft het nauwelijks. Logisch: een tooltraining leert je knoppen. Wat ontbreekt is de gedragslaag: waarom mensen iets wel of niet doen.',
+                    tip: 'Vraag jezelf af: wat maakt het voor iemand in mijn team mo\u00E9ilijk om AI te gebruiken? Onzekerheid? Geen tijd? Angst voor fouten? Los d\u00E1t op.'
+                },
+                high: {
+                    text: 'Jullie begrijpen dat AI-adoptie een gedragsvraagstuk is, geen technologievraagstuk. Jullie kijken naar waarom mensen het wel of niet doen. Dat is precies hoe de top het aanpakt.',
+                    tip: 'Blijf nieuwsgierig naar de barri\u00E8res die overblijven. Zelfs in de beste teams zijn er mensen die AI vermijden.'
+                }
+            }
+        },
+        4: {
+            name: 'Van uitproberen naar impact',
+            insights: {
+                low: {
+                    text: 'Herkenbaar patroon: licenties aangeschaft, tooltrainingen gegeven, mensen proberen het uit \u2014 maar niemand kan benoemen wat er b\u00E9ter is geworden. Ondertussen worden er vragen gesteld over de ROI.',
+                    tip: 'Begin klein: kies \u00E9\u00E9n team, \u00E9\u00E9n proces, en meet wat er verandert. E\u00E9n overtuigend succesverhaal is meer waard dan tien inspiratiesessies.'
+                },
+                medium: {
+                    text: 'Er zijn successen, maar ze worden niet gedeeld. Gemiste kans: medewerkers gaan 3,5\u00D7 vaker AI gebruiken als ze zien dat collega\u2019s er concreet resultaat mee boeken.',
+                    tip: 'Maak successen zichtbaar. Een vast moment in het teamoverleg waar iemand laat zien wat AI deze week heeft opgeleverd.'
+                },
+                high: {
+                    text: 'Jullie kunnen het verhaal vertellen: AI maakt ons concreet beter. Dat bewijs inspireert anderen en overtuigt het management.',
+                    tip: 'Schaal op: als het in \u00E9\u00E9n team werkt, wat is er nodig voor drie teams? Begin met het succesverhaal te delen, niet met de tool uit te rollen.'
+                }
+            }
+        },
+        5: {
+            name: 'De 10\u00D7 belofte',
+            insights: {
+                low: {
+                    text: 'Iedereen krijgt straks dezelfde AI-tools. Het verschil zit in twee dingen: begrijpen waarom mensen AI wel of niet gaan gebruiken, \u00E9n kennis van gedrag toevoegen zodat je output ook echt effect heeft.',
+                    tip: 'De vraag is niet: hoe worden we sneller met AI? Maar: wordt onze output er ook inhoudelijk beter van? Overtuigender? Effectiever?'
+                },
+                medium: {
+                    text: 'Jullie zien de kloof tussen wat er nu gebeurt en wat er mogelijk is. Het verschil dichten vraagt om de gedragslaag: begrijpen waarom mensen iets wel of niet doen, zowel intern (adoptie) als extern (effect bij de doelgroep).',
+                    tip: 'Stel jezelf de vraag: weten we eigenlijk of onze AI-output ook daadwerkelijk effect heeft bij de doelgroep? Zo niet, hoe zouden we dat kunnen meten?'
+                },
+                high: {
+                    text: 'Jullie zijn niet alleen snel, maar leveren output die daadwerkelijk effect heeft. Dat is het verschil dat de meeste organisaties nog niet beheersen.',
+                    tip: 'De volgende stap is dit systematisch maken: hoe zorgen jullie dat elke nieuwe medewerker op dit niveau komt?'
+                }
+            }
+        }
+    };
+
+    const verdicts = [
+        {
+            max: 35,
+            title: 'AI als gadget',
+            text: 'AI wordt bij jullie vooral gebruikt om sneller te werken. Maar snelheid kan straks iedereen. Het echte verschil zit in twee dingen: begrijpen waarom mensen AI wel of niet gebruiken (\u00E9chte adoptie) \u00E9n kennis van gedrag toevoegen zodat jullie output ook effect heeft.'
+        },
+        {
+            max: 50,
+            title: 'AI als experiment',
+            text: 'Er wordt ge\u00EBxperimenteerd, maar het is nog niet structureel. De doorbraak? Begrijpen waarom de meerderheid het nog niet doet \u00E9n kennis van gedrag toevoegen aan hoe jullie AI inzetten. Dat is wat de top 6% anders doet.'
+        },
+        {
+            max: 70,
+            title: 'AI als versterker',
+            text: 'AI versterkt al bepaalde skills en levert resultaat op. De volgende stap? Kennis van menselijk gedrag toevoegen aan hoe jullie AI inzetten. Dan wordt jullie output niet alleen sneller, maar ook overtuigender.'
+        },
+        {
+            max: 100,
+            title: 'AI als superkracht',
+            text: 'Jullie zijn niet alleen snel met AI, maar begrijpen ook waarom dingen werken bij mensen. Die combinatie is zeldzaam. De uitdaging is dit vast te houden en te verbreden.'
+        }
+    ];
+
+    function setScore(dim, question, value) {
+        const key = `${dim}-${question}`;
+        // Reverse score for negative statements (5 becomes 1, 4 becomes 2, etc.)
+        const finalValue = reverseScored.includes(key) ? (6 - value) : value;
+        scores[key] = finalValue;
+
+        const card = document.querySelector(`.statement-card[data-dim="${dim}"][data-q="${question}"]`);
+        card.querySelectorAll('.score-btn').forEach((btn, i) => {
+            btn.classList.toggle('active', (i + 1) === value);
+        });
+        card.classList.add('selected');
+    }
+
+    function startScorecard() {
+        document.getElementById('hero').style.display = 'none';
+        document.getElementById('progressBar').classList.add('active');
+        document.getElementById('dim1').classList.add('active');
+        updateProgress(1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextDimension(nextDim) {
+        const currentDim = nextDim - 1;
+        let allAnswered = true;
+        for (let q = 1; q <= questionsPerDim; q++) {
+            if (!scores[`${currentDim}-${q}`]) {
+                allAnswered = false;
+                break;
+            }
+        }
+
+        if (!allAnswered) {
+            for (let q = 1; q <= questionsPerDim; q++) {
+                if (!scores[`${currentDim}-${q}`]) {
+                    const card = document.querySelector(`.statement-card[data-dim="${currentDim}"][data-q="${q}"]`);
+                    card.style.borderColor = '#FF5A5F';
+                    setTimeout(() => { card.style.borderColor = ''; }, 1500);
+                }
+            }
+            return;
+        }
+
+        document.getElementById(`dim${currentDim}`).classList.remove('active');
+        document.getElementById(`dim${nextDim}`).classList.add('active');
+        updateProgress(nextDim);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function prevDimension(prevDim) {
+        const currentDim = prevDim + 1;
+        document.getElementById(`dim${currentDim}`).classList.remove('active');
+        document.getElementById(`dim${prevDim}`).classList.add('active');
+        updateProgress(prevDim);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProgress(currentDim) {
+        const pct = (currentDim / totalDimensions) * 100;
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressCount').textContent = currentDim + ' / ' + totalDimensions;
+    }
+
+    function getDimScore(dim) {
+        let total = 0;
+        for (let q = 1; q <= questionsPerDim; q++) {
+            total += scores[`${dim}-${q}`] || 0;
+        }
+        return total;
+    }
+
+    function showResults() {
+        let allAnswered = true;
+        for (let q = 1; q <= questionsPerDim; q++) {
+            if (!scores[`5-${q}`]) {
+                allAnswered = false;
+                break;
+            }
+        }
+        if (!allAnswered) {
+            for (let q = 1; q <= questionsPerDim; q++) {
+                if (!scores[`5-${q}`]) {
+                    const card = document.querySelector(`.statement-card[data-dim="5"][data-q="${q}"]`);
+                    card.style.borderColor = '#FF5A5F';
+                    setTimeout(() => { card.style.borderColor = ''; }, 1500);
+                }
+            }
+            return;
+        }
+
+        document.getElementById('dim5').classList.remove('active');
+        document.getElementById('progressBar').classList.remove('active');
+
+        let total = 0;
+        const dimScores = {};
+        for (let d = 1; d <= totalDimensions; d++) {
+            dimScores[d] = getDimScore(d);
+            total += dimScores[d];
+        }
+
+        document.getElementById('totalScore').textContent = total;
+
+        let verdict = verdicts[verdicts.length - 1];
+        for (const v of verdicts) {
+            if (total <= v.max) {
+                verdict = v;
+                break;
+            }
+        }
+        document.getElementById('verdict').textContent = verdict.title;
+        document.getElementById('verdictText').textContent = verdict.text;
+
+        const resultsContainer = document.getElementById('dimResults');
+        resultsContainer.innerHTML = '';
+
+        const sortedDims = Object.entries(dimScores).sort((a, b) => a[1] - b[1]);
+
+        for (const [dim, score] of sortedDims) {
+            const maxScore = questionsPerDim * 5;
+            const pct = (score / maxScore) * 100;
+            const level = pct <= 40 ? 'low' : pct <= 70 ? 'medium' : 'high';
+            const dimData = dimensions[dim];
+            const insight = dimData.insights[level];
+
+            const card = document.createElement('div');
+            card.className = 'dim-result-card';
+            card.innerHTML = `
+                <div class="dim-result-header">
+                    <span class="dim-result-title">${dimData.name}</span>
+                    <span class="dim-result-score ${level}">${score} / ${maxScore}</span>
+                </div>
+                <div class="dim-bar-track">
+                    <div class="dim-bar-fill ${level}" style="width: ${pct}%"></div>
+                </div>
+                <p class="dim-result-insight">${insight.text}</p>
+                <p class="dim-result-insight" style="margin-top: 0.75rem;"><strong>Tip:</strong> ${insight.tip}</p>
+                <p class="dim-result-insight" style="margin-top: 0.75rem; font-size: 0.9rem;"><a href="https://training.suebehaviouraldesign.com/webinar/nl/" target="_blank" style="color: var(--coral); text-decoration: underline;">Meld je aan voor onze gratis online masterclass en leer hoe je dit aanpakt \u2192</a></p>
+            `;
+            resultsContainer.appendChild(card);
+        }
+
+        // Update CTA text based on lowest scoring dimension
+        const lowestDim = sortedDims[0][0];
+        const ctaTexts = {
+            1: 'Je laagste score is op "Wat doet jouw team met AI?" In de masterclass leer je hoe je AI van typemachine naar denkkracht brengt.',
+            2: 'Je laagste score is op "Welke skills worden sterker?" In de masterclass leer je hoe je AI inzet om niet alleen sneller, maar ook overtuigender te worden.',
+            3: 'Je laagste score is op "AI-adoptie als gedrag." In de masterclass leer je waarom mensen AI vermijden en hoe je dat doorbreekt.',
+            4: 'Je laagste score is op "Van uitproberen naar impact." In de masterclass leer je hoe je van experimenteren naar aantoonbaar resultaat komt.',
+            5: 'Je laagste score is op "De 10\u00D7 belofte." In de masterclass leer je hoe je AI-output maakt die ook echt effect heeft bij je doelgroep.'
+        };
+        document.getElementById('ctaText').textContent = ctaTexts[lowestDim];
+
+        document.getElementById('results').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetScorecard() {
+        // Clear scores
+        for (const key in scores) { delete scores[key]; }
+
+        // Reset all buttons and cards
+        document.querySelectorAll('.score-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.statement-card').forEach(card => {
+            card.classList.remove('selected');
+            card.style.borderColor = '';
+        });
+
+        // Hide results, show hero
+        document.getElementById('results').classList.remove('active');
+        document.getElementById('progressBar').classList.remove('active');
+        document.getElementById('hero').style.display = '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
