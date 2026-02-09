@@ -54,7 +54,7 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             background: var(--white);
-            padding: 1rem 2rem;
+            padding: 1rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -67,9 +67,12 @@
             text-decoration: none; color: var(--black);
         }
 
-        /* old logo styles overridden below */
+        .nav-logo-img {
+            height: 44px;
+            width: auto;
+        }
 
-        nav ul.nav-desktop { display: flex; list-style: none; gap: 1.75rem; align-items: center; }
+        nav ul.nav-desktop { display: flex; list-style: none; gap: 2rem; align-items: center; }
         nav ul.nav-desktop > li { position: relative; }
         nav a {
             text-decoration: none;
@@ -85,10 +88,10 @@
         .nav-cta {
             background: var(--coral);
             color: var(--white) !important;
-            padding: 0.7rem 1.5rem;
+            padding: 0.75rem 1.75rem;
             border-radius: 4px;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
         .nav-cta:hover {
             background: #e04e52;
@@ -1982,13 +1985,7 @@
             text-decoration: underline;
         }
     
-        /* ===== NAV LOGO IMAGE ===== */
-        nav .nav-logo-img {
-            height: 32px !important;
-            width: auto !important;
-            max-width: 280px !important;
-            display: block !important;
-        }
+        /* Logo size handled in main nav section */
 
 
         /* ============================================
