@@ -579,6 +579,108 @@
             text-decoration: none;
         }
 
+        /* ─── EMAIL GATE ─── */
+        .email-gate {
+            background: var(--light-grey);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .email-gate .eyebrow {
+            margin-bottom: 0.75rem;
+        }
+
+        .email-gate h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        .email-gate p {
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 520px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
+        }
+
+        .email-gate-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 460px;
+            margin: 0 auto 1rem;
+        }
+
+        .email-gate-form input[type="email"] {
+            flex: 1;
+            padding: 14px 16px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .email-gate-form input[type="email"]:focus {
+            border-color: var(--coral);
+        }
+
+        .email-gate-form input[type="email"].error {
+            border-color: var(--red);
+        }
+
+        .email-gate-form button {
+            display: inline-block;
+            background: var(--coral);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .email-gate-form button:hover {
+            background: #E5484D;
+        }
+
+        .email-gate-form button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .email-gate-error {
+            color: var(--red);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .email-gate-privacy {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--dark-grey);
+            margin-top: 0.75rem;
+        }
+
+        #gatedContent {
+            display: none;
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 640px) {
             .hero { padding: 3rem 0 2.5rem; }
@@ -606,6 +708,8 @@
             .header .container { flex-direction: column; gap: 0.75rem; }
             .statement-card { padding: 1.25rem; }
             .statement-text { font-size: 0.95rem; margin-bottom: 1rem; }
+            .email-gate-form { flex-direction: column; }
+            .email-gate-form button { padding: 14px 20px; }
         }
 
         /* ─── ANIMATION ─── */
@@ -1023,17 +1127,33 @@
                 <p class="score-summary" id="verdictText"></p>
             </div>
 
-            <div class="eyebrow" style="margin-top: 2rem;">Score per dimensie</div>
-            <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1.5rem;">Waar liggen jouw grootste kansen?</h2>
+            <!-- EMAIL GATE -->
+            <div class="email-gate" id="emailGate">
+                <div class="eyebrow">Ontgrendel je volledige resultaten</div>
+                <h2>Wil je weten waar jouw grootste kansen liggen?</h2>
+                <p>Vul je e-mailadres in en ontvang direct je score per dimensie, inclusief concrete tips om je AI-adoptie te verbeteren.</p>
+                <div class="email-gate-form">
+                    <input type="email" id="gateEmail" placeholder="jouw@email.nl" autocomplete="email" />
+                    <button type="button" id="gateSubmit" onclick="submitEmailGate()">Toon mijn resultaten</button>
+                </div>
+                <div class="email-gate-error" id="gateError"></div>
+                <p class="email-gate-privacy">We respecteren je privacy. Geen spam, alleen waardevolle inzichten.</p>
+            </div>
 
-            <div class="dimension-results" id="dimResults"></div>
+            <!-- GATED CONTENT: dimension results + CTA -->
+            <div id="gatedContent">
+                <div class="eyebrow" style="margin-top: 2rem;">Score per dimensie</div>
+                <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1.5rem;">Waar liggen jouw grootste kansen?</h2>
 
-            <div class="results-cta">
-                <div class="eyebrow">Gratis online masterclass</div>
-                <h2>Leer hoe je deze scores verbetert</h2>
-                <p id="ctaText">In deze masterclass leer je wat de top 6% anders doet: kennis van menselijk gedrag toevoegen aan AI. Zowel voor adoptie als voor output die echt effect heeft.</p>
-                <a href="https://training.suebehaviouraldesign.com/webinar/nl/" class="cta-btn" target="_blank">Meld je gratis aan voor de masterclass</a>
-                <div class="cta-meta">Exclusief voor Leadership & L&D managers &bull; 24 februari &bull; 13:00 uur &bull; Online</div>
+                <div class="dimension-results" id="dimResults"></div>
+
+                <div class="results-cta">
+                    <div class="eyebrow">Gratis online masterclass</div>
+                    <h2>Leer hoe je deze scores verbetert</h2>
+                    <p id="ctaText">In deze masterclass leer je wat de top 6% anders doet: kennis van menselijk gedrag toevoegen aan AI. Zowel voor adoptie als voor output die echt effect heeft.</p>
+                    <a href="https://training.suebehaviouraldesign.com/webinar/nl/" class="cta-btn" target="_blank">Meld je gratis aan voor de masterclass</a>
+                    <div class="cta-meta">Exclusief voor Leadership & L&D managers &bull; 24 februari &bull; 13:00 uur &bull; Online</div>
+                </div>
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
@@ -1328,6 +1448,60 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function submitEmailGate() {
+        const input = document.getElementById('gateEmail');
+        const btn = document.getElementById('gateSubmit');
+        const errorEl = document.getElementById('gateError');
+        const email = input.value.trim();
+
+        // Validate
+        errorEl.style.display = 'none';
+        input.classList.remove('error');
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            input.classList.add('error');
+            errorEl.textContent = 'Vul een geldig e-mailadres in.';
+            errorEl.style.display = 'block';
+            return;
+        }
+
+        // Build payload
+        const dimScores = {};
+        for (let d = 1; d <= totalDimensions; d++) {
+            const s = getDimScore(d);
+            const maxScore = questionsPerDim * 5;
+            const pct = (s / maxScore) * 100;
+            dimScores[d] = {
+                name: dimensions[d].name,
+                score: s,
+                maxScore: maxScore,
+                level: pct <= 40 ? 'low' : pct <= 70 ? 'medium' : 'high'
+            };
+        }
+
+        const payload = {
+            email: email,
+            totalScore: parseInt(document.getElementById('totalScore').textContent, 10),
+            verdict: document.getElementById('verdict').textContent,
+            dimensions: dimScores
+        };
+
+        // Loading state
+        btn.disabled = true;
+        btn.textContent = 'Laden...';
+
+        fetch('https://hooks.zapier.com/hooks/catch/12758020/uel8mei/', {
+            method: 'POST',
+            body: JSON.stringify(payload)
+        })
+        .then(() => { revealGatedContent(); })
+        .catch(() => { revealGatedContent(); }); // Graceful degradation
+    }
+
+    function revealGatedContent() {
+        document.getElementById('emailGate').style.display = 'none';
+        document.getElementById('gatedContent').style.display = 'block';
+    }
+
     function resetScorecard() {
         // Clear scores
         for (const key in scores) { delete scores[key]; }
@@ -1338,6 +1512,15 @@
             card.classList.remove('selected');
             card.style.borderColor = '';
         });
+
+        // Reset email gate
+        document.getElementById('emailGate').style.display = '';
+        document.getElementById('gatedContent').style.display = 'none';
+        document.getElementById('gateEmail').value = '';
+        document.getElementById('gateEmail').classList.remove('error');
+        document.getElementById('gateError').style.display = 'none';
+        document.getElementById('gateSubmit').disabled = false;
+        document.getElementById('gateSubmit').textContent = 'Toon mijn resultaten';
 
         // Hide results, show hero
         document.getElementById('results').classList.remove('active');
