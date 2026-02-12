@@ -158,6 +158,20 @@
             background: var(--light-grey);
         }
 
+        /* Language dropdown */
+        .nav-lang-dropdown .dropdown-menu {
+            min-width: 140px;
+            right: 0;
+            left: auto;
+        }
+        .nav-lang-dropdown .dropdown-menu a.lang-active {
+            font-weight: 600;
+            color: var(--black);
+        }
+        .nav-lang-dropdown .dropdown-menu a.lang-active::before {
+            content: '✓ ';
+        }
+
 
         /* ============================================
            HERO — Split layout (from v14)
@@ -1796,6 +1810,30 @@
             text-decoration: none;
         }
 
+        .mobile-lang-switch {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        .mobile-lang-switch a {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #797979;
+            text-decoration: none;
+        }
+        .mobile-lang-switch a.lang-active {
+            color: #FF5A5F;
+        }
+        .mobile-lang-switch .lang-divider {
+            color: #e0e0e0;
+        }
+
+
         /* ===== WEBSITE-MATCHED FOOTER ===== */
         .site-footer {
             background: #fff;
@@ -2620,7 +2658,13 @@
                     <a href="https://www.suebehaviouraldesign.com/nl/about-us-success-stories">Succesverhalen</a>
                 </div>
             </li>
-            <li class="nav-lang"><a href="https://www.suebehaviouraldesign.com/nl">NL</a></li>
+            <li class="nav-item-dropdown nav-lang-dropdown">
+                <span class="nav-dropdown">NL</span>
+                <div class="dropdown-menu">
+                    <a href="/nl/" class="lang-active">Nederlands</a>
+                    <a href="/en/">English</a>
+                </div>
+            </li>
             <li><a href="https://www.suebehaviouraldesign.com/nl/contact" class="nav-cta">Contact</a></li>
         </ul>
         <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
@@ -2638,8 +2682,12 @@
             <li><a href="https://www.suebehaviouraldesign.com/nl/academy/team-training" onclick="closeMobileMenu()">Team Trainingen</a></li>
             <li><a href="https://online.suebehaviouraldesign.com/" onclick="closeMobileMenu()">Online Academy</a></li>
             <li><a href="https://www.suebehaviouraldesign.com/nl/about-us-we-are-sue" onclick="closeMobileMenu()">Over Ons</a></li>
-            <li><a href="https://www.suebehaviouraldesign.com/nl" onclick="closeMobileMenu()">NL</a></li>
         </ul>
+        <div class="mobile-lang-switch">
+            <a href="/nl/" class="lang-active" onclick="closeMobileMenu()">NL</a>
+            <span class="lang-divider">|</span>
+            <a href="/en/" onclick="closeMobileMenu()">EN</a>
+        </div>
         <a href="https://www.suebehaviouraldesign.com/nl/contact" class="nav-cta" onclick="closeMobileMenu()">Contact</a>
     </div>
 
