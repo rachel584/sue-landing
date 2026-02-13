@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Adoption Scorecard | SUE Behavioural Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #FF5A5F;
+            --coral-light: #FFB7B9;
+            --coral-lighter: #FFE5E5;
+            --coral-bg: #FFF5F5;
+            --dark-grey: #797979;
+            --light-grey: #F2F2F2;
+            --black: #1a1a1a;
+            --white: #FFFFFF;
+            --green: #43A047;
+            --green-hover: #388E3C;
+            --amber: #F59E0B;
+            --red: #EF4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.7;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .eyebrow {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--coral);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: normal;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        /* ─── HEADER ─── */
+        .header {
+            background: var(--white);
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 36px;
+            width: auto;
+        }
+
+        .header-tag {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark-grey);
+            background: var(--light-grey);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 5rem 0 4rem;
+            text-align: center;
+        }
+
+        .hero .eyebrow {
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 500;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #444;
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .hero .start-btn {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .hero .start-btn:hover {
+            background: var(--green-hover);
+        }
+
+        .hero-meta {
+            margin-top: 1.5rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--dark-grey);
+        }
+
+        /* ─── PROGRESS BAR ─── */
+        .progress-section {
+            background: var(--light-grey);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: none;
+        }
+
+        .progress-section.active {
+            display: block;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--dark-grey);
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-bar-track {
+            flex: 1;
+            height: 6px;
+            background: #ddd;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--coral);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .progress-step-count {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--coral);
+            white-space: nowrap;
+        }
+
+        /* ─── SCORECARD DIMENSIONS ─── */
+        .dimension-section {
+            padding: 4rem 0;
+            display: none;
+        }
+
+        .dimension-section.active {
+            display: block;
+        }
+
+        .dimension-section:nth-child(even) {
+            background: var(--light-grey);
+        }
+
+        .dimension-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .dimension-number {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--coral);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .dimension-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: normal;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        .dimension-description {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 600px;
+        }
+
+        /* ─── STATEMENTS ─── */
+        .statement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .statement-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .statement-card:hover {
+            border-color: #ddd;
+        }
+
+        .statement-card.selected {
+            border-color: var(--coral);
+            box-shadow: 0 0 0 1px var(--coral);
+        }
+
+        .statement-text {
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .score-options {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .score-label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.7rem;
+            color: var(--dark-grey);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 0.25rem;
+        }
+
+        .score-label:last-child {
+            margin-left: 0.25rem;
+        }
+
+        .score-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            background: var(--white);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark-grey);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-btn:hover {
+            border-color: var(--coral);
+            color: var(--coral);
+        }
+
+        .score-btn.active {
+            background: var(--coral);
+            border-color: var(--coral);
+            color: white;
+        }
+
+        /* ─── NAVIGATION BUTTONS ─── */
+        .dimension-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .nav-btn-back {
+            background: transparent;
+            color: var(--dark-grey);
+            border: 1px solid #ddd;
+        }
+
+        .nav-btn-back:hover {
+            border-color: #999;
+            color: var(--black);
+        }
+
+        .nav-btn-next {
+            background: var(--coral);
+            color: white;
+        }
+
+        .nav-btn-next:hover {
+            background: #E54E52;
+        }
+
+        .nav-btn-results {
+            background: var(--green);
+            color: white;
+        }
+
+        .nav-btn-results:hover {
+            background: var(--green-hover);
+        }
+
+        /* ─── RESULTS ─── */
+        .results-section {
+            padding: 4rem 0 5rem;
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .overall-score {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: var(--coral-bg);
+            border-radius: 12px;
+        }
+
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 6px solid var(--coral);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .score-circle .score-value {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 2.8rem;
+            font-weight: 500;
+            color: var(--coral);
+            line-height: 1;
+        }
+
+        .score-circle .score-max {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--dark-grey);
+            margin-top: 2px;
+        }
+
+        .score-verdict {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .score-summary {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ─── DIMENSION RESULTS ─── */
+        .dimension-results {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .dim-result-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .dim-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .dim-result-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--black);
+        }
+
+        .dim-result-score {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .dim-result-score.high { color: var(--green); }
+        .dim-result-score.medium { color: var(--amber); }
+        .dim-result-score.low { color: var(--red); }
+
+        .dim-bar-track {
+            height: 8px;
+            background: var(--light-grey);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .dim-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+
+        .dim-bar-fill.high { background: var(--green); }
+        .dim-bar-fill.medium { background: var(--amber); }
+        .dim-bar-fill.low { background: var(--coral); }
+
+        .dim-result-insight {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .dim-result-insight strong {
+            color: var(--black);
+        }
+
+        /* ─── CTA SECTION ─── */
+        .results-cta {
+            background: var(--light-grey);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .results-cta .eyebrow {
+            margin-bottom: 0.75rem;
+        }
+
+        .results-cta h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .results-cta p {
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .results-cta .cta-btn {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .results-cta .cta-btn:hover {
+            background: var(--green-hover);
+        }
+
+        .results-cta .cta-meta {
+            margin-top: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--dark-grey);
+        }
+
+        /* ─── EMAIL GATE ─── */
+        .email-gate {
+            background: var(--light-grey);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .email-gate .eyebrow {
+            margin-bottom: 0.75rem;
+        }
+
+        .email-gate h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        .email-gate p {
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 520px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
+        }
+
+        .email-gate-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 460px;
+            margin: 0 auto 1rem;
+        }
+
+        .email-gate-form input[type="email"] {
+            flex: 1;
+            padding: 14px 16px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .email-gate-form input[type="email"]:focus {
+            border-color: var(--coral);
+        }
+
+        .email-gate-form input[type="email"].error {
+            border-color: var(--red);
+        }
+
+        .email-gate-form button {
+            display: inline-block;
+            background: var(--coral);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .email-gate-form button:hover {
+            background: #E5484D;
+        }
+
+        .email-gate-form button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .email-gate-error {
+            color: var(--red);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .email-gate-privacy {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--dark-grey);
+            margin-top: 0.75rem;
+        }
+
+        #gatedContent {
+            display: none;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            padding: 2rem 0;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .footer p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--dark-grey);
+        }
+
+        .footer a {
+            color: var(--coral);
+            text-decoration: none;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 640px) {
+            .hero { padding: 3rem 0 2.5rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .dimension-section { padding: 2.5rem 0; }
+            .score-options {
+                flex-wrap: nowrap;
+                justify-content: center;
+            }
+            .score-label {
+                font-size: 0.6rem;
+                margin-right: 0.15rem;
+            }
+            .score-label:last-child {
+                margin-left: 0.15rem;
+            }
+            .score-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+            }
+            .score-circle { width: 120px; height: 120px; }
+            .score-circle .score-value { font-size: 2.2rem; }
+            .header .container { flex-direction: column; gap: 0.75rem; }
+            .statement-card { padding: 1.25rem; }
+            .statement-text { font-size: 0.95rem; margin-bottom: 1rem; }
+            .email-gate-form { flex-direction: column; }
+            .email-gate-form button { padding: 14px 20px; }
+        }
+
+        /* ─── ANIMATION ─── */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dimension-section.active {
+            animation: fadeIn 0.4s ease;
+        }
+
+        .results-section.active {
+            animation: fadeIn 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="sue-logo.png" alt="SUE Behavioural Design Academy">
+            </div>
+            <div class="header-tag">Free tool</div>
+        </div>
+    </div>
+
+    <!-- HERO / INTRO -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="eyebrow">AI &times; Behaviour Scorecard</div>
+            <h1>Is your team unlocking the full potential of AI?</h1>
+            <p>Most teams use AI as a glorified search engine. This scorecard reveals where you stand and which skills could become 10&times; more powerful when AI is used the right way.</p>
+            <button class="start-btn" onclick="startScorecard()">Start the scorecard</button>
+            <div class="hero-meta">5 dimensions &bull; 20 statements &bull; about 5 minutes</div>
+        </div>
+    </section>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-section" id="progressBar">
+        <div class="container">
+            <div class="progress-container">
+                <span class="progress-label">Progress</span>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-step-count" id="progressCount">1 / 5</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIMENSION 1: WHAT IS YOUR TEAM ACTUALLY DOING WITH AI? -->
+    <section class="dimension-section" id="dim1">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimension 1 of 5</div>
+                <h2 class="dimension-title">What is your team actually doing with AI?</h2>
+                <p class="dimension-description">78% of professionals bring their own AI tools to work (Microsoft Work Trend Index, 2025). But what are they actually using them for?</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="1" data-q="1">
+                    <p class="statement-text">AI is mainly used by our team to look things up or write text.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(1,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(1,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(1,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(1,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(1,1,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="1" data-q="2">
+                    <p class="statement-text">Employees use AI to understand why customers, users, or colleagues make certain choices. Not just to tick off tasks.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(1,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(1,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(1,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(1,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(1,2,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="1" data-q="3">
+                    <p class="statement-text">AI is built into how we work. It's not a separate tab you open when you think of it.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(1,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(1,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(1,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(1,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(1,3,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="1" data-q="4">
+                    <p class="statement-text">Honestly, most colleagues use AI mainly to do faster what they were already doing. Not to get better at their craft.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(1,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(1,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(1,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(1,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(1,4,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <div></div>
+                <button class="nav-btn nav-btn-next" onclick="nextDimension(2)">Next dimension &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIMENSION 2: WHICH SKILLS BECOME 10× STRONGER? -->
+    <section class="dimension-section" id="dim2">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimension 2 of 5</div>
+                <h2 class="dimension-title">Which skills become 10&times; stronger?</h2>
+                <p class="dimension-description">Harvard/BCG research shows: AI lifts average employees to expert level (+40% quality). But only if you go beyond faster typing.</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="2" data-q="1">
+                    <p class="statement-text">Employees use AI to create analyses they couldn't have done without it. Not faster, but deeper.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(2,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(2,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(2,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(2,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(2,1,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="2" data-q="2">
+                    <p class="statement-text">People take on tasks with AI that used to be outside their expertise.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(2,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(2,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(2,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(2,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(2,2,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="2" data-q="3">
+                    <p class="statement-text">We know how to use AI to challenge our own assumptions.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(2,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(2,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(2,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(2,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(2,3,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="2" data-q="4">
+                    <p class="statement-text">Our proposals and recommendations have become more persuasive thanks to AI. Clients and stakeholders say 'yes' more often.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(2,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(2,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(2,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(2,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(2,4,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <button class="nav-btn nav-btn-back" onclick="prevDimension(1)">&larr; Previous</button>
+                <button class="nav-btn nav-btn-next" onclick="nextDimension(3)">Next dimension &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIMENSION 3: WHY PEOPLE DO OR DON'T USE AI -->
+    <section class="dimension-section" id="dim3">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimension 3 of 5</div>
+                <h2 class="dimension-title">AI adoption is a behavioural challenge</h2>
+                <p class="dimension-description">70% of AI implementation problems are not about technology but about people (BCG, AI at Work 2025).</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="3" data-q="1">
+                    <p class="statement-text">We understand why some colleagues avoid AI and have an approach that goes beyond yet another tool training.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(3,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(3,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(3,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(3,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(3,1,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="3" data-q="2">
+                    <p class="statement-text">When someone tries AI and the result disappoints, they know what to do differently. There's no "see, it doesn't work" moment.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(3,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(3,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(3,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(3,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(3,2,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="3" data-q="3">
+                    <p class="statement-text">At our organisation, it's easier to use AI than not to use it.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(3,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(3,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(3,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(3,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(3,3,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="3" data-q="4">
+                    <p class="statement-text">There are colleagues who avoid AI out of fear or uncertainty. We understand why.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(3,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(3,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(3,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(3,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(3,4,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <button class="nav-btn nav-btn-back" onclick="prevDimension(2)">&larr; Previous</button>
+                <button class="nav-btn nav-btn-next" onclick="nextDimension(4)">Next dimension &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIMENSION 4: FROM EXPERIMENTING TO IMPACT -->
+    <section class="dimension-section" id="dim4">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimension 4 of 5</div>
+                <h2 class="dimension-title">From experimenting to impact</h2>
+                <p class="dimension-description">88% of organisations use AI. Only 6% see financial results from it (McKinsey Global Survey, 2025).</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="4" data-q="1">
+                    <p class="statement-text">We can specifically name what outcome has improved because we use AI.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(4,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(4,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(4,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(4,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(4,1,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="4" data-q="2">
+                    <p class="statement-text">When management asks what AI has delivered, we have a convincing answer.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(4,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(4,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(4,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(4,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(4,2,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="4" data-q="3">
+                    <p class="statement-text">Leadership visibly uses AI themselves. Not just encouraging it, but demonstrating it.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(4,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(4,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(4,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(4,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(4,3,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="4" data-q="4">
+                    <p class="statement-text">We don't just measure whether AI is being used, but whether it leads to better outcomes.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(4,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(4,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(4,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(4,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(4,4,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <button class="nav-btn nav-btn-back" onclick="prevDimension(3)">&larr; Previous</button>
+                <button class="nav-btn nav-btn-next" onclick="nextDimension(5)">Next dimension &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIMENSION 5: THE 10× PROMISE -->
+    <section class="dimension-section" id="dim5">
+        <div class="container">
+            <div class="dimension-header">
+                <div class="dimension-number">Dimension 5 of 5</div>
+                <h2 class="dimension-title">The 10&times; promise</h2>
+                <p class="dimension-description">Organisations that use AI well achieve 5&times; more revenue growth (McKinsey, 2025). The difference? Not the tool, but how people work with it.</p>
+            </div>
+
+            <div class="statement-list">
+                <div class="statement-card" data-dim="5" data-q="1">
+                    <p class="statement-text">People on our team are doing things that were unthinkable a year ago.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(5,1,1)">1</button>
+                        <button class="score-btn" onclick="setScore(5,1,2)">2</button>
+                        <button class="score-btn" onclick="setScore(5,1,3)">3</button>
+                        <button class="score-btn" onclick="setScore(5,1,4)">4</button>
+                        <button class="score-btn" onclick="setScore(5,1,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="5" data-q="2">
+                    <p class="statement-text">AI doesn't just make us faster, but more persuasive. Our proposals and presentations have measurably improved.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(5,2,1)">1</button>
+                        <button class="score-btn" onclick="setScore(5,2,2)">2</button>
+                        <button class="score-btn" onclick="setScore(5,2,3)">3</button>
+                        <button class="score-btn" onclick="setScore(5,2,4)">4</button>
+                        <button class="score-btn" onclick="setScore(5,2,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="5" data-q="3">
+                    <p class="statement-text">We don't just know how to use AI, but also why certain approaches do or don't resonate with our target audience.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(5,3,1)">1</button>
+                        <button class="score-btn" onclick="setScore(5,3,2)">2</button>
+                        <button class="score-btn" onclick="setScore(5,3,3)">3</button>
+                        <button class="score-btn" onclick="setScore(5,3,4)">4</button>
+                        <button class="score-btn" onclick="setScore(5,3,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+
+                <div class="statement-card" data-dim="5" data-q="4">
+                    <p class="statement-text">What we currently achieve with AI feels like a fraction of what's possible.</p>
+                    <div class="score-options">
+                        <span class="score-label">Disagree</span>
+                        <button class="score-btn" onclick="setScore(5,4,1)">1</button>
+                        <button class="score-btn" onclick="setScore(5,4,2)">2</button>
+                        <button class="score-btn" onclick="setScore(5,4,3)">3</button>
+                        <button class="score-btn" onclick="setScore(5,4,4)">4</button>
+                        <button class="score-btn" onclick="setScore(5,4,5)">5</button>
+                        <span class="score-label">Agree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dimension-nav">
+                <button class="nav-btn nav-btn-back" onclick="prevDimension(4)">&larr; Previous</button>
+                <button class="nav-btn nav-btn-results" onclick="showResults()">See my results &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="results-section" id="results">
+        <div class="container">
+
+            <div class="overall-score">
+                <div class="eyebrow">Your score</div>
+                <div class="score-circle">
+                    <span class="score-value" id="totalScore">0</span>
+                    <span class="score-max">out of 100</span>
+                </div>
+                <h2 class="score-verdict" id="verdict"></h2>
+                <p class="score-summary" id="verdictText"></p>
+            </div>
+
+            <!-- EMAIL GATE -->
+            <div class="email-gate" id="emailGate">
+                <div class="eyebrow">Unlock your full results</div>
+                <h2>Want to know where your biggest opportunities are?</h2>
+                <p>Enter your email to instantly see your score per dimension, including actionable tips to improve your AI adoption.</p>
+                <div class="email-gate-form">
+                    <input type="email" id="gateEmail" placeholder="your@email.com" autocomplete="email" />
+                    <button type="button" id="gateSubmit" onclick="submitEmailGate()">Show my results</button>
+                </div>
+                <div class="email-gate-error" id="gateError"></div>
+                <p class="email-gate-privacy">We respect your privacy. No spam, only valuable insights.</p>
+            </div>
+
+            <!-- GATED CONTENT: dimension results + CTA -->
+            <div id="gatedContent">
+                <div class="eyebrow" style="margin-top: 2rem;">Score per dimension</div>
+                <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1.5rem;">Where are your biggest opportunities?</h2>
+
+                <div class="dimension-results" id="dimResults"></div>
+
+                <div class="results-cta">
+                    <div class="eyebrow">SUE Behavioural Design Academy</div>
+                    <h2>Learn how to improve these scores</h2>
+                    <p id="ctaText">Discover what the top 6% do differently: adding behavioural science to AI. Both for adoption and for output that actually drives results.</p>
+                    <a href="https://training.suebehaviouraldesign.com/en/" class="cta-btn" target="_blank">Explore our programmes &rarr;</a>
+                    <div class="cta-meta">For Leadership &amp; L&amp;D professionals</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="nav-btn nav-btn-back" onclick="resetScorecard()">Start over</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2026 <a href="https://suebehaviouraldesign.com" target="_blank">SUE Behavioural Design</a>. All rights reserved.</p>
+        </div>
+    </div>
+
+<script>
+    // ═══════════════════════════════════════
+    // SCORECARD ENGINE
+    // ═══════════════════════════════════════
+
+    const scores = {};
+    const totalDimensions = 5;
+    const questionsPerDim = 4;
+
+    // Reverse-scored questions (higher agreement = lower score)
+    const reverseScored = ['1-1', '1-4', '5-4'];
+
+    const dimensions = {
+        1: {
+            name: 'What is your team doing with AI?',
+            insights: {
+                low: {
+                    text: 'Your team is mainly using AI as a typing assistant: polishing texts, quick searches. That\'s where 90% of organisations are. The difference with the top? They let AI contribute to the actual work itself.',
+                    tip: 'Take one specific piece of work from this week and ask AI to challenge it from a different perspective. The difference is immediately noticeable.'
+                },
+                medium: {
+                    text: 'You\'re using AI beyond the basics, but it\'s still a separate tab you open. It\'s not baked into the work process itself. As long as it\'s optional, it remains incidental.',
+                    tip: 'Choose one recurring work process and make AI a standard step in it. Not as an option, but as a built-in part.'
+                },
+                high: {
+                    text: 'AI is embedded in your core work. That\'s exceptional \u2014 most organisations don\'t get past emails and summaries.',
+                    tip: 'Make your way of working visible to the rest of the organisation. Colleagues convince colleagues.'
+                }
+            }
+        },
+        2: {
+            name: 'Which skills become 10\u00D7 stronger?',
+            insights: {
+                low: {
+                    text: 'AI makes everyone faster. But the real leap is in deeper analyses, better proposals, and tackling tasks that were previously out of reach. That potential is not yet being tapped.',
+                    tip: 'Ask yourself: which output has become not just faster, but genuinely better because of AI? If you don\'t have a concrete answer, that\'s where the biggest opportunity lies.'
+                },
+                medium: {
+                    text: 'Some team members are discovering that AI enhances their thinking. The next step is to use it structurally: have every plan reviewed, take every analysis a level deeper.',
+                    tip: 'Choose one specific skill per team where AI multiplies impact the most. Think: persuading, analysing, or building strategy.'
+                },
+                high: {
+                    text: 'Your team is not just faster, but fundamentally better at their craft. Employees take on tasks that were previously beyond their reach. That\'s the real competitive advantage.',
+                    tip: 'Document one concrete example where AI enabled someone to do something that was previously impossible. That story is gold for internal adoption.'
+                }
+            }
+        },
+        3: {
+            name: 'AI adoption as behaviour',
+            insights: {
+                low: {
+                    text: '70% of AI implementation problems are about people, not technology. The colleague who tried it once and concluded it doesn\'t work. The manager who finds it intimidating but won\'t say so. The team that thinks: this will blow over. Sound familiar?',
+                    tip: 'This week, talk to three colleagues who rarely use AI. Don\'t ask if they use it, but what\'s holding them back. The answers will surprise you.'
+                },
+                medium: {
+                    text: 'The tool training has been delivered, the licences are available, yet half the team barely uses it. Logical: tool training teaches buttons. What\'s missing is the behavioural layer: why people do or don\'t do things.',
+                    tip: 'Ask yourself: what makes it difficult for someone on my team to use AI? Uncertainty? No time? Fear of mistakes? Solve that.'
+                },
+                high: {
+                    text: 'You understand that AI adoption is a behavioural challenge, not a technology challenge. You look at why people do or don\'t adopt. That\'s exactly how the top performers approach it.',
+                    tip: 'Stay curious about the barriers that remain. Even in the best teams, there are people who avoid AI.'
+                }
+            }
+        },
+        4: {
+            name: 'From experimenting to impact',
+            insights: {
+                low: {
+                    text: 'A familiar pattern: licences purchased, tool trainings delivered, people try it out \u2014 but nobody can name what has actually improved. Meanwhile, questions about ROI are piling up.',
+                    tip: 'Start small: choose one team, one process, and measure what changes. One convincing success story is worth more than ten inspiration sessions.'
+                },
+                medium: {
+                    text: 'There are successes, but they\'re not being shared. A missed opportunity: employees are 3.5\u00D7 more likely to use AI when they see colleagues getting concrete results with it.',
+                    tip: 'Make successes visible. A fixed moment in the team meeting where someone shows what AI delivered this week.'
+                },
+                high: {
+                    text: 'You can tell the story: AI makes us concretely better. That evidence inspires others and convinces management.',
+                    tip: 'Scale up: if it works in one team, what does it take for three teams? Start by sharing the success story, not by rolling out the tool.'
+                }
+            }
+        },
+        5: {
+            name: 'The 10\u00D7 promise',
+            insights: {
+                low: {
+                    text: 'Everyone will soon have the same AI tools. The difference lies in two things: understanding why people do or don\'t use AI, and adding knowledge of human behaviour so your output actually has an effect.',
+                    tip: 'The question is not: how do we get faster with AI? But: does our output also become substantively better? More persuasive? More effective?'
+                },
+                medium: {
+                    text: 'You see the gap between what\'s happening now and what\'s possible. Closing it requires the behavioural layer: understanding why people do or don\'t do things, both internally (adoption) and externally (impact on the target audience).',
+                    tip: 'Ask yourself: do we actually know whether our AI output has a real effect on the target audience? If not, how could we measure that?'
+                },
+                high: {
+                    text: 'You\'re not just fast, but delivering output that actually drives results. That\'s the difference most organisations haven\'t mastered yet.',
+                    tip: 'The next step is making this systematic: how do you ensure every new team member reaches this level?'
+                }
+            }
+        }
+    };
+
+    const verdicts = [
+        {
+            max: 35,
+            title: 'AI as a gadget',
+            text: 'AI is mainly used to work faster at your organisation. But speed is something everyone will have soon. The real difference lies in two things: understanding why people do or don\'t use AI (real adoption) and adding behavioural knowledge so your output actually drives impact.'
+        },
+        {
+            max: 50,
+            title: 'AI as an experiment',
+            text: 'There\'s experimentation happening, but it\'s not yet structural. The breakthrough? Understanding why the majority still isn\'t on board, and adding behavioural knowledge to how you deploy AI. That\'s what the top 6% do differently.'
+        },
+        {
+            max: 70,
+            title: 'AI as an amplifier',
+            text: 'AI is already enhancing certain skills and delivering results. The next step? Adding knowledge of human behaviour to how you use AI. Then your output becomes not just faster, but also more persuasive.'
+        },
+        {
+            max: 100,
+            title: 'AI as a superpower',
+            text: 'You\'re not just fast with AI, but you also understand why things work with people. That combination is rare. The challenge is to maintain this and scale it across the organisation.'
+        }
+    ];
+
+    function setScore(dim, question, value) {
+        const key = `${dim}-${question}`;
+        const finalValue = reverseScored.includes(key) ? (6 - value) : value;
+        scores[key] = finalValue;
+
+        const card = document.querySelector(`.statement-card[data-dim="${dim}"][data-q="${question}"]`);
+        card.querySelectorAll('.score-btn').forEach((btn, i) => {
+            btn.classList.toggle('active', (i + 1) === value);
+        });
+        card.classList.add('selected');
+    }
+
+    function startScorecard() {
+        document.getElementById('hero').style.display = 'none';
+        document.getElementById('progressBar').classList.add('active');
+        document.getElementById('dim1').classList.add('active');
+        updateProgress(1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextDimension(nextDim) {
+        const currentDim = nextDim - 1;
+        let allAnswered = true;
+        for (let q = 1; q <= questionsPerDim; q++) {
+            if (!scores[`${currentDim}-${q}`]) {
+                allAnswered = false;
+                break;
+            }
+        }
+
+        if (!allAnswered) {
+            for (let q = 1; q <= questionsPerDim; q++) {
+                if (!scores[`${currentDim}-${q}`]) {
+                    const card = document.querySelector(`.statement-card[data-dim="${currentDim}"][data-q="${q}"]`);
+                    card.style.borderColor = '#FF5A5F';
+                    setTimeout(() => { card.style.borderColor = ''; }, 1500);
+                }
+            }
+            return;
+        }
+
+        document.getElementById(`dim${currentDim}`).classList.remove('active');
+        document.getElementById(`dim${nextDim}`).classList.add('active');
+        updateProgress(nextDim);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function prevDimension(prevDim) {
+        const currentDim = prevDim + 1;
+        document.getElementById(`dim${currentDim}`).classList.remove('active');
+        document.getElementById(`dim${prevDim}`).classList.add('active');
+        updateProgress(prevDim);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProgress(currentDim) {
+        const pct = (currentDim / totalDimensions) * 100;
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressCount').textContent = currentDim + ' / ' + totalDimensions;
+    }
+
+    function getDimScore(dim) {
+        let total = 0;
+        for (let q = 1; q <= questionsPerDim; q++) {
+            total += scores[`${dim}-${q}`] || 0;
+        }
+        return total;
+    }
+
+    function showResults() {
+        let allAnswered = true;
+        for (let q = 1; q <= questionsPerDim; q++) {
+            if (!scores[`5-${q}`]) {
+                allAnswered = false;
+                break;
+            }
+        }
+        if (!allAnswered) {
+            for (let q = 1; q <= questionsPerDim; q++) {
+                if (!scores[`5-${q}`]) {
+                    const card = document.querySelector(`.statement-card[data-dim="5"][data-q="${q}"]`);
+                    card.style.borderColor = '#FF5A5F';
+                    setTimeout(() => { card.style.borderColor = ''; }, 1500);
+                }
+            }
+            return;
+        }
+
+        document.getElementById('dim5').classList.remove('active');
+        document.getElementById('progressBar').classList.remove('active');
+
+        let total = 0;
+        const dimScores = {};
+        for (let d = 1; d <= totalDimensions; d++) {
+            dimScores[d] = getDimScore(d);
+            total += dimScores[d];
+        }
+
+        document.getElementById('totalScore').textContent = total;
+
+        let verdict = verdicts[verdicts.length - 1];
+        for (const v of verdicts) {
+            if (total <= v.max) {
+                verdict = v;
+                break;
+            }
+        }
+        document.getElementById('verdict').textContent = verdict.title;
+        document.getElementById('verdictText').textContent = verdict.text;
+
+        const resultsContainer = document.getElementById('dimResults');
+        resultsContainer.innerHTML = '';
+
+        const sortedDims = Object.entries(dimScores).sort((a, b) => a[1] - b[1]);
+
+        for (const [dim, score] of sortedDims) {
+            const maxScore = questionsPerDim * 5;
+            const pct = (score / maxScore) * 100;
+            const level = pct <= 40 ? 'low' : pct <= 70 ? 'medium' : 'high';
+            const dimData = dimensions[dim];
+            const insight = dimData.insights[level];
+
+            const card = document.createElement('div');
+            card.className = 'dim-result-card';
+            card.innerHTML = `
+                <div class="dim-result-header">
+                    <span class="dim-result-title">${dimData.name}</span>
+                    <span class="dim-result-score ${level}">${score} / ${maxScore}</span>
+                </div>
+                <div class="dim-bar-track">
+                    <div class="dim-bar-fill ${level}" style="width: ${pct}%"></div>
+                </div>
+                <p class="dim-result-insight">${insight.text}</p>
+                <p class="dim-result-insight" style="margin-top: 0.75rem;"><strong>Tip:</strong> ${insight.tip}</p>
+                <p class="dim-result-insight" style="margin-top: 0.75rem; font-size: 0.9rem;"><a href="https://training.suebehaviouraldesign.com/en/" target="_blank" style="color: var(--coral); text-decoration: underline;">Explore our programmes at SUE Behavioural Design Academy \u2192</a></p>
+            `;
+            resultsContainer.appendChild(card);
+        }
+
+        const lowestDim = sortedDims[0][0];
+        const ctaTexts = {
+            1: 'Your lowest score is on "What is your team doing with AI?" Learn how to move AI from typewriter to thinking partner.',
+            2: 'Your lowest score is on "Which skills become stronger?" Learn how to use AI not just to work faster, but to become more persuasive.',
+            3: 'Your lowest score is on "AI adoption as behaviour." Learn why people avoid AI and how to change that.',
+            4: 'Your lowest score is on "From experimenting to impact." Learn how to go from trying things out to demonstrable results.',
+            5: 'Your lowest score is on "The 10\u00D7 promise." Learn how to create AI output that actually drives impact with your target audience.'
+        };
+        document.getElementById('ctaText').textContent = ctaTexts[lowestDim];
+
+        document.getElementById('results').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitEmailGate() {
+        const input = document.getElementById('gateEmail');
+        const btn = document.getElementById('gateSubmit');
+        const errorEl = document.getElementById('gateError');
+        const email = input.value.trim();
+
+        errorEl.style.display = 'none';
+        input.classList.remove('error');
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            input.classList.add('error');
+            errorEl.textContent = 'Please enter a valid email address.';
+            errorEl.style.display = 'block';
+            return;
+        }
+
+        const dimScores = {};
+        for (let d = 1; d <= totalDimensions; d++) {
+            const s = getDimScore(d);
+            const maxScore = questionsPerDim * 5;
+            const pct = (s / maxScore) * 100;
+            dimScores[d] = {
+                name: dimensions[d].name,
+                score: s,
+                maxScore: maxScore,
+                level: pct <= 40 ? 'low' : pct <= 70 ? 'medium' : 'high'
+            };
+        }
+
+        const payload = {
+            email: email,
+            language: 'en',
+            totalScore: parseInt(document.getElementById('totalScore').textContent, 10),
+            verdict: document.getElementById('verdict').textContent,
+            dimensions: dimScores
+        };
+
+        btn.disabled = true;
+        btn.textContent = 'Loading...';
+
+        fetch('https://hooks.zapier.com/hooks/catch/12758020/uexyt4m/', {
+            method: 'POST',
+            body: JSON.stringify(payload)
+        })
+        .then(() => { revealGatedContent(); })
+        .catch(() => { revealGatedContent(); });
+    }
+
+    function revealGatedContent() {
+        document.getElementById('emailGate').style.display = 'none';
+        document.getElementById('gatedContent').style.display = 'block';
+    }
+
+    function resetScorecard() {
+        for (const key in scores) { delete scores[key]; }
+
+        document.querySelectorAll('.score-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.statement-card').forEach(card => {
+            card.classList.remove('selected');
+            card.style.borderColor = '';
+        });
+
+        document.getElementById('emailGate').style.display = '';
+        document.getElementById('gatedContent').style.display = 'none';
+        document.getElementById('gateEmail').value = '';
+        document.getElementById('gateEmail').classList.remove('error');
+        document.getElementById('gateError').style.display = 'none';
+        document.getElementById('gateSubmit').disabled = false;
+        document.getElementById('gateSubmit').textContent = 'Show my results';
+
+        document.getElementById('results').classList.remove('active');
+        document.getElementById('progressBar').classList.remove('active');
+        document.getElementById('hero').style.display = '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
