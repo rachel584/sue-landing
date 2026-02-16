@@ -1185,6 +1185,7 @@
     const dimensions = {
         1: {
             name: 'What is your team doing with AI?',
+            cta: 'Learn how to embed AI into your team\u2019s core workflow \u2192',
             insights: {
                 low: {
                     text: 'Your team is mainly using AI as a typing assistant: polishing texts, quick searches. That\'s where 90% of organisations are. The difference with the top? They let AI contribute to the actual work itself.',
@@ -1202,6 +1203,7 @@
         },
         2: {
             name: 'Which skills become 10\u00D7 stronger?',
+            cta: 'Discover how to multiply your team\u2019s skills with AI \u2192',
             insights: {
                 low: {
                     text: 'AI makes everyone faster. But the real leap is in deeper analyses, better proposals, and tackling tasks that were previously out of reach. That potential is not yet being tapped.',
@@ -1219,6 +1221,7 @@
         },
         3: {
             name: 'AI adoption as behaviour',
+            cta: 'Learn why people resist AI and how to change that \u2192',
             insights: {
                 low: {
                     text: '70% of AI implementation problems are about people, not technology. The colleague who tried it once and concluded it doesn\'t work. The manager who finds it intimidating but won\'t say so. The team that thinks: this will blow over. Sound familiar?',
@@ -1236,6 +1239,7 @@
         },
         4: {
             name: 'From experimenting to impact',
+            cta: 'Learn how to turn AI experiments into measurable results \u2192',
             insights: {
                 low: {
                     text: 'A familiar pattern: licences purchased, tool trainings delivered, people try it out \u2014 but nobody can name what has actually improved. Meanwhile, questions about ROI are piling up.',
@@ -1253,6 +1257,7 @@
         },
         5: {
             name: 'The 10\u00D7 promise',
+            cta: 'See how behavioural science makes AI output 10\u00D7 more effective \u2192',
             insights: {
                 low: {
                     text: 'Everyone will soon have the same AI tools. The difference lies in two things: understanding why people do or don\'t use AI, and adding knowledge of human behaviour so your output actually has an effect.',
@@ -1427,7 +1432,7 @@
                 </div>
                 <p class="dim-result-insight">${insight.text}</p>
                 <p class="dim-result-insight" style="margin-top: 0.75rem;"><strong>Tip:</strong> ${insight.tip}</p>
-                <p class="dim-result-insight" style="margin-top: 0.75rem; font-size: 0.9rem;"><a href="https://training.suebehaviouraldesign.com/en/" target="_blank" style="color: var(--coral); text-decoration: underline;">Explore our programmes at SUE Behavioural Design Academy \u2192</a></p>
+                <p class="dim-result-insight" style="margin-top: 0.75rem; font-size: 0.9rem;"><a href="https://training.suebehaviouraldesign.com/en/" target="_blank" style="color: var(--coral); text-decoration: underline;">${dimData.cta}</a></p>
             `;
             resultsContainer.appendChild(card);
         }

@@ -1065,6 +1065,7 @@
     const dimensions = {
         1: {
             name: 'Wat doet jouw team met AI?',
+            cta: 'Leer hoe je AI inbouwt in jullie werkproces \u2192',
             insights: {
                 low: {
                     text: 'Bij jullie is AI nog vooral een typemachine: teksten oppoetsen, snel iets opzoeken. Dat is waar 90% van de organisaties zit. Het verschil met de top? Die laten AI meedenken bij het werk zelf.',
@@ -1082,6 +1083,7 @@
         },
         2: {
             name: 'Welke skills worden 10\u00D7 sterker?',
+            cta: 'Ontdek hoe je de skills van je team vermenigvuldigt met AI \u2192',
             insights: {
                 low: {
                     text: 'AI maakt iedereen sneller. Maar de echte sprong zit in diepere analyses, betere voorstellen en het aanpakken van taken die eerder buiten bereik lagen. Dat potentieel wordt bij jullie nog niet benut.',
@@ -1099,6 +1101,7 @@
         },
         3: {
             name: 'AI-adoptie als gedrag',
+            cta: 'Leer waarom mensen AI vermijden en hoe je dat doorbreekt \u2192',
             insights: {
                 low: {
                     text: '70% van AI-implementatieproblemen gaat over mensen, niet technologie. De collega die het \u00E9\u00E9n keer probeerde en concludeerde dat het niet werkt. De manager die het eng vindt maar dat niet zegt. Het team dat denkt: dit waait over. Herkenbaar?',
@@ -1116,6 +1119,7 @@
         },
         4: {
             name: 'Van uitproberen naar impact',
+            cta: 'Leer hoe je van AI-experimenten naar meetbaar resultaat komt \u2192',
             insights: {
                 low: {
                     text: 'Herkenbaar patroon: licenties aangeschaft, tooltrainingen gegeven, mensen proberen het uit \u2014 maar niemand kan benoemen wat er b\u00E9ter is geworden. Ondertussen worden er vragen gesteld over de ROI.',
@@ -1133,6 +1137,7 @@
         },
         5: {
             name: 'De 10\u00D7 belofte',
+            cta: 'Ontdek hoe gedragskennis je AI-output 10\u00D7 effectiever maakt \u2192',
             insights: {
                 low: {
                     text: 'Iedereen krijgt straks dezelfde AI-tools. Het verschil zit in twee dingen: begrijpen waarom mensen AI wel of niet gaan gebruiken, \u00E9n kennis van gedrag toevoegen zodat je output ook echt effect heeft.',
@@ -1308,7 +1313,7 @@
                 </div>
                 <p class="dim-result-insight">${insight.text}</p>
                 <p class="dim-result-insight" style="margin-top: 0.75rem;"><strong>Tip:</strong> ${insight.tip}</p>
-                <p class="dim-result-insight" style="margin-top: 0.75rem; font-size: 0.9rem;"><a href="https://training.suebehaviouraldesign.com/webinar/nl/" target="_blank" style="color: var(--coral); text-decoration: underline;">Meld je aan voor onze gratis online masterclass en leer hoe je dit aanpakt \u2192</a></p>
+                <p class="dim-result-insight" style="margin-top: 0.75rem; font-size: 0.9rem;"><a href="https://training.suebehaviouraldesign.com/webinar/nl/" target="_blank" style="color: var(--coral); text-decoration: underline;">${dimData.cta}</a></p>
             `;
             resultsContainer.appendChild(card);
         }
