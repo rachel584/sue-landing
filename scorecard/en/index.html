@@ -1492,6 +1492,8 @@
 
         fetch('https://hooks.zapier.com/hooks/catch/12758020/uexyt4m/', {
             method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify(payload)
         })
         .then(() => { revealGatedContent(); })
